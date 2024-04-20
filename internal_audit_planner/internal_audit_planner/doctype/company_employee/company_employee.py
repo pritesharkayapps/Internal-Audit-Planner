@@ -6,4 +6,7 @@ from frappe.model.document import Document
 
 
 class CompanyEmployee(Document):
-	pass
+    def before_save(self):
+        self.full_name = " ".join(
+            filter(None, [self.salutation, self.first_name, self.last_name])
+        )

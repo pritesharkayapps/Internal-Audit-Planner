@@ -1,33 +1,36 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:site",
  "creation": "2024-04-19 17:01:21.598387",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "name1",
+  "site",
   "note"
  ],
  "fields": [
   {
-   "fieldname": "name1",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Name",
-   "reqd": 1
-  },
-  {
    "fieldname": "note",
    "fieldtype": "Small Text",
    "label": "Note"
+  },
+  {
+   "fieldname": "site",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Site",
+   "reqd": 1,
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-19 17:05:33.922566",
+ "modified": "2024-04-20 09:52:35.125248",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Site",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
