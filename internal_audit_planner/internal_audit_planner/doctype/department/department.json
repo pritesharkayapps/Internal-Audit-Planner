@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:department",
  "creation": "2024-04-19 17:02:04.459903",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -27,22 +28,26 @@
   {
    "fieldname": "department",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Department",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "team_leader",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Team Leader",
    "options": "Company Employee"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-19 17:04:20.312826",
+ "modified": "2024-04-20 10:00:28.454722",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Department",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -58,7 +63,9 @@
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "department"
 }

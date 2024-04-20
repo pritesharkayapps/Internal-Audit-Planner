@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:EMP-{######}",
  "creation": "2024-04-19 16:50:49.353148",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -17,7 +18,7 @@
   "department",
   "sign",
   "is_auditor",
-  "is_auditor_team_lead",
+  "is_auditor_team_leader",
   "section_break_mmvo",
   "employee_courses"
  ],
@@ -25,7 +26,6 @@
   {
    "fieldname": "salutation",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Salutation",
    "options": "Salutation",
    "reqd": 1
@@ -44,17 +44,19 @@
   {
    "fieldname": "full_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Full Name",
    "read_only": 1
   },
   {
    "fieldname": "sign",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Sign",
    "reqd": 1
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "enable",
    "fieldtype": "Check",
    "label": "Enable"
@@ -62,14 +64,20 @@
   {
    "fieldname": "department",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Department",
+   "link_filters": "[]",
    "options": "Department",
    "reqd": 1
   },
   {
    "fieldname": "site",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Site",
+   "link_filters": "[]",
    "options": "Site",
    "reqd": 1
   },
@@ -77,6 +85,8 @@
    "default": "0",
    "fieldname": "is_auditor",
    "fieldtype": "Check",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Is Auditor"
   },
   {
@@ -88,7 +98,7 @@
    "fieldname": "employee_courses",
    "fieldtype": "Table",
    "label": "Courses",
-   "options": "Employee Course"
+   "options": "Employee Courses"
   },
   {
    "fieldname": "user",
@@ -108,17 +118,18 @@
   },
   {
    "default": "0",
-   "fieldname": "is_auditor_team_lead",
+   "fieldname": "is_auditor_team_leader",
    "fieldtype": "Check",
-   "label": "Is Auditor Team Lead"
+   "label": "Is Auditor Team Leader"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-19 17:41:06.206506",
+ "modified": "2024-04-20 14:47:53.053403",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Company Employee",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -134,7 +145,9 @@
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "full_name"
 }

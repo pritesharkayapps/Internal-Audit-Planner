@@ -17,7 +17,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Employee",
-   "options": "Employee Course",
+   "options": "Employee Courses",
    "reqd": 1
   },
   {
@@ -47,7 +47,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-19 17:36:15.324804",
+ "modified": "2024-04-20 10:48:17.325591",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "leave Application",
