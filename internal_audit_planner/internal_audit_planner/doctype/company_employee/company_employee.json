@@ -1,0 +1,140 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-04-19 16:50:49.353148",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_info_section",
+  "user",
+  "salutation",
+  "first_name",
+  "last_name",
+  "full_name",
+  "column_break_pgxo",
+  "enable",
+  "site",
+  "department",
+  "sign",
+  "is_auditor",
+  "is_auditor_team_lead",
+  "section_break_mmvo",
+  "employee_courses"
+ ],
+ "fields": [
+  {
+   "fieldname": "salutation",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Salutation",
+   "options": "Salutation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "First Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "last Name"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sign",
+   "fieldtype": "Data",
+   "label": "Sign",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "enable",
+   "fieldtype": "Check",
+   "label": "Enable"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "site",
+   "fieldtype": "Link",
+   "label": "Site",
+   "options": "Site",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_auditor",
+   "fieldtype": "Check",
+   "label": "Is Auditor"
+  },
+  {
+   "fieldname": "section_break_mmvo",
+   "fieldtype": "Section Break",
+   "label": "Courses Details"
+  },
+  {
+   "fieldname": "employee_courses",
+   "fieldtype": "Table",
+   "label": "Courses",
+   "options": "Employee Course"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pgxo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "basic_info_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Info"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_auditor_team_lead",
+   "fieldtype": "Check",
+   "label": "Is Auditor Team Lead"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-04-19 17:41:06.206506",
+ "modified_by": "Administrator",
+ "module": "Internal Audit Planner",
+ "name": "Company Employee",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

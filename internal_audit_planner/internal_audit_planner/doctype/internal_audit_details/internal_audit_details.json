@@ -1,0 +1,148 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-04-20 09:03:47.851775",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "site",
+  "department",
+  "audit_plan_start_date",
+  "audit_plan_end_date",
+  "column_break_vwbj",
+  "audit_start_date",
+  "audit_end_date",
+  "status",
+  "planned_auditees_and_auditers_section",
+  "planned_auditee",
+  "column_break_orpb",
+  "planned_auditers",
+  "actual_auditees_and_auditers_section",
+  "actual_auditee",
+  "column_break_wcda",
+  "actual_auditers"
+ ],
+ "fields": [
+  {
+   "fieldname": "site",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Site",
+   "options": "Site",
+   "reqd": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "audit_plan_start_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Audit Plan Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "audit_plan_end_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Audit Plan End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_vwbj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "audit_start_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Audit Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "audit_end_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Audit End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Planned\nCompleted",
+   "reqd": 1
+  },
+  {
+   "fieldname": "planned_auditees_and_auditers_section",
+   "fieldtype": "Section Break",
+   "label": "Planned Auditees and Auditers"
+  },
+  {
+   "fieldname": "planned_auditee",
+   "fieldtype": "Table",
+   "label": "Planned Auditee",
+   "options": "Planned Auditees"
+  },
+  {
+   "fieldname": "column_break_orpb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "planned_auditers",
+   "fieldtype": "Table",
+   "label": "Planned Auditers",
+   "options": "Planned Auditers"
+  },
+  {
+   "fieldname": "actual_auditees_and_auditers_section",
+   "fieldtype": "Section Break",
+   "label": "Actual Auditees and Auditers"
+  },
+  {
+   "fieldname": "column_break_wcda",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "actual_auditee",
+   "fieldtype": "Table",
+   "label": "Actual Auditee",
+   "options": "Actual Auditees"
+  },
+  {
+   "fieldname": "actual_auditers",
+   "fieldtype": "Table",
+   "label": "Actual Auditers",
+   "options": "Actual Auditers"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-04-20 09:19:31.553835",
+ "modified_by": "Administrator",
+ "module": "Internal Audit Planner",
+ "name": "Internal Audit Details",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
