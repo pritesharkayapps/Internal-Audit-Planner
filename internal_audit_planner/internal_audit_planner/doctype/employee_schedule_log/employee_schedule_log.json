@@ -1,6 +1,6 @@
 {
  "actions": [],
- "allow_rename": 1,
+ "autoname": "hash",
  "creation": "2024-04-20 09:02:47.326518",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -34,11 +34,13 @@
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-04-20 09:03:32.063941",
+ "modified": "2024-04-23 10:54:15.188082",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Employee Schedule Log",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
   {
@@ -54,7 +56,9 @@
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "employee"
 }

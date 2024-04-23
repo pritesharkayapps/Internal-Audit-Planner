@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:EMP-{######}",
+ "autoname": "format:EMP-{####}",
  "creation": "2024-04-19 16:50:49.353148",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -39,7 +39,7 @@
   {
    "fieldname": "last_name",
    "fieldtype": "Data",
-   "label": "last Name"
+   "label": "Last Name"
   },
   {
    "fieldname": "full_name",
@@ -67,7 +67,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Department",
-   "link_filters": "[]",
+   "link_filters": "[[\"Department\",\"site\",\"=\",\"eval: doc.site\"]]",
    "options": "Department",
    "reqd": 1
   },
@@ -104,8 +104,7 @@
    "fieldname": "user",
    "fieldtype": "Link",
    "label": "User",
-   "options": "User",
-   "reqd": 1
+   "options": "User"
   },
   {
    "fieldname": "column_break_pgxo",
@@ -125,7 +124,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-20 14:47:53.053403",
+ "modified": "2024-04-23 10:26:24.478170",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Company Employee",

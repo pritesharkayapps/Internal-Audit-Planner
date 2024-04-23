@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class PlannedAuditers(Document):
+class PlannedAuditors(Document):
 	pass
