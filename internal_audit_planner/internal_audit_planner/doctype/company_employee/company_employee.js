@@ -1,34 +1,97 @@
 // Copyright (c) 2024, Pritesh Kerai and contributors
 // For license information, please see license.txt
 
+totalQualifiedCourseforLeader = 0
+frappe.call({
+    method: "internal_audit_planner.internal_audit_planner.doctype.course.course.record_count",
+    type: "GET"
+}).then((resp) => {
+    totalQualifiedCourseforLeader = resp.message
+})
+
+let d;
+
 frappe.ui.form.on("Company Employee", {
+    setup(frm) {
+        d = new frappe.ui.Dialog({
+            title: 'User is qualified for Auditor',
+            fields: [
+                {
+                    label: 'Is Auditor Team Leader',
+                    fieldname: 'is_auditor_team_leader',
+                    fieldtype: 'Check'
+                },
+            ],
+            size: 'small',
+            primary_action_label: 'Submit',
+            primary_action(values) {
+                frm.set_value('is_auditor_team_leader', values.is_auditor_team_leader)
+                d.hide();
+            }
+        });
+    },
     refresh(frm) {
-        frm.set_df_property("is_auditor_team_leader", 'read_only', 1);
-    },
-    is_auditor: function (frm) {
-        if (frm.doc.is_auditor == 0) {
-            frm.set_df_property("is_auditor_team_leader", 'read_only', 1);
-            frm.refresh_fields();
-        } else if (frm.doc.is_auditor == 1) {
-            frm.set_df_property("is_auditor_team_leader", 'read_only', 0);
-            frm.refresh_fields();
-        }
-    },
-    is_auditor_team_leader: function (frm) {
-        if (frm.doc.is_auditor_team_leader == 1) {
+        // frm.set_df_property("is_auditor_team_leader", 'read_only', 1);
+
+        var corsesTableLength = frm.doc.employee_courses.length || [];
+
+        if (corsesTableLength == 0) {
             frappe.db.get_list('Course', {
                 fields: ['*'],
-                filters: {
-                    mandatory_for_auditor: 1
-                }
             }).then(records => {
-                var d = records.length > 0 ? records : []
-                for (var i = 0; i < d.length; i++) {
+                for (var i = 0; i < records.length; i++) {
                     row = cur_frm.add_child("employee_courses");
-                    row.course = d[i].course_name
+                    row.course = records[i].course_name
+
                     refresh_field("employee_courses");
                 }
             })
         }
-    }
+    },
 });
+
+
+frappe.ui.form.on("Employee Courses", {
+    valid_from: async function (frm, cdt, cdn) {
+        var row = locals[cdt][cdn];
+
+        validToDate = row.valid_from;
+        var validToDate = new Date(validToDate);
+        validToDate.setFullYear(validToDate.getFullYear() + 3);
+        frappe.model.set_value(cdt, cdn, "valid_to", validToDate);
+    },
+    valid_to: async function (frm, cdt, cdn) {
+        CheckIsTeamMember(frm, cdt, cdn)
+    },
+    qualified: async function (frm, cdt, cdn) {
+        CheckIsTeamMember(frm, cdt, cdn)
+    },
+});
+
+function CheckIsTeamMember(frm, cdt, cdn) {
+    var coursesRecords = frm.doc.employee_courses || [];
+    var noofQualifiedCourse = 0;
+
+    coursesRecords.forEach(function (record) {
+        if (record.valid_to >= frappe.datetime.now_date()) {
+            frappe.call({
+                method: "internal_audit_planner.internal_audit_planner.doctype.course.course.record_exist",
+                type: "GET",
+                args: {
+                    filters: {
+                        'course_name': record.course,
+                        'mandatory_for_team_lead': 1
+                    }
+                }
+            }).then((resp) => {
+                if (resp.message == 1 && record.qualified == 1) {
+                    noofQualifiedCourse++
+                }
+
+                if (totalQualifiedCourseforLeader == noofQualifiedCourse) {
+                    d.show();
+                }
+            })
+        }
+    });
+}

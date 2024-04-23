@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{department}-ADT-{######}",
  "creation": "2024-04-20 09:03:47.851775",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -13,14 +14,15 @@
   "audit_start_date",
   "audit_end_date",
   "status",
-  "planned_auditees_and_auditers_section",
+  "planned_auditees_and_auditors_section",
   "planned_auditee",
   "column_break_orpb",
-  "planned_auditers",
-  "actual_auditees_and_auditers_section",
+  "planned_auditors",
+  "actual_auditees_and_auditors_section",
   "actual_auditee",
   "column_break_wcda",
-  "actual_auditers"
+  "actual_auditors",
+  "amended_from"
  ],
  "fields": [
   {
@@ -36,6 +38,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Department",
+   "link_filters": "[[\"Department\",\"site\",\"=\",\"eval: doc.site\"]]",
    "options": "Department",
    "reqd": 1
   },
@@ -79,11 +82,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "planned_auditees_and_auditers_section",
-   "fieldtype": "Section Break",
-   "label": "Planned Auditees and Auditers"
-  },
-  {
    "fieldname": "planned_auditee",
    "fieldtype": "Table",
    "label": "Planned Auditee",
@@ -92,17 +90,6 @@
   {
    "fieldname": "column_break_orpb",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "planned_auditers",
-   "fieldtype": "Table",
-   "label": "Planned Auditers",
-   "options": "Planned Auditers"
-  },
-  {
-   "fieldname": "actual_auditees_and_auditers_section",
-   "fieldtype": "Section Break",
-   "label": "Actual Auditees and Auditers"
   },
   {
    "fieldname": "column_break_wcda",
@@ -115,18 +102,46 @@
    "options": "Actual Auditees"
   },
   {
-   "fieldname": "actual_auditers",
+   "fieldname": "planned_auditees_and_auditors_section",
+   "fieldtype": "Section Break",
+   "label": "Planned Auditees and Auditors"
+  },
+  {
+   "fieldname": "planned_auditors",
    "fieldtype": "Table",
-   "label": "Actual Auditers",
-   "options": "Actual Auditers"
+   "label": "Planned Auditors",
+   "options": "Planned Auditors"
+  },
+  {
+   "fieldname": "actual_auditees_and_auditors_section",
+   "fieldtype": "Section Break",
+   "label": "Actual Auditees and Auditors"
+  },
+  {
+   "fieldname": "actual_auditors",
+   "fieldtype": "Table",
+   "label": "Actual Auditors",
+   "options": "Actual Auditors"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Internal Audit Details",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-04-20 09:19:31.553835",
+ "modified": "2024-04-23 10:57:49.284258",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Internal Audit Details",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

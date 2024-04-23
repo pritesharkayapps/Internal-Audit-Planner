@@ -8,7 +8,7 @@
  "field_order": [
   "course_name",
   "short_name",
-  "mandatory_for_auditor"
+  "mandatory_for_team_lead"
  ],
  "fields": [
   {
@@ -28,15 +28,15 @@
   },
   {
    "default": "0",
-   "fieldname": "mandatory_for_auditor",
+   "fieldname": "mandatory_for_team_lead",
    "fieldtype": "Check",
    "in_list_view": 1,
-   "label": "Mandatory for Auditor"
+   "label": "Mandatory for Team Lead"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-20 09:59:38.111643",
+ "modified": "2024-04-22 09:28:37.054634",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Course",
