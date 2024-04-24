@@ -7,7 +7,10 @@
  "field_order": [
   "employee",
   "start_date",
-  "end_date"
+  "end_date",
+  "link_doctype",
+  "link_name",
+  "note"
  ],
  "fields": [
   {
@@ -31,12 +34,29 @@
    "in_list_view": 1,
    "label": "End Date",
    "reqd": 1
+  },
+  {
+   "fieldname": "link_doctype",
+   "fieldtype": "Data",
+   "label": "Link DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "link_name",
+   "fieldtype": "Data",
+   "label": "Link Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Data",
+   "label": "Note"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-04-23 10:54:15.188082",
+ "modified": "2024-04-24 09:52:28.918524",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Employee Schedule Log",
@@ -44,16 +64,13 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "create": 1,
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
+   "role": "All",
+   "share": 1
   }
  ],
  "show_title_field_in_link": 1,

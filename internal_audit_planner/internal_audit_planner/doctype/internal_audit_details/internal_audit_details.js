@@ -3,7 +3,6 @@
 
 frappe.ui.form.on("Internal Audit Details", {
     refresh(frm) {
-
     },
 });
 
