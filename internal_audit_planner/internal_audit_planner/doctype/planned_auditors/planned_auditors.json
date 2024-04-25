@@ -6,7 +6,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "employee"
+  "employee",
+  "is_auditor_team_lead"
  ],
  "fields": [
   {
@@ -16,12 +17,21 @@
    "label": "Employee",
    "options": "Company Employee",
    "reqd": 1
+  },
+  {
+   "default": "0",
+   "fetch_from": "employee.is_auditor_team_leader",
+   "fieldname": "is_auditor_team_lead",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Auditor Team Lead",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-20 09:18:15.930002",
+ "modified": "2024-04-25 11:57:07.260937",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Planned Auditors",

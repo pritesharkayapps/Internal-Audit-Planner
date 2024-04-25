@@ -1,0 +1,42 @@
+[
+ {
+  "department": "HRM",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-24 17:36:18.267825",
+  "name": "HRM-Bhuj",
+  "note": null,
+  "site": "Bhuj",
+  "team_leader": "EMP-000003"
+ },
+ {
+  "department": "BRS",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-23 10:23:12.626150",
+  "name": "BRS-Dhordo",
+  "note": null,
+  "site": "Dhordo",
+  "team_leader": "EMP-000005"
+ },
+ {
+  "department": "HRM",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-23 10:23:21.427790",
+  "name": "HRM-Mumbai",
+  "note": null,
+  "site": "Mumbai",
+  "team_leader": "EMP-000008"
+ },
+ {
+  "department": "ELE",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-23 10:23:00.951112",
+  "name": "ELE-Bhuj",
+  "note": null,
+  "site": "Bhuj",
+  "team_leader": "EMP-000003"
+ }
+]

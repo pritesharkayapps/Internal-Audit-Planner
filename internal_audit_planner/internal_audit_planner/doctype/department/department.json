@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:department",
+ "autoname": "format:{department}-{site}",
  "creation": "2024-04-19 17:02:04.459903",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -37,17 +37,17 @@
    "fieldname": "team_leader",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Team Leader",
+   "label": "Department HOD",
    "options": "Company Employee"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-20 10:00:28.454722",
+ "modified": "2024-04-25 11:54:15.849890",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Department",
- "naming_rule": "By fieldname",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

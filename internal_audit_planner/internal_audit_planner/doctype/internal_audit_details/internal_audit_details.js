@@ -2,9 +2,20 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Internal Audit Details", {
-    refresh(frm) {
+    refresh: function (frm) {
+        var today = new Date();
 
+        frm.fields_dict['audit_plan_start_date'].datepicker.update({
+            minDate: today
+        });
     },
+    audit_plan_start_date: function (frm) {
+        var start_date = new Date(frappe.datetime.add_days(frm.doc.audit_plan_start_date))
+
+        frm.fields_dict['audit_plan_end_date'].datepicker.update({
+            minDate: start_date
+        });
+    }
 });
 
 frappe.ui.form.on("Planned Auditees", {

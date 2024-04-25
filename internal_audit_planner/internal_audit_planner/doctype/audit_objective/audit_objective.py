@@ -5,14 +5,14 @@ import frappe
 from frappe.model.document import Document
 
 
-class Course(Document):
+class AuditObjective(Document):
     pass
 
 
 @frappe.whitelist()
 def record_exist(filters=None):
     first_record = frappe.get_list(
-        "Course", filters=filters, limit_start=0, limit_page_length=1
+        "AuditObjective", filters=filters, limit_start=0, limit_page_length=1
     )
 
     if first_record:
@@ -23,4 +23,4 @@ def record_exist(filters=None):
 
 @frappe.whitelist()
 def record_count(filters=None):
-    return frappe.db.count("Course", filters={"mandatory_for_team_lead": 1})
+    return frappe.db.count("AuditObjective", filters={"mandatory_for_team_lead": 1})
