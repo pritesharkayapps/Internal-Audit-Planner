@@ -1,0 +1,29 @@
+[
+ {
+  "course_name": "Environmental Management System",
+  "docstatus": 0,
+  "doctype": "Audit Objective",
+  "mandatory_for_team_lead": 1,
+  "modified": "2024-04-22 09:30:34.497362",
+  "name": "Environmental Management System",
+  "short_name": "EMS"
+ },
+ {
+  "course_name": "Occupational Health and Safety Management System",
+  "docstatus": 0,
+  "doctype": "Audit Objective",
+  "mandatory_for_team_lead": 1,
+  "modified": "2024-04-22 09:30:34.481604",
+  "name": "Occupational Health and Safety Management System",
+  "short_name": "OHSMS"
+ },
+ {
+  "course_name": "Quality Management System",
+  "docstatus": 0,
+  "doctype": "Audit Objective",
+  "mandatory_for_team_lead": 1,
+  "modified": "2024-04-22 09:30:34.501182",
+  "name": "Quality Management System",
+  "short_name": "QMS"
+ }
+]
