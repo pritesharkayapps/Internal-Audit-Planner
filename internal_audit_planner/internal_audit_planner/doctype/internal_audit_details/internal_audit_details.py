@@ -26,20 +26,21 @@ class InternalAuditDetails(Document):
         if has_team_leader == False:
             frappe.throw("A planned audit must have a team leader")
 
+    def before_submit(doc):
         errors = []
         for i, row in enumerate(doc.planned_auditee, 1):
             totalLog = frappe.db.count(
                 "Employee Schedule Log",
                 filters={
                     "employee": row.employee,
-                    "start_date": (">=", doc.audit_plan_start_date),
-                    "end_date": ("<=", doc.audit_plan_end_date),
+                    "start_date": ("<=", doc.audit_plan_start_date),
+                    "end_date": (">=", doc.audit_plan_end_date),
                 },
             )
 
             if totalLog > 0:
                 errors.append(
-                    f"Planned Audit Employee {i} already has another schedule"
+                    f"Planned Audit Employee Row {i} already has another schedule"
                 )
 
         for i, row in enumerate(doc.planned_auditors, 1):
@@ -47,27 +48,18 @@ class InternalAuditDetails(Document):
                 "Employee Schedule Log",
                 filters={
                     "employee": row.employee,
-                    "start_date": (">=", doc.audit_plan_start_date),
-                    "end_date": ("<=", doc.audit_plan_end_date),
+                    "start_date": ("<=", doc.audit_plan_start_date),
+                    "end_date": (">=", doc.audit_plan_end_date),
                 },
             )
 
             if totalLog > 0:
                 errors.append(
-                    f"Planned Auditor Employee {i} already has another schedule"
+                    f"Planned Auditor Employee Row {i} already has another schedule"
                 )
 
-        print("error length is ",len(errors))
         for i, error in enumerate(errors, 1):
-            print(error)
-
-            frappe.msgprint(error)
-
-    def before_submit(doc):
-        doc.before_save()
-        frappe.throw("xvjiuh")
-
-        frappe.throw("xvjiuh")
+            frappe.throw(error)
 
         for planned_auditee in doc.get("planned_auditee"):
             schedule_log = frappe.new_doc("Employee Schedule Log")

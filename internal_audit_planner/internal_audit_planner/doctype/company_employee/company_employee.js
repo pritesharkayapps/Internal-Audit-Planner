@@ -14,7 +14,7 @@ let d;
 frappe.ui.form.on("Company Employee", {
     setup(frm) {
         d = new frappe.ui.Dialog({
-            title: 'User is qualified for Auditor',
+            title: 'Qualified for Auditor Team Leader',
             fields: [
                 {
                     label: 'Is Auditor Team Leader',
@@ -31,8 +31,6 @@ frappe.ui.form.on("Company Employee", {
         });
     },
     refresh(frm) {
-        // frm.set_df_property("is_auditor_team_leader", 'read_only', 1);
-
         var corsesTableLength = frm.doc.employee_courses.length || [];
 
         if (corsesTableLength == 0) {
@@ -88,7 +86,7 @@ function CheckIsTeamMember(frm, cdt, cdn) {
                     noofQualifiedCourse++
                 }
 
-                if (totalQualifiedCourseforLeader == noofQualifiedCourse) {
+                if (totalQualifiedCourseforLeader == noofQualifiedCourse && frm.doc.is_auditor_team_leader == 0) {
                     d.show();
                 }
             })

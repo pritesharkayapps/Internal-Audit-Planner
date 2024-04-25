@@ -11,9 +11,9 @@
   "audit_plan_start_date",
   "audit_plan_end_date",
   "column_break_vwbj",
+  "status",
   "audit_start_date",
   "audit_end_date",
-  "status",
   "planned_auditees_and_auditors_section",
   "planned_auditee",
   "column_break_orpb",
@@ -64,15 +64,13 @@
    "fieldname": "audit_start_date",
    "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "Audit Start Date",
-   "reqd": 1
+   "label": "Audit Start Date"
   },
   {
    "fieldname": "audit_end_date",
    "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "Audit End Date",
-   "reqd": 1
+   "label": "Audit End Date"
   },
   {
    "fieldname": "status",
@@ -137,7 +135,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-23 10:57:49.284258",
+ "modified": "2024-04-24 17:45:16.440315",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Internal Audit Details",
