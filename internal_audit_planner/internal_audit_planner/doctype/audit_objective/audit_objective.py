@@ -12,7 +12,7 @@ class AuditObjective(Document):
 @frappe.whitelist()
 def record_exist(filters=None):
     first_record = frappe.get_list(
-        "AuditObjective", filters=filters, limit_start=0, limit_page_length=1
+        "Audit Objective", filters=filters, limit_start=0, limit_page_length=1
     )
 
     if first_record:
@@ -23,4 +23,4 @@ def record_exist(filters=None):
 
 @frappe.whitelist()
 def record_count(filters=None):
-    return frappe.db.count("AuditObjective", filters={"mandatory_for_team_lead": 1})
+    return frappe.db.count("Audit Objective", filters={"mandatory_for_team_lead": 1})

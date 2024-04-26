@@ -1,0 +1,13 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Internal Audit Details",
+  "enabled": 1,
+  "modified": "2024-04-26 11:34:34.920724",
+  "module": null,
+  "name": "Hide Fields in Forms",
+  "script": "frappe.ui.form.on('Internal Audit Details', {\n\trefresh(frm) {\n\t\tif(frm.is_new()){\n\t\t    frm.set_df_property('audit_start_date', 'hidden', 1);\n\t\t    frm.set_df_property('audit_end_date', 'hidden', 1);\n\t\t    frm.set_df_property('actual_auditees_and_auditors_section', 'hidden', 1);\n\t\t}\n\t},\n\tbefore_save(frm){\n\t    let flag = false;\n\t    frm.doc.planned_auditors.forEach(function (ch){\n\t        if (ch.is_auditor_team_lead === 1){\n\t            flag = true;\n\t        }\n\t    });\n\t    if(flag === false){\n\t        frappe.throw(\"Add atleast one Auditor Team Lead\");\n\t    }\n\t}\n});",
+  "view": "Form"
+ }
+]

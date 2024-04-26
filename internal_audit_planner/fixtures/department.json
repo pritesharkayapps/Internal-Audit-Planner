@@ -10,16 +10,6 @@
   "team_leader": "EMP-000003"
  },
  {
-  "department": "BRS",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-23 10:23:12.626150",
-  "name": "BRS-Dhordo",
-  "note": null,
-  "site": "Dhordo",
-  "team_leader": "EMP-000005"
- },
- {
   "department": "HRM",
   "docstatus": 0,
   "doctype": "Department",
@@ -38,5 +28,15 @@
   "note": null,
   "site": "Bhuj",
   "team_leader": "EMP-000003"
+ },
+ {
+  "department": "BRS",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-26 11:46:41.293037",
+  "name": "BRS-Dhordo",
+  "note": null,
+  "site": "Dhordo",
+  "team_leader": "EMP-000008"
  }
 ]

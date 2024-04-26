@@ -3,6 +3,18 @@
   "amended_from": null,
   "docstatus": 1,
   "doctype": "Leave Application",
+  "employee": "EMP-000004",
+  "end_date": "2024-04-26",
+  "leave_days": 1,
+  "modified": "2024-04-25 14:16:27.976630",
+  "name": "LAP-000052",
+  "reason": null,
+  "start_date": "2024-04-26"
+ },
+ {
+  "amended_from": null,
+  "docstatus": 1,
+  "doctype": "Leave Application",
   "employee": "EMP-000005",
   "end_date": "2024-05-15",
   "leave_days": 1,

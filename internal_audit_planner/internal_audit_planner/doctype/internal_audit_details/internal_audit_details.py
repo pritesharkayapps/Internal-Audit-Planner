@@ -7,59 +7,14 @@ from frappe.model.document import Document
 
 class InternalAuditDetails(Document):
     def before_save(doc):
-        department = frappe.get_doc("Department", doc.get("department"))
-
-        if not department:
-            frappe.throw("Department not found")
-
-        if not department.team_leader:
-            frappe.throw(
-                "This Department does not have any Team Leader. Please Set Team Leader first"
-            )
-
-        has_team_leader = False
-        for planned_auditee in doc.get("planned_auditee"):
-            if planned_auditee.employee == department.team_leader:
-                has_team_leader = True
-                break
-
-        if has_team_leader == False:
-            frappe.throw("A planned audit must have a team leader")
+        doc.validate_team_leader()
+        doc.validate_plan_auditee()
+        doc.validate_plan_auditor()
 
     def before_submit(doc):
-        errors = []
-        for i, row in enumerate(doc.planned_auditee, 1):
-            totalLog = frappe.db.count(
-                "Employee Schedule Log",
-                filters={
-                    "employee": row.employee,
-                    "start_date": ("<=", doc.audit_plan_start_date),
-                    "end_date": (">=", doc.audit_plan_end_date),
-                },
-            )
-
-            if totalLog > 0:
-                errors.append(
-                    f"Planned Audit Employee Row {i} already has another schedule"
-                )
-
-        for i, row in enumerate(doc.planned_auditors, 1):
-            totalLog = frappe.db.count(
-                "Employee Schedule Log",
-                filters={
-                    "employee": row.employee,
-                    "start_date": ("<=", doc.audit_plan_start_date),
-                    "end_date": (">=", doc.audit_plan_end_date),
-                },
-            )
-
-            if totalLog > 0:
-                errors.append(
-                    f"Planned Auditor Employee Row {i} already has another schedule"
-                )
-
-        for i, error in enumerate(errors, 1):
-            frappe.throw(error)
+        doc.validate_team_leader()
+        doc.validate_plan_auditee()
+        doc.validate_plan_auditor()
 
         for planned_auditee in doc.get("planned_auditee"):
             schedule_log = frappe.new_doc("Employee Schedule Log")
@@ -89,3 +44,80 @@ class InternalAuditDetails(Document):
 
         for log in schedule_logs:
             frappe.delete_doc("Employee Schedule Log", log.name)
+
+    def validate_plan_auditor(doc):
+        team_leader_count = 0
+
+        flag = False
+        for row in doc.planned_auditors:
+            if row.team_leader:
+                flag = True
+
+                team_leader_count += 1
+                if team_leader_count > 1:
+                    frappe.throw("Only one team leader is allowed.")
+                    return
+            
+        if flag == False:
+            frappe.throw("Add atleast one Auditor Team Leader")
+            return
+                
+        for i, row in enumerate(doc.planned_auditee, 1):
+            schedule_log = frappe.get_list(
+                "Employee Schedule Log",
+                filters={
+                    "employee": row.employee,
+                    "start_date": ("<=", doc.audit_plan_start_date),
+                    "end_date": (">=", doc.audit_plan_end_date),
+                },
+                fields=["*"],
+            )
+
+            if schedule_log:
+                if schedule_log[0].link_doctype == "Leave Application":
+                    frappe.throw(f"Auditee {doc.full_name} at Row {i} will be on leave on this date")
+                    return
+                else:
+                    frappe.throw(f"Auditee {doc.full_name} at Row {i}  will have another Audit Plan Schedule at that time")
+                    return
+
+    def validate_plan_auditee(doc):
+        for i, row in enumerate(doc.planned_auditee, 1):
+            schedule_log = frappe.get_list(
+                "Employee Schedule Log",
+                filters={
+                    "employee": row.employee,
+                    "start_date": ("<=", doc.audit_plan_start_date),
+                    "end_date": (">=", doc.audit_plan_end_date),
+                },
+                fields=["*"],
+            )
+
+            if schedule_log:
+                if schedule_log[0].link_doctype == "Leave Application":
+                    frappe.throw(f"Auditee {doc.full_name} at Row {i} will be on leave on this date")
+                    return
+                else:
+                    frappe.throw(f"Auditee {doc.full_name} at Row {i}  will have another Audit Plan Schedule at that time")
+                    return
+
+    def validate_team_leader(doc):
+        department = frappe.get_doc("Department", doc.get("department"))
+
+        if not department:
+            frappe.throw("Department not found")
+            return
+
+        if not department.team_leader:
+            frappe.throw("This Department does not have HOD")
+            return
+
+        has_hod = False
+        for planned_auditee in doc.get("planned_auditee"):
+            if planned_auditee.employee == department.team_leader:
+                has_hod = True
+                break
+
+        if has_hod == False:
+            frappe.throw("A planned audit must have a team leader")
+            return

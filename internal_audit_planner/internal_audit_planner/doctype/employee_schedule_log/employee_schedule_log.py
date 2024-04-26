@@ -17,19 +17,22 @@ def check_employee_schedules(employee=None, start_date=None, end_date=None):
 	if not doc:
 		return "Employee not Found"
 
-	totalEmployeeScheduleLog = frappe.db.count(
+	schedule_log = frappe.get_list(
 		"Employee Schedule Log",
 		filters={
 			"employee": employee,
 			"start_date": ("<=", start_date),
 			"end_date": (">=", end_date),
-		}
+		},fields=["*"],
 	)
 
-	if totalEmployeeScheduleLog > 0:
-		return f"{doc.full_name} already has another schedule on this date"
-
-	return
+	if schedule_log:
+		if schedule_log[0].link_doctype == "Leave Application":
+			frappe.throw(f"{doc.full_name} will be on leave on this date")
+			return
+		else:
+			frappe.throw(f"{doc.full_name} will have another Audit Plan Schedule at that time")
+			return
 
 @frappe.whitelist()
 def get_events(doctype, start, end, field_map, filters=None, fields=None):

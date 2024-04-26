@@ -15,6 +15,33 @@ frappe.ui.form.on("Internal Audit Details", {
         frm.fields_dict['audit_plan_end_date'].datepicker.update({
             minDate: start_date
         });
+    },
+    department: function (frm) {
+        var department = frm.doc.department
+
+        frappe.call({
+            method: "internal_audit_planner.internal_audit_planner.doctype.department.department.get_auditee",
+            type: "GET",
+            args: {
+                'department': department,
+            }
+        }).then((resp) => {
+            department = resp.message.department
+            employees = resp.message.list
+
+            frm.clear_table('planned_auditee');
+            
+            for (i = 0; i < employees.length; i++) {
+                var row = frappe.model.add_child(frm.doc, 'planned_auditee');
+                row.employee = employees[i].name
+                
+                if(department.team_leader && department.team_leader == employees[i].name) {
+                    row.audit_leader = 1
+                }
+            }
+
+            frm.refresh_field('planned_auditee');
+        })
     }
 });
 

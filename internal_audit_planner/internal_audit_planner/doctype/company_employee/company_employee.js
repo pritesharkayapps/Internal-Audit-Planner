@@ -3,7 +3,7 @@
 
 totalQualifiedCourseforLeader = 0
 frappe.call({
-    method: "internal_audit_planner.internal_audit_planner.doctype.course.course.record_count",
+    method: "internal_audit_planner.internal_audit_planner.doctype.audit_objective.audit_objective.record_count",
     type: "GET"
 }).then((resp) => {
     totalQualifiedCourseforLeader = resp.message
@@ -34,7 +34,7 @@ frappe.ui.form.on("Company Employee", {
         var corsesTableLength = frm.doc.employee_courses.length || [];
 
         if (corsesTableLength == 0) {
-            frappe.db.get_list('Course', {
+            frappe.db.get_list('Audit Objective', {
                 fields: ['*'],
             }).then(records => {
                 for (var i = 0; i < records.length; i++) {
@@ -62,6 +62,12 @@ frappe.ui.form.on("Employee Courses", {
         CheckIsTeamMember(frm, cdt, cdn)
     },
     qualified: async function (frm, cdt, cdn) {
+        var row = locals[cdt][cdn];
+
+        if(row.qualified == 1 && frm.doc.is_auditor == 0) {
+            frm.set_value('is_auditor', 1)
+        }
+
         CheckIsTeamMember(frm, cdt, cdn)
     },
 });
@@ -73,7 +79,7 @@ function CheckIsTeamMember(frm, cdt, cdn) {
     coursesRecords.forEach(function (record) {
         if (record.valid_to >= frappe.datetime.now_date()) {
             frappe.call({
-                method: "internal_audit_planner.internal_audit_planner.doctype.course.course.record_exist",
+                method: "internal_audit_planner.internal_audit_planner.doctype.audit_objective.audit_objective.record_exist",
                 type: "GET",
                 args: {
                     filters: {

@@ -228,10 +228,14 @@ app_license = "mit"
 # }
 
 fixtures = [
+   "Workspace",
+   {"dt":"Property Setter","filters": [["name", "=", "Internal Audit Planner"]]},
    "Company Employee",
    "Audit Objective",
    "Site",
    "Leave Application",
    "Employee Courses",
    "Department",
+   "Client Script",
+   {"dt":"Property Setter","filters": [["name", "=", "Hide Fields in Forms"]]},
 ]
