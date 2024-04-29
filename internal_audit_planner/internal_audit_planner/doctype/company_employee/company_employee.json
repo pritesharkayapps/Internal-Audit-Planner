@@ -19,6 +19,7 @@
   "sign",
   "is_auditor",
   "is_auditor_team_leader",
+  "team_leader",
   "section_break_mmvo",
   "employee_courses"
  ],
@@ -92,12 +93,12 @@
   {
    "fieldname": "section_break_mmvo",
    "fieldtype": "Section Break",
-   "label": "Courses Details"
+   "label": "Audit Objective Details"
   },
   {
    "fieldname": "employee_courses",
    "fieldtype": "Table",
-   "label": "Courses",
+   "label": "Audit Objective",
    "options": "Employee Courses"
   },
   {
@@ -120,11 +121,18 @@
    "fieldname": "is_auditor_team_leader",
    "fieldtype": "Check",
    "label": "Is Auditor Team Leader"
+  },
+  {
+   "default": "0",
+   "fieldname": "team_leader",
+   "fieldtype": "Check",
+   "label": "HOD",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-23 10:26:24.478170",
+ "modified": "2024-04-29 10:01:25.861645",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Company Employee",

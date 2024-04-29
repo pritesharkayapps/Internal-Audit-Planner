@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"srHcT32W7D\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Internal Audit Planner</span>\",\"col\":12}},{\"id\":\"0wvGBPMxTV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Audit Objective\",\"col\":3}},{\"id\":\"n_s-EaxVLu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"N9TVyzfGgS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"i-0Xsx5vXy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Internal Audit Details\",\"col\":3}},{\"id\":\"K6LjB9s3gM\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Details\",\"col\":4}}]",
+ "content": "[{\"id\":\"srHcT32W7D\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Internal Audit Planner</span>\",\"col\":12}},{\"id\":\"0wvGBPMxTV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Site\",\"col\":3}},{\"id\":\"n_s-EaxVLu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"N9TVyzfGgS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Audit Objective\",\"col\":3}},{\"id\":\"i-0Xsx5vXy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Internal Audit Details\",\"col\":3}},{\"id\":\"K6LjB9s3gM\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Details\",\"col\":4}}]",
  "creation": "2024-04-22 12:45:38.808083",
  "custom_blocks": [],
  "docstatus": 0,
@@ -53,7 +53,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-04-26 17:00:33.415752",
+ "modified": "2024-04-29 09:08:26.655762",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Internal Audit Planner",
@@ -68,7 +68,7 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Audit Objective",
+   "label": "Site",
    "link_to": "Site",
    "stats_filter": "[]",
    "type": "DocType"
@@ -84,16 +84,16 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Department",
-   "link_to": "Department",
+   "label": "Audit Objective",
+   "link_to": "Audit Objective",
    "stats_filter": "[]",
    "type": "DocType"
   },
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Course",
-   "link_to": "Audit Objective",
+   "label": "Department",
+   "link_to": "Department",
    "stats_filter": "[]",
    "type": "DocType"
   }

@@ -10,7 +10,8 @@
   "end_date",
   "link_doctype",
   "link_name",
-  "note"
+  "note",
+  "child_doctype"
  ],
  "fields": [
   {
@@ -51,12 +52,17 @@
    "fieldname": "note",
    "fieldtype": "Data",
    "label": "Note"
+  },
+  {
+   "fieldname": "child_doctype",
+   "fieldtype": "Data",
+   "label": "Child DocType"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-04-24 09:52:28.918524",
+ "modified": "2024-04-29 12:37:07.380378",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Employee Schedule Log",

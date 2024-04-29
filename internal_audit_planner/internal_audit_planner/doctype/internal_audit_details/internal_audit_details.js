@@ -29,20 +29,30 @@ frappe.ui.form.on("Internal Audit Details", {
             department = resp.message.department
             employees = resp.message.list
 
-            frm.clear_table('planned_auditee');
-            
+            frm.clear_table('planned_auditees');
+
             for (i = 0; i < employees.length; i++) {
-                var row = frappe.model.add_child(frm.doc, 'planned_auditee');
+                var row = frappe.model.add_child(frm.doc, 'planned_auditees');
                 row.employee = employees[i].name
-                
-                if(department.team_leader && department.team_leader == employees[i].name) {
-                    row.audit_leader = 1
+                if (employees[i].team_leader) {
+                    row.auditee_team_leader = 1
                 }
+
+                // if (department.team_leader && department.team_leader == employees[i].name) {
+                //     row.auditee_team_leader = 1
+                // }
             }
 
-            frm.refresh_field('planned_auditee');
+            frm.refresh_field('planned_auditees');
         })
-    }
+    },
+    status: function (frm) {
+        var status = frm.doc.status
+
+        if (status == "Completed") {
+            copyPlannedData(frm)
+        }
+    },
 });
 
 frappe.ui.form.on("Planned Auditees", {
@@ -54,6 +64,11 @@ frappe.ui.form.on("Planned Auditees", {
                 method: "internal_audit_planner.internal_audit_planner.doctype.employee_schedule_log.employee_schedule_log.check_employee_schedules",
                 type: "GET",
                 args: {
+                    'filters':{
+                        'link_doctype':["!=",frm.doc.doctype],
+                        'link_name':["!=",frm.doc.name],
+                        "child_doctype": ["!=","Planned Auditees"],
+                    },
                     'employee': row.employee,
                     'start_date': frm.doc.audit_plan_start_date,
                     'end_date': frm.doc.audit_plan_end_date
@@ -77,6 +92,11 @@ frappe.ui.form.on("Planned Auditors", {
                 method: "internal_audit_planner.internal_audit_planner.doctype.employee_schedule_log.employee_schedule_log.check_employee_schedules",
                 type: "GET",
                 args: {
+                    'filters':{
+                        'link_doctype':["!=",frm.doc.doctype],
+                        'link_name':["!=",frm.doc.name],
+                        "child_doctype": ["!=","Planned Auditors"],
+                    },
                     'employee': row.employee,
                     'start_date': frm.doc.audit_plan_start_date,
                     'end_date': frm.doc.audit_plan_end_date
@@ -90,3 +110,35 @@ frappe.ui.form.on("Planned Auditors", {
         }
     },
 });
+
+function copyPlannedData(frm) {
+    plan_start_date = frm.doc.audit_plan_start_date
+    plan_end_date = frm.doc.audit_plan_end_date
+    planned_auditees = frm.doc.planned_auditees
+    planned_auditors = frm.doc.planned_auditors
+
+    audit_start_date = frm.doc.audit_start_date
+    audit_end_date = frm.doc.audit_end_date
+    actual_auditees = frm.doc.actual_auditees
+    actual_auditors = frm.doc.actual_auditors
+    
+    if (!audit_start_date && !audit_end_date && actual_auditees.length == 0 && actual_auditors.length == 0) {
+        frm.set_value('audit_start_date', plan_start_date)
+        frm.set_value('audit_end_date', plan_end_date)
+
+        frm.doc.planned_auditees.forEach(function (row) {
+            var newRow = frm.add_child('actual_auditees');
+            newRow.employee = row.employee;
+            newRow.auditee_team_leader = row.auditee_team_leader;
+        });
+
+        frm.doc.planned_auditors.forEach(function (row) {
+            var newRow = frm.add_child('actual_auditors');
+            newRow.employee = row.employee;
+            newRow.is_auditor_team_lead = row.is_auditor_team_lead;
+        });
+
+        frm.refresh_fields(['actual_auditees', 'actual_auditors']);
+    }
+
+}

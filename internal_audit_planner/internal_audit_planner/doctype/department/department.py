@@ -6,6 +6,13 @@ from frappe.model.document import Document
 
 
 class Department(Document):
+	def before_save(doc):
+		if doc.team_leader:
+			employee = frappe.get_doc("Company Employee",doc.team_leader)
+
+			employee.team_leader = 1
+			employee.save()
+			
 	pass
 
 @frappe.whitelist()

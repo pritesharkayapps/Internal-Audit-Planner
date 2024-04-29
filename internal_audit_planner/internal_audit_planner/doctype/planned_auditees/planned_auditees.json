@@ -7,7 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "employee",
-  "audit_leader"
+  "auditee_team_leader"
  ],
  "fields": [
   {
@@ -23,7 +23,8 @@
   {
    "columns": 2,
    "default": "0",
-   "fieldname": "audit_leader",
+   "fetch_from": "employee.team_leader",
+   "fieldname": "auditee_team_leader",
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "HOD"
@@ -32,7 +33,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-26 17:04:36.778639",
+ "modified": "2024-04-29 10:24:07.067300",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Planned Auditees",

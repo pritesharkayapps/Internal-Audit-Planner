@@ -15,11 +15,11 @@
   "audit_start_date",
   "audit_end_date",
   "planned_auditees_and_auditors_section",
-  "planned_auditee",
-  "column_break_orpb",
+  "planned_auditees",
+  "column_break_vnuf",
   "planned_auditors",
   "actual_auditees_and_auditors_section",
-  "actual_auditee",
+  "actual_auditees",
   "column_break_wcda",
   "actual_auditors",
   "amended_from"
@@ -80,24 +80,8 @@
    "reqd": 1
   },
   {
-   "fieldname": "planned_auditee",
-   "fieldtype": "Table",
-   "label": "Planned Auditee",
-   "options": "Planned Auditees"
-  },
-  {
-   "fieldname": "column_break_orpb",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "column_break_wcda",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "actual_auditee",
-   "fieldtype": "Table",
-   "label": "Actual Auditee",
-   "options": "Actual Auditees"
   },
   {
    "fieldname": "planned_auditees_and_auditors_section",
@@ -130,12 +114,28 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "column_break_vnuf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "planned_auditees",
+   "fieldtype": "Table",
+   "label": "Planned Auditees",
+   "options": "Planned Auditees"
+  },
+  {
+   "fieldname": "actual_auditees",
+   "fieldtype": "Table",
+   "label": "Actual Auditees",
+   "options": "Actual Auditees"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-24 17:45:16.440315",
+ "modified": "2024-04-29 10:31:35.773661",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Internal Audit Details",

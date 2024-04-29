@@ -20,16 +20,6 @@
   "team_leader": "EMP-000008"
  },
  {
-  "department": "ELE",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-23 10:23:00.951112",
-  "name": "ELE-Bhuj",
-  "note": null,
-  "site": "Bhuj",
-  "team_leader": "EMP-000003"
- },
- {
   "department": "BRS",
   "docstatus": 0,
   "doctype": "Department",
@@ -38,5 +28,15 @@
   "note": null,
   "site": "Dhordo",
   "team_leader": "EMP-000008"
+ },
+ {
+  "department": "ELE",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-29 10:03:38.359431",
+  "name": "ELE-Bhuj",
+  "note": null,
+  "site": "Bhuj",
+  "team_leader": "EMP-000004"
  }
 ]

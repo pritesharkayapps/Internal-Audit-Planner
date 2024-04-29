@@ -64,9 +64,24 @@ frappe.ui.form.on("Employee Courses", {
     qualified: async function (frm, cdt, cdn) {
         var row = locals[cdt][cdn];
 
-        if(row.qualified == 1 && frm.doc.is_auditor == 0) {
+        if (row.qualified == 1 && frm.doc.is_auditor == 0) {
             frm.set_value('is_auditor', 1)
         }
+
+        if (row.qualified === 0 && frm.doc.is_auditor === 1) {
+            let flag = true
+
+            frm.doc.employee_courses.forEach(function (child) {
+                if (child.qualified === 1) { 
+                    flag = false;
+                }
+            })
+
+            if(flag === true) {
+                frm.set_value('is_auditor', 0)
+            }
+        }
+
 
         CheckIsTeamMember(frm, cdt, cdn)
     },
