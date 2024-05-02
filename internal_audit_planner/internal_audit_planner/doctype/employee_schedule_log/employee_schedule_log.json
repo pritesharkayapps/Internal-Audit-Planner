@@ -8,9 +8,11 @@
   "employee",
   "start_date",
   "end_date",
+  "type",
+  "amended_from",
+  "column_break_fftf",
   "link_doctype",
   "link_name",
-  "note",
   "child_doctype"
  ],
  "fields": [
@@ -49,20 +51,36 @@
    "reqd": 1
   },
   {
-   "fieldname": "note",
-   "fieldtype": "Data",
-   "label": "Note"
-  },
-  {
    "fieldname": "child_doctype",
    "fieldtype": "Data",
    "label": "Child DocType"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Employee Schedule Log",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Leave\nPlanned\nActual",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_fftf",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-04-29 12:37:07.380378",
+ "modified": "2024-05-01 10:32:47.984602",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Employee Schedule Log",
@@ -70,13 +88,30 @@
  "owner": "Administrator",
  "permissions": [
   {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "All",
-   "share": 1
+   "select": 1,
+   "share": 1,
+   "write": 1
   }
  ],
  "show_title_field_in_link": 1,

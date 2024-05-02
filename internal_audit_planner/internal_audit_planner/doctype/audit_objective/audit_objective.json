@@ -31,12 +31,12 @@
    "fieldname": "mandatory_for_team_lead",
    "fieldtype": "Check",
    "in_list_view": 1,
-   "label": "Mandatory for Team Lead"
+   "label": "Mandatory for Auditor Team Leader"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-22 09:28:37.054634",
+ "modified": "2024-04-30 10:17:06.554652",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Audit Objective",

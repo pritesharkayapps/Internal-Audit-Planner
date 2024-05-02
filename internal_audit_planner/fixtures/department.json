@@ -1,5 +1,35 @@
 [
  {
+  "department": "GTR",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-30 11:40:36.179852",
+  "name": "GTR-Dhordo",
+  "note": null,
+  "site": "Dhordo",
+  "team_leader": null
+ },
+ {
+  "department": "MKT",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-30 15:03:44.425431",
+  "name": "MKT-Bhuj",
+  "note": null,
+  "site": "Bhuj",
+  "team_leader": "EMP-0078"
+ },
+ {
+  "department": "PUR",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-30 15:12:51.955180",
+  "name": "PUR-Bhuj",
+  "note": null,
+  "site": "Bhuj",
+  "team_leader": "EMP-0079"
+ },
+ {
   "department": "HRM",
   "docstatus": 0,
   "doctype": "Department",
@@ -7,7 +37,17 @@
   "name": "HRM-Bhuj",
   "note": null,
   "site": "Bhuj",
-  "team_leader": "EMP-000003"
+  "team_leader": "EMP-0003"
+ },
+ {
+  "department": "ACC",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-30 14:54:04.898243",
+  "name": "ACC-Bhuj",
+  "note": null,
+  "site": "Bhuj",
+  "team_leader": null
  },
  {
   "department": "HRM",
@@ -17,7 +57,47 @@
   "name": "HRM-Mumbai",
   "note": null,
   "site": "Mumbai",
-  "team_leader": "EMP-000008"
+  "team_leader": "EMP-0008"
+ },
+ {
+  "department": "ERP",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-30 14:39:15.476513",
+  "name": "ERP-Bhuj",
+  "note": null,
+  "site": "Bhuj",
+  "team_leader": "EMP-0073"
+ },
+ {
+  "department": "WEB",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-30 14:46:06.568018",
+  "name": "WEB-Bhuj",
+  "note": null,
+  "site": "Bhuj",
+  "team_leader": "EMP-0075"
+ },
+ {
+  "department": "MNG",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-30 14:48:08.643863",
+  "name": "MNG-Bhuj",
+  "note": null,
+  "site": "Bhuj",
+  "team_leader": null
+ },
+ {
+  "department": "PRJ",
+  "docstatus": 0,
+  "doctype": "Department",
+  "modified": "2024-04-30 14:45:57.592165",
+  "name": "PRJ-Bhuj",
+  "note": null,
+  "site": "Bhuj",
+  "team_leader": "EMP-0074"
  },
  {
   "department": "BRS",
@@ -27,7 +107,7 @@
   "name": "BRS-Dhordo",
   "note": null,
   "site": "Dhordo",
-  "team_leader": "EMP-000008"
+  "team_leader": "EMP-0008"
  },
  {
   "department": "ELE",
@@ -37,6 +117,6 @@
   "name": "ELE-Bhuj",
   "note": null,
   "site": "Bhuj",
-  "team_leader": "EMP-000004"
+  "team_leader": "EMP-0004"
  }
 ]

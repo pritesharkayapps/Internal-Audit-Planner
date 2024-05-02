@@ -29,6 +29,7 @@
    "fieldname": "site",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Site",
    "options": "Site",
    "reqd": 1
@@ -37,6 +38,7 @@
    "fieldname": "department",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Department",
    "link_filters": "[[\"Department\",\"site\",\"=\",\"eval: doc.site\"]]",
    "options": "Department",
@@ -47,6 +49,7 @@
    "fieldtype": "Datetime",
    "in_list_view": 1,
    "label": "Audit Plan Start Date",
+   "read_only_depends_on": "eval: doc.status===\"Completed\"",
    "reqd": 1
   },
   {
@@ -54,6 +57,7 @@
    "fieldtype": "Datetime",
    "in_list_view": 1,
    "label": "Audit Plan End Date",
+   "read_only_depends_on": "eval: doc.status===\"Completed\"",
    "reqd": 1
   },
   {
@@ -61,22 +65,30 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
+   "depends_on": "eval: doc.status===\"Completed\"",
    "fieldname": "audit_start_date",
    "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "Audit Start Date"
+   "label": "Audit Start Date",
+   "mandatory_depends_on": "eval: doc.status===\"Completed\""
   },
   {
+   "allow_on_submit": 1,
+   "depends_on": "eval: doc.status===\"Completed\"",
    "fieldname": "audit_end_date",
    "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "Audit End Date"
+   "label": "Audit End Date",
+   "mandatory_depends_on": "eval: doc.status===\"Completed\""
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
    "options": "Planned\nCompleted",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -92,7 +104,8 @@
    "fieldname": "planned_auditors",
    "fieldtype": "Table",
    "label": "Planned Auditors",
-   "options": "Planned Auditors"
+   "options": "Planned Auditors",
+   "read_only_depends_on": "eval: doc.status===\"Completed\""
   },
   {
    "fieldname": "actual_auditees_and_auditors_section",
@@ -100,9 +113,12 @@
    "label": "Actual Auditees and Auditors"
   },
   {
+   "allow_on_submit": 1,
+   "depends_on": "eval: doc.status===\"Completed\"",
    "fieldname": "actual_auditors",
    "fieldtype": "Table",
    "label": "Actual Auditors",
+   "mandatory_depends_on": "eval: doc.status===\"Completed\"",
    "options": "Actual Auditors"
   },
   {
@@ -123,19 +139,23 @@
    "fieldname": "planned_auditees",
    "fieldtype": "Table",
    "label": "Planned Auditees",
-   "options": "Planned Auditees"
+   "options": "Planned Auditees",
+   "read_only_depends_on": "eval: doc.status===\"Completed\""
   },
   {
+   "allow_on_submit": 1,
+   "depends_on": "eval: doc.status===\"Completed\"",
    "fieldname": "actual_auditees",
    "fieldtype": "Table",
    "label": "Actual Auditees",
+   "mandatory_depends_on": "eval: doc.status===\"Completed\"",
    "options": "Actual Auditees"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-29 10:31:35.773661",
+ "modified": "2024-05-02 11:55:31.964608",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Internal Audit Details",
@@ -143,6 +163,7 @@
  "owner": "Administrator",
  "permissions": [
   {
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -151,7 +172,9 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
    "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],

@@ -9,6 +9,8 @@ frappe.call({
     totalQualifiedCourseforLeader = resp.message
 })
 
+console.log(totalQualifiedCourseforLeader)
+
 let d;
 
 frappe.ui.form.on("Company Employee", {
@@ -46,6 +48,19 @@ frappe.ui.form.on("Company Employee", {
             })
         }
     },
+    site: function (frm) {
+        site = frm.doc.site
+
+        if (site) {
+            frm.set_query('department', function () {
+                return {
+                    filters: [
+                        ['site', '=', site]
+                    ]
+                };
+            });
+        }
+    },
 });
 
 
@@ -72,16 +87,15 @@ frappe.ui.form.on("Employee Courses", {
             let flag = true
 
             frm.doc.employee_courses.forEach(function (child) {
-                if (child.qualified === 1) { 
+                if (child.qualified === 1) {
                     flag = false;
                 }
             })
 
-            if(flag === true) {
+            if (flag === true) {
                 frm.set_value('is_auditor', 0)
             }
         }
-
 
         CheckIsTeamMember(frm, cdt, cdn)
     },
@@ -92,25 +106,27 @@ function CheckIsTeamMember(frm, cdt, cdn) {
     var noofQualifiedCourse = 0;
 
     coursesRecords.forEach(function (record) {
-        if (record.valid_to >= frappe.datetime.now_date()) {
-            frappe.call({
-                method: "internal_audit_planner.internal_audit_planner.doctype.audit_objective.audit_objective.record_exist",
-                type: "GET",
-                args: {
-                    filters: {
-                        'course_name': record.course,
-                        'mandatory_for_team_lead': 1
-                    }
+        frappe.call({
+            method: "internal_audit_planner.internal_audit_planner.doctype.audit_objective.audit_objective.record_exist",
+            type: "GET",
+            args: {
+                filters: {
+                    'course_name': record.course,
+                    'mandatory_for_team_lead': 1
                 }
-            }).then((resp) => {
-                if (resp.message == 1 && record.qualified == 1) {
-                    noofQualifiedCourse++
-                }
+            }
+        }).then((resp) => {
+            if (resp.message == 1 && record.qualified == 1) {
+                noofQualifiedCourse++
+            }
 
-                if (totalQualifiedCourseforLeader == noofQualifiedCourse && frm.doc.is_auditor_team_leader == 0) {
-                    d.show();
-                }
-            })
-        }
+            console.log(totalQualifiedCourseforLeader, noofQualifiedCourse)
+
+            if (totalQualifiedCourseforLeader == noofQualifiedCourse && frm.doc.is_auditor_team_leader == 0) {
+                d.show();
+            } else {
+                frm.set_value('is_auditor_team_leader', 0)
+            }
+        })
     });
 }

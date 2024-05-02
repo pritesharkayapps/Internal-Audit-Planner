@@ -236,5 +236,6 @@ fixtures = [
     "Employee Courses",
     "Department",
     "Client Script",
+    "Internal Audit Details",
     {"dt": "Report", "filters": {"name": "Internal Audit Report"}},
 ]

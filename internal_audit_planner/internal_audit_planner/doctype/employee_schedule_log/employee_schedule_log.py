@@ -12,47 +12,24 @@ class EmployeeScheduleLog(Document):
 
 @frappe.whitelist()
 def check_employee_schedules(
-    filters=None, employee=None, start_date=None, end_date=None
+    filters=None, or_filters=None
 ):
-    doc = frappe.get_doc("Company Employee", employee)
-
-    if not doc:
-        return "Employee not Found"
-
-    filters = json.loads(filters) if filters else []
-    filters.update(
-        {
-            "employee": employee,
-            "start_date": ("<=", start_date),
-            "end_date": (">=", end_date),
-        }
-    )
     schedule_log = frappe.get_list(
-        "Employee Schedule Log",
-        filters=filters,
-        fields=["*"],
+        "Employee Schedule Log", filters=filters, fields=["*"],
     )
 
     if schedule_log:
-        if schedule_log[0].link_doctype == "Leave Application":
-            frappe.throw(f"{doc.full_name} will be on leave on this date")
-            return
-        else:
-            frappe.throw(
-                f"{doc.full_name} will have another Audit Plan Schedule at that time"
-            )
-            return
+        if schedule_log[0].type == "Leave":
+            frappe.throw("This Employee is on leave on that date")
+        elif schedule_log[0].type == "Planned":
+            frappe.throw("This Employee has an Audit Planned schudule at that time")
+        elif schedule_log[0].type == "Actual":
+            frappe.throw("This Employee Attend an Actual Audit at that time")
 
 
 @frappe.whitelist()
-def get_events(doctype, start, end, field_map, filters=None, fields=None):
+def get_events(doctype, start, end, field_map, filters=None):
     field_map = frappe._dict(json.loads(field_map))
-    fields = frappe.parse_json(fields)
-
-    doc_meta = frappe.get_meta(doctype)
-    for d in doc_meta.fields:
-        if d.fieldtype == "Color":
-            field_map.update({"color": d.fieldname})
 
     filters = json.loads(filters) if filters else []
 
@@ -63,19 +40,23 @@ def get_events(doctype, start, end, field_map, filters=None, fields=None):
         [doctype, start_date, "<=", end],
         [doctype, end_date, ">=", start],
     ]
-    events = frappe.get_list(doctype, fields=["*"], filters=filters)
+
+    custom_order = "FIELD(type, 'Leave', 'Planned', 'Actual')"
+
+    events = frappe.get_list(
+        doctype, fields=["*"], filters=filters, order_by=custom_order
+    )
 
     for event in events:
         employee = frappe.get_doc("Company Employee", event.employee)
-        if event.link_doctype == "Leave Application":
-            event.color = "#F08080"
-            event.subject = f"{employee.full_name} is On Leave"
-        else:
-            internal_audit = frappe.get_doc("Internal Audit Details", event.link_name)
-
+        if event.type == "Leave":
+            event.color = "#FC6149"
+            event.subject = f"{employee.full_name} On Leave"
+        elif event.type == "Planned":
+            event.color = "#F5A91B"
+            event.subject = f"{employee.full_name} has an Audit Planned"
+        elif event.type == "Actual":
             event.color = "#6495ED"
-            event.subject = (
-                f"{employee.full_name} has already Planned in {internal_audit.name}"
-            )
-
+            event.subject = f"{employee.full_name} Attend an Actual Audit"
+        event.all_day = 0
     return events

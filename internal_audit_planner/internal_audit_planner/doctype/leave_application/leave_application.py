@@ -7,6 +7,18 @@ from frappe.model.document import Document
 
 class LeaveApplication(Document):
     def before_submit(doc):
+        doc.validate_schedule()
+
+        schedule_logs = frappe.get_list(
+            "Employee Schedule Log",
+            filters={"link_doctype": doc.doctype, "link_name": doc.name},
+        )
+
+        for log in schedule_logs:
+            schedule_log = frappe.get_doc("Employee Schedule Log", log.name)
+            schedule_log.save()
+
+    def validate_schedule(doc):
         schedule_log = frappe.get_list(
             "Employee Schedule Log",
             filters={
@@ -18,20 +30,12 @@ class LeaveApplication(Document):
         )
 
         if schedule_log:
-            print("sdsvoixzhjioujl")
-            
             if schedule_log[0].link_doctype == "Leave Application":
-                frappe.throw(
-                    f"Employee  will be on leave on this date"
-                )
-                return
+                frappe.throw("This Employee will be on leave on this date")
             else:
                 frappe.throw(
-                    f"Employee will have another Audit Plan Schedule at that time"
+                    "This Employee will have another Audit Plan Schedule at that time"
                 )
-                return
-
-        frappe.throw("sdgv")
 
         schedule_log = frappe.new_doc("Employee Schedule Log")
         schedule_log.employee = doc.employee
@@ -39,9 +43,8 @@ class LeaveApplication(Document):
         schedule_log.end_date = doc.end_date + " 23:59:59"
         schedule_log.link_doctype = doc.doctype
         schedule_log.link_name = doc.name
+        schedule_log.type = "Leave"
         schedule_log.save()
-
-        frappe.db.commit()
 
     def before_cancel(doc):
         schedule_logs = frappe.get_list(
@@ -50,4 +53,5 @@ class LeaveApplication(Document):
         )
 
         for log in schedule_logs:
-            frappe.delete_doc("Employee Schedule Log", log.name)
+            schedule_log = frappe.get_doc("Employee Schedule Log", log.name)
+            schedule_log.delete()

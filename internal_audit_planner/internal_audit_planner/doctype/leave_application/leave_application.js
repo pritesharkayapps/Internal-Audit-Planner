@@ -2,10 +2,25 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Leave Application", {
-    start_date: function(frm) {
+    refresh: function (frm) {
+        if (frm.is_new()) {
+            var today = new Date();
+
+            frm.fields_dict['start_date'].datepicker.update({
+                minDate: today
+            });
+        }
+    },
+    start_date: function (frm) {
+        var start_date = new Date(frappe.datetime.add_days(frm.doc.start_date))
+
+        frm.fields_dict['end_date'].datepicker.update({
+            minDate: start_date
+        });
+
         calculateDaysDifference(frm);
     },
-    end_date: function(frm) {
+    end_date: function (frm) {
         calculateDaysDifference(frm);
     }
 });

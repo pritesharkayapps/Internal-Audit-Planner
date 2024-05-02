@@ -1,5 +1,14 @@
 [
  {
+  "course_name": "Information Security Management System",
+  "docstatus": 0,
+  "doctype": "Audit Objective",
+  "mandatory_for_team_lead": 0,
+  "modified": "2024-04-30 14:50:45.605066",
+  "name": "Information Security Management System",
+  "short_name": "ISMS"
+ },
+ {
   "course_name": "Environmental Management System",
   "docstatus": 0,
   "doctype": "Audit Objective",
