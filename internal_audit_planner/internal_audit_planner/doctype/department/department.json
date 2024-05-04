@@ -33,18 +33,15 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Department",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
-   "depends_on": "eval: !doc.__islocal",
    "fieldname": "team_leader",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "HOD",
-   "link_filters": "[[\"Company Employee\",\"is_auditor\",\"=\",0]]",
-   "mandatory_depends_on": "eval: !doc.__islocal",
-   "options": "Company Employee"
+   "options": "Company Employee",
+   "read_only_depends_on": "eval: doc.__islocal"
   },
   {
    "fieldname": "column_break_lgov",
@@ -53,7 +50,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-01 10:07:09.299931",
+ "modified": "2024-05-04 15:14:57.798852",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Department",

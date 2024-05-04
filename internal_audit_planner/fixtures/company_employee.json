@@ -407,98 +407,6 @@
   "user": null
  },
  {
-  "department": "ERP-Bhuj",
-  "docstatus": 0,
-  "doctype": "Company Employee",
-  "email": "pritesharkayapps@gmail.com",
-  "employee_courses": [
-   {
-    "certificate": null,
-    "course": "Information Security Management System",
-    "parent": "EMP-0095",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 0,
-    "valid_from": null,
-    "valid_to": null
-   },
-   {
-    "certificate": null,
-    "course": "Quality Management System",
-    "parent": "EMP-0095",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 0,
-    "valid_from": null,
-    "valid_to": null
-   }
-  ],
-  "enable": 1,
-  "first_name": "Pritesh",
-  "full_name": "Mr Pritesh Kerai",
-  "is_auditor": 0,
-  "is_auditor_team_leader": 0,
-  "last_name": "Kerai",
-  "modified": "2024-05-01 12:33:52.725388",
-  "name": "EMP-0095",
-  "salutation": "Mr",
-  "sign": "PPK",
-  "site": "Bhuj",
-  "team_leader": 0,
-  "user": null
- },
- {
-  "department": "ERP-Bhuj",
-  "docstatus": 0,
-  "doctype": "Company Employee",
-  "email": null,
-  "employee_courses": [
-   {
-    "certificate": null,
-    "course": "Quality Management System",
-    "parent": "EMP-0073",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 0,
-    "valid_from": null,
-    "valid_to": null
-   },
-   {
-    "certificate": null,
-    "course": "Occupational Health and Safety Management System",
-    "parent": "EMP-0073",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 0,
-    "valid_from": null,
-    "valid_to": null
-   },
-   {
-    "certificate": null,
-    "course": "Environmental Management System",
-    "parent": "EMP-0073",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 0,
-    "valid_from": null,
-    "valid_to": null
-   }
-  ],
-  "enable": 1,
-  "first_name": "Nirvisha",
-  "full_name": "Ms Nirvisha Soni",
-  "is_auditor": 0,
-  "is_auditor_team_leader": 0,
-  "last_name": "Soni",
-  "modified": "2024-04-30 14:39:15.486443",
-  "name": "EMP-0073",
-  "salutation": "Ms",
-  "sign": "NKS",
-  "site": "Bhuj",
-  "team_leader": 1,
-  "user": null
- },
- {
   "department": "BRS-Dhordo",
   "docstatus": 0,
   "doctype": "Company Employee",
@@ -647,47 +555,6 @@
   "name": "EMP-0076",
   "salutation": "Ms",
   "sign": "YKD",
-  "site": "Bhuj",
-  "team_leader": 0,
-  "user": null
- },
- {
-  "department": "MNG-Bhuj",
-  "docstatus": 0,
-  "doctype": "Company Employee",
-  "email": null,
-  "employee_courses": [
-   {
-    "certificate": null,
-    "course": "Quality Management System",
-    "parent": "EMP-0077",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 1,
-    "valid_from": null,
-    "valid_to": null
-   },
-   {
-    "certificate": null,
-    "course": "Information Security Management System",
-    "parent": "EMP-0077",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 1,
-    "valid_from": null,
-    "valid_to": null
-   }
-  ],
-  "enable": 1,
-  "first_name": "Abhimanyu",
-  "full_name": "Dr Abhimanyu Samrat",
-  "is_auditor": 1,
-  "is_auditor_team_leader": 1,
-  "last_name": "Samrat",
-  "modified": "2024-04-30 14:51:34.856155",
-  "name": "EMP-0077",
-  "salutation": "Dr",
-  "sign": "AGS",
   "site": "Bhuj",
   "team_leader": 0,
   "user": null
@@ -1048,6 +915,139 @@
   "sign": "RPS",
   "site": "Bhuj",
   "team_leader": 1,
+  "user": null
+ },
+ {
+  "department": "ERP-Bhuj",
+  "docstatus": 0,
+  "doctype": "Company Employee",
+  "email": "pritesharkayapps@gmail.com",
+  "employee_courses": [
+   {
+    "certificate": null,
+    "course": "Information Security Management System",
+    "parent": "EMP-0095",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 0,
+    "valid_from": null,
+    "valid_to": null
+   },
+   {
+    "certificate": null,
+    "course": "Quality Management System",
+    "parent": "EMP-0095",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 0,
+    "valid_from": null,
+    "valid_to": null
+   }
+  ],
+  "enable": 1,
+  "first_name": "Pritesh",
+  "full_name": "Mr Pritesh Kerai",
+  "is_auditor": 0,
+  "is_auditor_team_leader": 0,
+  "last_name": "Kerai",
+  "modified": "2024-05-01 12:33:52.725388",
+  "name": "EMP-0095",
+  "salutation": "Mr",
+  "sign": "PPK",
+  "site": "Bhuj",
+  "team_leader": 0,
+  "user": null
+ },
+ {
+  "department": "ERP-Bhuj",
+  "docstatus": 0,
+  "doctype": "Company Employee",
+  "email": null,
+  "employee_courses": [
+   {
+    "certificate": null,
+    "course": "Quality Management System",
+    "parent": "EMP-0073",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 0,
+    "valid_from": null,
+    "valid_to": null
+   },
+   {
+    "certificate": null,
+    "course": "Occupational Health and Safety Management System",
+    "parent": "EMP-0073",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 0,
+    "valid_from": null,
+    "valid_to": null
+   },
+   {
+    "certificate": null,
+    "course": "Environmental Management System",
+    "parent": "EMP-0073",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 0,
+    "valid_from": null,
+    "valid_to": null
+   }
+  ],
+  "enable": 1,
+  "first_name": "Nirvisha",
+  "full_name": "Ms Nirvisha Soni",
+  "is_auditor": 0,
+  "is_auditor_team_leader": 0,
+  "last_name": "Soni",
+  "modified": "2024-04-30 14:39:15.486443",
+  "name": "EMP-0073",
+  "salutation": "Ms",
+  "sign": "NKS",
+  "site": "Bhuj",
+  "team_leader": 1,
+  "user": null
+ },
+ {
+  "department": "MNG-Bhuj",
+  "docstatus": 0,
+  "doctype": "Company Employee",
+  "email": null,
+  "employee_courses": [
+   {
+    "certificate": null,
+    "course": "Quality Management System",
+    "parent": "EMP-0077",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 1,
+    "valid_from": null,
+    "valid_to": null
+   },
+   {
+    "certificate": null,
+    "course": "Information Security Management System",
+    "parent": "EMP-0077",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 1,
+    "valid_from": null,
+    "valid_to": null
+   }
+  ],
+  "enable": 1,
+  "first_name": "Abhimanyu",
+  "full_name": "Dr Abhimanyu Samrat",
+  "is_auditor": 1,
+  "is_auditor_team_leader": 1,
+  "last_name": "Samrat",
+  "modified": "2024-04-30 14:51:34.856155",
+  "name": "EMP-0077",
+  "salutation": "Dr",
+  "sign": "AGS",
+  "site": "Bhuj",
+  "team_leader": 0,
   "user": null
  }
 ]

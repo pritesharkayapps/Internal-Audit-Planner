@@ -14,30 +14,13 @@ class InternalAuditDetails(Document):
 
     def before_save(doc):
         if doc.status == "Planned":
-            planned_auditees = doc.planned_auditees
-            planned_auditors = doc.planned_auditors
-
-            for auditee in planned_auditees:
-                send_mail(auditee)
-
-            for auditor in planned_auditees:
-                send_mail(auditor)
-
-        if doc.status == "Planned":
             planned_auditees_log_change(doc)
             planned_auditors_log_change(doc)
 
     def before_submit(doc):
         if doc.status == "Planned":
-            planned_auditees = doc.planned_auditees
-            planned_auditors = doc.planned_auditors
-
-            for auditee in planned_auditees:
-                send_mail(auditee)
-                pass
-
-            for auditor in planned_auditees:
-                pass
+            send_mail(doc)
+        
         pass
 
     def before_update_after_submit(doc):
@@ -410,11 +393,6 @@ def actual_auditees_log_change(doc):
     auditees_to_remove = previous_auditees.difference(current_auditees)
     auditees_to_add = current_auditees.difference(previous_auditees)
 
-    print("Current Auditee: ", current_auditees)
-    print("Match Auditee: ", match_auditees)
-    print("Add Auditee: ", auditees_to_add)
-    print("Remove Auditee: ", auditees_to_remove)
-
     for auditee in match_auditees:
         list = frappe.get_list(
             "Employee Schedule Log",
@@ -519,15 +497,19 @@ def actual_auditors_log_change(doc):
         frappe.delete_doc("Employee Schedule Log", log.name)
 
 
-def send_mail(auditee):
-    recipients = ["pritesharkayapps@gmail.com"]
+def send_mail(doc):
+    doc_department = frappe.get_doc("Department",doc.department)
+    auditees = [auditee.employee for auditee in doc.planned_auditees]
+    auditors = [auditor.employee for auditor in doc.planned_auditors]
+
+    employees = auditees+auditors
+
+    emails = frappe.get_all("Company Employee", filters={"email": ["!=", ""],"name":["In",employees]}, pluck="email")
+
+    recipients = emails
     sender = "pritesharkayapps@gmail.com"
-    subject = "Notification of Scheduled ERP Department Audit Plan"
+    subject = f"Notification of Scheduled {doc_department.department} Audit Plan"
     message = """
-    <p>Dear {auditee},</p>
-
-    <p>I trust this email finds you well.</p>
-
     <p>I am writing to inform you that the audit plan for {department_name} has been scheduled for {audit_date} at {audit_time}. It is crucial that representatives from your department are present during this audit to provide necessary information and address any queries that may arise.</p>
 
     <p>Here are the details of the scheduled audit:</p>
@@ -551,11 +533,15 @@ def send_mail(auditee):
     </p>
     """
 
+    audit_date = frappe.utils.formatdate(doc.audit_plan_start_date, "dd-MM-YYYY")
+    start_time = frappe.utils.format_time(doc.audit_plan_start_date,"HH:mm")
+    end_time = frappe.utils.format_time(doc.audit_plan_end_date,"HH:mm")
+    planned_time = f"{start_time} to {end_time}"
+
     formatted_html = message.format(
-        auditee="Pritesh Kerai",
-        department_name="ERP Department",
-        audit_date="15-06-2023",
-        audit_time="12:30 to 05:30",
+        department_name=doc_department.department,
+        audit_date=audit_date,
+        audit_time=planned_time,
         audit_location="Bhuj",
         your_contact_information="pritesharkayapps@gmail.com",
         your_name="Pritesh Kerai",

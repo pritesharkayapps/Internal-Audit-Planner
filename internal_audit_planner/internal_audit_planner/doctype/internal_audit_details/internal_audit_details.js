@@ -11,7 +11,7 @@ frappe.ui.form.on("Internal Audit Details", {
             });
         }
 
-        if (frm.doc.workflow_state == "Audit" && frm.doc.status=="Planned") {
+        if (frm.doc.workflow_state == "Audited" && frm.doc.status=="Planned") {
             frm.set_value("status", "Completed")
             copyPlannedData(frm)
             if (frm.is_dirty()) {
@@ -174,5 +174,4 @@ function copyPlannedData(frm) {
 
         frm.refresh_fields(['actual_auditees', 'actual_auditors']);
     }
-
 }

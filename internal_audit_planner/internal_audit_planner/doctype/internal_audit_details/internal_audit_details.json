@@ -1,184 +1,188 @@
 {
- "actions": [],
- "allow_rename": 1,
- "autoname": "format:{department}-ADT-{######}",
- "creation": "2024-04-20 09:03:47.851775",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "site",
-  "department",
-  "audit_plan_start_date",
-  "audit_plan_end_date",
-  "column_break_vwbj",
-  "status",
-  "audit_start_date",
-  "audit_end_date",
-  "planned_auditees_and_auditors_section",
-  "planned_auditees",
-  "column_break_vnuf",
-  "planned_auditors",
-  "actual_auditees_and_auditors_section",
-  "actual_auditees",
-  "column_break_wcda",
-  "actual_auditors",
-  "amended_from"
- ],
- "fields": [
-  {
-   "fieldname": "site",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Site",
-   "options": "Site",
-   "reqd": 1
-  },
-  {
-   "fieldname": "department",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Department",
-   "link_filters": "[[\"Department\",\"site\",\"=\",\"eval: doc.site\"]]",
-   "options": "Department",
-   "reqd": 1
-  },
-  {
-   "fieldname": "audit_plan_start_date",
-   "fieldtype": "Datetime",
-   "in_list_view": 1,
-   "label": "Audit Plan Start Date",
-   "read_only_depends_on": "eval: doc.status===\"Completed\"",
-   "reqd": 1
-  },
-  {
-   "fieldname": "audit_plan_end_date",
-   "fieldtype": "Datetime",
-   "in_list_view": 1,
-   "label": "Audit Plan End Date",
-   "read_only_depends_on": "eval: doc.status===\"Completed\"",
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_vwbj",
-   "fieldtype": "Column Break"
-  },
-  {
-   "allow_on_submit": 1,
-   "depends_on": "eval: doc.status===\"Completed\"",
-   "fieldname": "audit_start_date",
-   "fieldtype": "Datetime",
-   "in_list_view": 1,
-   "label": "Audit Start Date",
-   "mandatory_depends_on": "eval: doc.status===\"Completed\""
-  },
-  {
-   "allow_on_submit": 1,
-   "depends_on": "eval: doc.status===\"Completed\"",
-   "fieldname": "audit_end_date",
-   "fieldtype": "Datetime",
-   "in_list_view": 1,
-   "label": "Audit End Date",
-   "mandatory_depends_on": "eval: doc.status===\"Completed\""
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Planned\nCompleted",
-   "read_only": 1,
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_wcda",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "planned_auditees_and_auditors_section",
-   "fieldtype": "Section Break",
-   "label": "Planned Auditees and Auditors"
-  },
-  {
-   "fieldname": "planned_auditors",
-   "fieldtype": "Table",
-   "label": "Planned Auditors",
-   "options": "Planned Auditors",
-   "read_only_depends_on": "eval: doc.status===\"Completed\""
-  },
-  {
-   "fieldname": "actual_auditees_and_auditors_section",
-   "fieldtype": "Section Break",
-   "label": "Actual Auditees and Auditors"
-  },
-  {
-   "allow_on_submit": 1,
-   "depends_on": "eval: doc.status===\"Completed\"",
-   "fieldname": "actual_auditors",
-   "fieldtype": "Table",
-   "label": "Actual Auditors",
-   "mandatory_depends_on": "eval: doc.status===\"Completed\"",
-   "options": "Actual Auditors"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Internal Audit Details",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
-   "fieldname": "column_break_vnuf",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "planned_auditees",
-   "fieldtype": "Table",
-   "label": "Planned Auditees",
-   "options": "Planned Auditees",
-   "read_only_depends_on": "eval: doc.status===\"Completed\""
-  },
-  {
-   "allow_on_submit": 1,
-   "depends_on": "eval: doc.status===\"Completed\"",
-   "fieldname": "actual_auditees",
-   "fieldtype": "Table",
-   "label": "Actual Auditees",
-   "mandatory_depends_on": "eval: doc.status===\"Completed\"",
-   "options": "Actual Auditees"
-  }
- ],
- "index_web_pages_for_search": 1,
- "is_submittable": 1,
- "links": [],
- "modified": "2024-05-02 11:55:31.964608",
- "modified_by": "Administrator",
- "module": "Internal Audit Planner",
- "name": "Internal Audit Details",
- "naming_rule": "Expression",
- "owner": "Administrator",
- "permissions": [
-  {
-   "cancel": 1,
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "select": 1,
-   "share": 1,
-   "submit": 1,
-   "write": 1
-  }
- ],
- "sort_field": "creation",
- "sort_order": "DESC",
- "states": []
-}
+    "actions": [],
+    "allow_rename": 1,
+    "autoname": "format:{department}-ADT-{######}",
+    "creation": "2024-04-20 09:03:47.851775",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+     "site",
+     "department",
+     "audit_plan_start_date",
+     "audit_plan_end_date",
+     "column_break_vwbj",
+     "status",
+     "audit_start_date",
+     "audit_end_date",
+     "planned_auditees_and_auditors_section",
+     "planned_auditees",
+     "column_break_vnuf",
+     "planned_auditors",
+     "actual_auditees_and_auditors_section",
+     "actual_auditees",
+     "column_break_wcda",
+     "actual_auditors",
+     "amended_from"
+    ],
+    "fields": [
+     {
+      "fieldname": "site",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Site",
+      "options": "Site",
+      "reqd": 1
+     },
+     {
+      "fieldname": "department",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Department",
+      "link_filters": "[[\"Department\",\"site\",\"=\",\"eval: doc.site\"]]",
+      "options": "Department",
+      "reqd": 1
+     },
+     {
+      "fieldname": "audit_plan_start_date",
+      "fieldtype": "Datetime",
+      "in_list_view": 1,
+      "label": "Audit Plan Start Date",
+      "read_only_depends_on": "eval: doc.status===\"Completed\"",
+      "reqd": 1
+     },
+     {
+      "fieldname": "audit_plan_end_date",
+      "fieldtype": "Datetime",
+      "in_list_view": 1,
+      "label": "Audit Plan End Date",
+      "read_only_depends_on": "eval: doc.status===\"Completed\"",
+      "reqd": 1
+     },
+     {
+      "fieldname": "column_break_vwbj",
+      "fieldtype": "Column Break"
+     },
+     {
+      "allow_on_submit": 1,
+      "depends_on": "eval: doc.status===\"Completed\"",
+      "fieldname": "audit_start_date",
+      "fieldtype": "Datetime",
+      "in_list_view": 1,
+      "label": "Audit Start Date",
+      "mandatory_depends_on": "eval: doc.status===\"Completed\"",
+      "read_only_depends_on": "eval: doc.workflow_state==\"Finished\""
+     },
+     {
+      "allow_on_submit": 1,
+      "depends_on": "eval: doc.status===\"Completed\"",
+      "fieldname": "audit_end_date",
+      "fieldtype": "Datetime",
+      "in_list_view": 1,
+      "label": "Audit End Date",
+      "mandatory_depends_on": "eval: doc.status===\"Completed\"",
+      "read_only_depends_on": "eval: doc.workflow_state==\"Finished\""
+     },
+     {
+      "allow_on_submit": 1,
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Planned\nCompleted",
+      "read_only": 1,
+      "reqd": 1
+     },
+     {
+      "fieldname": "column_break_wcda",
+      "fieldtype": "Column Break"
+     },
+     {
+      "fieldname": "planned_auditees_and_auditors_section",
+      "fieldtype": "Section Break",
+      "label": "Planned Auditees and Auditors"
+     },
+     {
+      "fieldname": "planned_auditors",
+      "fieldtype": "Table",
+      "label": "Planned Auditors",
+      "options": "Planned Auditors",
+      "read_only_depends_on": "eval: doc.status===\"Completed\""
+     },
+     {
+      "fieldname": "actual_auditees_and_auditors_section",
+      "fieldtype": "Section Break",
+      "label": "Actual Auditees and Auditors"
+     },
+     {
+      "allow_on_submit": 1,
+      "depends_on": "eval: doc.status===\"Completed\"",
+      "fieldname": "actual_auditors",
+      "fieldtype": "Table",
+      "label": "Actual Auditors",
+      "mandatory_depends_on": "eval: doc.status===\"Completed\"",
+      "options": "Actual Auditors",
+      "read_only_depends_on": "eval: doc.workflow_state==\"Finished\""
+     },
+     {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "no_copy": 1,
+      "options": "Internal Audit Details",
+      "print_hide": 1,
+      "read_only": 1,
+      "search_index": 1
+     },
+     {
+      "fieldname": "column_break_vnuf",
+      "fieldtype": "Column Break"
+     },
+     {
+      "fieldname": "planned_auditees",
+      "fieldtype": "Table",
+      "label": "Planned Auditees",
+      "options": "Planned Auditees",
+      "read_only_depends_on": "eval: doc.status===\"Completed\""
+     },
+     {
+      "allow_on_submit": 1,
+      "depends_on": "eval: doc.status===\"Completed\"",
+      "fieldname": "actual_auditees",
+      "fieldtype": "Table",
+      "label": "Actual Auditees",
+      "mandatory_depends_on": "eval: doc.status===\"Completed\"",
+      "options": "Actual Auditees",
+      "read_only_depends_on": "eval: doc.workflow_state==\"Finished\""
+     }
+    ],
+    "index_web_pages_for_search": 1,
+    "is_submittable": 1,
+    "links": [],
+    "modified": "2024-05-03 11:38:19.359982",
+    "modified_by": "Administrator",
+    "module": "Internal Audit Planner",
+    "name": "Internal Audit Details",
+    "naming_rule": "Expression",
+    "owner": "Administrator",
+    "permissions": [
+     {
+      "cancel": 1,
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "select": 1,
+      "share": 1,
+      "submit": 1,
+      "write": 1
+     }
+    ],
+    "sort_field": "creation",
+    "sort_order": "DESC",
+    "states": []
+   }

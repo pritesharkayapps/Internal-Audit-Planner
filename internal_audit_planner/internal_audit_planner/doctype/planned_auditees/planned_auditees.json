@@ -23,7 +23,6 @@
   {
    "columns": 2,
    "default": "0",
-   "fetch_from": "employee.team_leader",
    "fieldname": "auditee_team_leader",
    "fieldtype": "Check",
    "in_list_view": 1,
@@ -33,7 +32,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-29 10:24:07.067300",
+ "modified": "2024-05-04 15:28:38.124871",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Planned Auditees",
