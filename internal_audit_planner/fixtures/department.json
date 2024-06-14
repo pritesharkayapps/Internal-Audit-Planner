@@ -1,15 +1,5 @@
 [
  {
-  "department": "GTR",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-30 11:40:36.179852",
-  "name": "GTR-Dhordo",
-  "note": null,
-  "site": "Dhordo",
-  "team_leader": null
- },
- {
   "department": "MKT",
   "docstatus": 0,
   "doctype": "Department",
@@ -33,11 +23,11 @@
   "department": "HRM",
   "docstatus": 0,
   "doctype": "Department",
-  "modified": "2024-04-24 17:36:18.267825",
+  "modified": "2024-06-12 15:13:59.594319",
   "name": "HRM-Bhuj",
   "note": null,
   "site": "Bhuj",
-  "team_leader": "EMP-0003"
+  "team_leader": ""
  },
  {
   "department": "ACC",
@@ -48,16 +38,6 @@
   "note": null,
   "site": "Bhuj",
   "team_leader": null
- },
- {
-  "department": "HRM",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-23 10:23:21.427790",
-  "name": "HRM-Mumbai",
-  "note": null,
-  "site": "Mumbai",
-  "team_leader": "EMP-0008"
  },
  {
   "department": "WEB",
@@ -88,26 +68,6 @@
   "note": null,
   "site": "Bhuj",
   "team_leader": "EMP-0074"
- },
- {
-  "department": "BRS",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-26 11:46:41.293037",
-  "name": "BRS-Dhordo",
-  "note": null,
-  "site": "Dhordo",
-  "team_leader": "EMP-0008"
- },
- {
-  "department": "ELE",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-29 10:03:38.359431",
-  "name": "ELE-Bhuj",
-  "note": null,
-  "site": "Bhuj",
-  "team_leader": "EMP-0004"
  },
  {
   "department": "ERP",

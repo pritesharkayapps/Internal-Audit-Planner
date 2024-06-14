@@ -1,0 +1,62 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-06-12 15:42:01.051083",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "reference_type",
+  "reference_title",
+  "details",
+  "type",
+  "reference_doc_name",
+  "reference_doc_link"
+ ],
+ "fields": [
+  {
+   "fieldname": "reference_type",
+   "fieldtype": "Select",
+   "label": "Reference Type",
+   "options": "SOP\nFormat\nClause\nOther"
+  },
+  {
+   "fieldname": "reference_title",
+   "fieldtype": "Data",
+   "label": "Reference Title"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Small Text",
+   "label": "Details"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "P\nAFI\nO\nNC\nM"
+  },
+  {
+   "fieldname": "reference_doc_name",
+   "fieldtype": "Data",
+   "label": "Reference Doc Name"
+  },
+  {
+   "fieldname": "reference_doc_link",
+   "fieldtype": "Data",
+   "label": "Reference Doc Link"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-06-12 15:48:12.443734",
+ "modified_by": "Administrator",
+ "module": "Internal Audit Planner",
+ "name": "IAC Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,130 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-06-12 15:52:32.628117",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "department",
+  "audit_cycle",
+  "auditor",
+  "auditor_name",
+  "observation_details",
+  "type",
+  "auditee_hod",
+  "auditee_hod_name",
+  "correction_plan",
+  "responsible_person",
+  "responsible_person_name",
+  "planned_date_of_completion",
+  "actual_date_of_completion",
+  "reason_for_delay",
+  "remark"
+ ],
+ "fields": [
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "audit_cycle",
+   "fieldtype": "Link",
+   "label": "Audit Cycle",
+   "options": "Audit Cycle"
+  },
+  {
+   "fieldname": "auditor",
+   "fieldtype": "Link",
+   "label": "Auditor",
+   "options": "Company Employee"
+  },
+  {
+   "fieldname": "auditor_name",
+   "fieldtype": "Data",
+   "label": "Auditor Name"
+  },
+  {
+   "fieldname": "observation_details",
+   "fieldtype": "Small Text",
+   "label": "Observation Details"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "label": "Type"
+  },
+  {
+   "fieldname": "auditee_hod",
+   "fieldtype": "Link",
+   "label": "Auditee HOD",
+   "options": "Company Employee"
+  },
+  {
+   "fieldname": "auditee_hod_name",
+   "fieldtype": "Data",
+   "label": "Auditee HOD Name"
+  },
+  {
+   "fieldname": "correction_plan",
+   "fieldtype": "Small Text",
+   "label": "Correction Plan"
+  },
+  {
+   "fieldname": "responsible_person",
+   "fieldtype": "Link",
+   "label": "Responsible Person",
+   "options": "Company Employee"
+  },
+  {
+   "fieldname": "responsible_person_name",
+   "fieldtype": "Data",
+   "label": "Responsible Person Name"
+  },
+  {
+   "fieldname": "planned_date_of_completion",
+   "fieldtype": "Date",
+   "label": "Planned Date of Completion"
+  },
+  {
+   "fieldname": "actual_date_of_completion",
+   "fieldtype": "Date",
+   "label": "Actual Date of Completion"
+  },
+  {
+   "fieldname": "reason_for_delay",
+   "fieldtype": "Small Text",
+   "label": "Reason for Delay"
+  },
+  {
+   "fieldname": "remark",
+   "fieldtype": "Small Text",
+   "label": "Remark"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-06-12 15:59:08.310301",
+ "modified_by": "Administrator",
+ "module": "Internal Audit Planner",
+ "name": "Observations Corrections",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

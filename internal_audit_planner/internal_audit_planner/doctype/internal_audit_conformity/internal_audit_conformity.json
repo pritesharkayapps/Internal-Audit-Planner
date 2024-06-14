@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:IAC-.{audit_cycle}.-.{dept}.-.{auditor-abr}.",
+ "creation": "2024-06-12 15:31:13.945270",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "audit_planner",
+  "department",
+  "audit_cycle",
+  "date",
+  "time",
+  "auditee_hod",
+  "auditor",
+  "planned_auditors",
+  "planned_auditees",
+  "iac_details"
+ ],
+ "fields": [
+  {
+   "fieldname": "audit_planner",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Audit Planner",
+   "options": "Internal Audit Details",
+   "reqd": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "audit_cycle",
+   "fieldtype": "Link",
+   "label": "Audit Cycle",
+   "options": "Audit Cycle"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "time",
+   "fieldtype": "Time",
+   "label": "TIme"
+  },
+  {
+   "fieldname": "auditee_hod",
+   "fieldtype": "Link",
+   "label": "Auditee HOD",
+   "options": "Company Employee"
+  },
+  {
+   "fieldname": "auditor",
+   "fieldtype": "Link",
+   "label": "Auditor",
+   "options": "Company Employee"
+  },
+  {
+   "fieldname": "planned_auditors",
+   "fieldtype": "Table",
+   "label": "Planned Auditors",
+   "options": "Planned Auditors",
+   "read_only": 1
+  },
+  {
+   "fieldname": "planned_auditees",
+   "fieldtype": "Table",
+   "label": "Planned Auditees",
+   "options": "Planned Auditees",
+   "read_only": 1
+  },
+  {
+   "fieldname": "iac_details",
+   "fieldtype": "Table",
+   "label": "IAC Details",
+   "options": "IAC Details"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-06-14 17:00:53.694325",
+ "modified_by": "Administrator",
+ "module": "Internal Audit Planner",
+ "name": "Internal Audit Conformity",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,140 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-06-13 12:18:59.169472",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "type",
+  "department",
+  "audit_cycle",
+  "audit_date",
+  "observation_details",
+  "iso_standard",
+  "clause",
+  "section_break_bxqt",
+  "clause_reference",
+  "nc_statement",
+  "objective_evidence",
+  "correction",
+  "root_cause_of_nc",
+  "corrective_action_taken",
+  "ca_taken_date",
+  "verification_of_effectiveness_of_corrective_action",
+  "veca_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "NC\nMajor"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "audit_cycle",
+   "fieldtype": "Link",
+   "label": "Audit Cycle",
+   "options": "Audit Cycle"
+  },
+  {
+   "fieldname": "audit_date",
+   "fieldtype": "Date",
+   "label": "Audit Date"
+  },
+  {
+   "fieldname": "observation_details",
+   "fieldtype": "Small Text",
+   "label": "Observation Details"
+  },
+  {
+   "fieldname": "iso_standard",
+   "fieldtype": "Link",
+   "label": "ISO Standard",
+   "options": "ISO Standard"
+  },
+  {
+   "fieldname": "clause",
+   "fieldtype": "Data",
+   "label": "Clause"
+  },
+  {
+   "fieldname": "section_break_bxqt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "clause_reference",
+   "fieldtype": "Small Text",
+   "label": "Clause Reference"
+  },
+  {
+   "fieldname": "nc_statement",
+   "fieldtype": "Small Text",
+   "label": "NC Statement"
+  },
+  {
+   "fieldname": "objective_evidence",
+   "fieldtype": "Small Text",
+   "label": "Objective Evidence"
+  },
+  {
+   "fieldname": "correction",
+   "fieldtype": "Small Text",
+   "label": "Correction"
+  },
+  {
+   "fieldname": "root_cause_of_nc",
+   "fieldtype": "Small Text",
+   "label": "Root Cause of NC"
+  },
+  {
+   "fieldname": "corrective_action_taken",
+   "fieldtype": "Small Text",
+   "label": "Corrective Action Taken"
+  },
+  {
+   "fieldname": "ca_taken_date",
+   "fieldtype": "Date",
+   "label": "CA Taken Date"
+  },
+  {
+   "fieldname": "verification_of_effectiveness_of_corrective_action",
+   "fieldtype": "Small Text",
+   "label": "Verification of Effectiveness of Corrective Action"
+  },
+  {
+   "fieldname": "veca_date",
+   "fieldtype": "Date",
+   "label": "VECA Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-06-13 12:23:19.723373",
+ "modified_by": "Administrator",
+ "module": "Internal Audit Planner",
+ "name": "Non-Conformity",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

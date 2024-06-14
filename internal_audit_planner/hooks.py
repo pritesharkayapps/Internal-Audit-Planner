@@ -228,17 +228,21 @@ app_license = "mit"
 # }
 
 fixtures = [
-    {"dt": "Workspace", "filters": [["name", "=", "Internal Audit Planner"]]},
+    "Workflow State",
+    "Workflow Action Master",
+    "Workflow",
+
     "Site",
-    "Audit Objective",
     "Department",
+    "Audit Objective",
+
     "Company Employee",
     "Leave Application",
     "Employee Schedule Log",
+    
     "Client Script",
     "Internal Audit Details",
-    "Workflow",
-    "Workflow State",
-    "Workflow Action Master",
     {"dt": "Report", "filters": {"name": "Internal Audit Report"}},
+
+    {"dt": "Workspace", "filters": [["name", "=", "Internal Audit Planner"]]},
 ]
