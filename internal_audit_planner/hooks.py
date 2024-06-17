@@ -242,7 +242,7 @@ fixtures = [
     
     "Client Script",
     "Internal Audit Details",
-    {"dt": "Report", "filters": {"name": "Internal Audit Report"}},
+    {"dt": "Report", "filters": {"module": "Internal Audit Planner"}},
 
     {"dt": "Workspace", "filters": [["name", "=", "Internal Audit Planner"]]},
 ]

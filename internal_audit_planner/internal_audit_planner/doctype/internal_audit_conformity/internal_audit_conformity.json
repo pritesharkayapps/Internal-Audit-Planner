@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:IAC-.{audit_cycle}.-.{dept}.-.{auditor-abr}.",
+ "autoname": "format:IAC-{audit_cycle}-{department}-{auditor_sign}",
  "creation": "2024-06-12 15:31:13.945270",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,10 +11,15 @@
   "audit_cycle",
   "date",
   "time",
+  "column_break_gvit",
   "auditee_hod",
   "auditor",
+  "auditor_sign",
+  "section_break_ogpj",
   "planned_auditors",
+  "column_break_wtym",
   "planned_auditees",
+  "section_break_qiak",
   "iac_details"
  ],
  "fields": [
@@ -27,6 +32,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "audit_planner.department",
    "fieldname": "department",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -38,29 +44,36 @@
    "fieldname": "audit_cycle",
    "fieldtype": "Link",
    "label": "Audit Cycle",
-   "options": "Audit Cycle"
+   "options": "Audit Cycle",
+   "reqd": 1
   },
   {
+   "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "Date"
+   "label": "Date",
+   "reqd": 1
   },
   {
+   "default": "Now",
    "fieldname": "time",
    "fieldtype": "Time",
-   "label": "TIme"
+   "label": "TIme",
+   "reqd": 1
   },
   {
    "fieldname": "auditee_hod",
    "fieldtype": "Link",
    "label": "Auditee HOD",
-   "options": "Company Employee"
+   "options": "Company Employee",
+   "reqd": 1
   },
   {
+   "fetch_from": "auditee_hod.full_name",
    "fieldname": "auditor",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Auditor",
-   "options": "Company Employee"
+   "reqd": 1
   },
   {
    "fieldname": "planned_auditors",
@@ -81,11 +94,34 @@
    "fieldtype": "Table",
    "label": "IAC Details",
    "options": "IAC Details"
+  },
+  {
+   "fetch_from": "auditee_hod.sign",
+   "fieldname": "auditor_sign",
+   "fieldtype": "Data",
+   "label": "Auditor Sign",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_gvit",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_ogpj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_wtym",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_qiak",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-14 17:00:53.694325",
+ "modified": "2024-06-17 10:20:20.041963",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Internal Audit Conformity",

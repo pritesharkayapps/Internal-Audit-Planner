@@ -4,62 +4,6 @@
   "actual_auditors": [],
   "amended_from": null,
   "audit_end_date": null,
-  "audit_plan_end_date": "2024-06-17 17:30:00",
-  "audit_plan_start_date": "2024-06-17 10:00:00",
-  "audit_start_date": null,
-  "department": "WEB-Bhuj",
-  "docstatus": 0,
-  "doctype": "Internal Audit Details",
-  "modified": "2024-04-30 14:57:33.820180",
-  "name": "WEB-Bhuj-ADT-000081",
-  "planned_auditees": [
-   {
-    "auditee_team_leader": 1,
-    "employee": "EMP-0075",
-    "parent": "WEB-Bhuj-ADT-000081",
-    "parentfield": "planned_auditees",
-    "parenttype": "Internal Audit Details"
-   },
-   {
-    "auditee_team_leader": 0,
-    "employee": "EMP-0076",
-    "parent": "WEB-Bhuj-ADT-000081",
-    "parentfield": "planned_auditees",
-    "parenttype": "Internal Audit Details"
-   }
-  ],
-  "planned_auditors": [
-   {
-    "employee": "EMP-0074",
-    "is_auditor_team_lead": 0,
-    "parent": "WEB-Bhuj-ADT-000081",
-    "parentfield": "planned_auditors",
-    "parenttype": "Internal Audit Details"
-   },
-   {
-    "employee": "EMP-0078",
-    "is_auditor_team_lead": 0,
-    "parent": "WEB-Bhuj-ADT-000081",
-    "parentfield": "planned_auditors",
-    "parenttype": "Internal Audit Details"
-   },
-   {
-    "employee": "EMP-0077",
-    "is_auditor_team_lead": 1,
-    "parent": "WEB-Bhuj-ADT-000081",
-    "parentfield": "planned_auditors",
-    "parenttype": "Internal Audit Details"
-   }
-  ],
-  "site": "Bhuj",
-  "status": "Planned",
-  "workflow_state": "Planned"
- },
- {
-  "actual_auditees": [],
-  "actual_auditors": [],
-  "amended_from": null,
-  "audit_end_date": null,
   "audit_plan_end_date": "2024-06-18 17:30:00",
   "audit_plan_start_date": "2024-06-18 10:00:00",
   "audit_start_date": null,
@@ -234,7 +178,7 @@
   "department": "HRM-Bhuj",
   "docstatus": 0,
   "doctype": "Internal Audit Details",
-  "modified": "2024-04-30 15:15:32.517214",
+  "modified": "2024-06-17 12:54:21.017982",
   "name": "HRM-Bhuj-ADT-000085",
   "planned_auditees": [
    {
@@ -245,7 +189,7 @@
     "parenttype": "Internal Audit Details"
    },
    {
-    "auditee_team_leader": 0,
+    "auditee_team_leader": 1,
     "employee": "EMP-0088",
     "parent": "HRM-Bhuj-ADT-000085",
     "parentfield": "planned_auditees",
@@ -339,7 +283,7 @@
   "department": "MNG-Bhuj",
   "docstatus": 0,
   "doctype": "Internal Audit Details",
-  "modified": "2024-04-30 15:16:10.383661",
+  "modified": "2024-06-17 12:55:21.173419",
   "name": "MNG-Bhuj-ADT-000087",
   "planned_auditees": [
    {
@@ -357,14 +301,14 @@
     "parenttype": "Internal Audit Details"
    },
    {
-    "auditee_team_leader": 1,
+    "auditee_team_leader": 0,
     "employee": "EMP-0074",
     "parent": "MNG-Bhuj-ADT-000087",
     "parentfield": "planned_auditees",
     "parenttype": "Internal Audit Details"
    },
    {
-    "auditee_team_leader": 1,
+    "auditee_team_leader": 0,
     "employee": "EMP-0075",
     "parent": "MNG-Bhuj-ADT-000087",
     "parentfield": "planned_auditees",
@@ -402,11 +346,11 @@
   "department": "PUR-Bhuj",
   "docstatus": 0,
   "doctype": "Internal Audit Details",
-  "modified": "2024-04-30 15:14:21.273070",
+  "modified": "2024-06-17 12:55:43.777951",
   "name": "PUR-Bhuj-ADT-000089",
   "planned_auditees": [
    {
-    "auditee_team_leader": 1,
+    "auditee_team_leader": 0,
     "employee": "EMP-0079",
     "parent": "PUR-Bhuj-ADT-000089",
     "parentfield": "planned_auditees",
@@ -446,6 +390,62 @@
     "employee": "EMP-0075",
     "is_auditor_team_lead": 0,
     "parent": "PUR-Bhuj-ADT-000089",
+    "parentfield": "planned_auditors",
+    "parenttype": "Internal Audit Details"
+   }
+  ],
+  "site": "Bhuj",
+  "status": "Planned",
+  "workflow_state": "Planned"
+ },
+ {
+  "actual_auditees": [],
+  "actual_auditors": [],
+  "amended_from": null,
+  "audit_end_date": null,
+  "audit_plan_end_date": "2024-06-17 17:30:00",
+  "audit_plan_start_date": "2024-06-17 10:00:00",
+  "audit_start_date": null,
+  "department": "WEB-Bhuj",
+  "docstatus": 0,
+  "doctype": "Internal Audit Details",
+  "modified": "2024-06-17 13:00:21.952786",
+  "name": "WEB-Bhuj-ADT-000081",
+  "planned_auditees": [
+   {
+    "auditee_team_leader": 1,
+    "employee": "EMP-0075",
+    "parent": "WEB-Bhuj-ADT-000081",
+    "parentfield": "planned_auditees",
+    "parenttype": "Internal Audit Details"
+   },
+   {
+    "auditee_team_leader": 0,
+    "employee": "EMP-0076",
+    "parent": "WEB-Bhuj-ADT-000081",
+    "parentfield": "planned_auditees",
+    "parenttype": "Internal Audit Details"
+   }
+  ],
+  "planned_auditors": [
+   {
+    "employee": "EMP-0074",
+    "is_auditor_team_lead": 0,
+    "parent": "WEB-Bhuj-ADT-000081",
+    "parentfield": "planned_auditors",
+    "parenttype": "Internal Audit Details"
+   },
+   {
+    "employee": "EMP-0078",
+    "is_auditor_team_lead": 0,
+    "parent": "WEB-Bhuj-ADT-000081",
+    "parentfield": "planned_auditors",
+    "parenttype": "Internal Audit Details"
+   },
+   {
+    "employee": "EMP-0077",
+    "is_auditor_team_lead": 1,
+    "parent": "WEB-Bhuj-ADT-000081",
     "parentfield": "planned_auditors",
     "parenttype": "Internal Audit Details"
    }

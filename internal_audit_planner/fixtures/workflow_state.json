@@ -66,9 +66,72 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
+  "modified": "2024-06-17 10:11:32.041200",
+  "name": "Correction Planned",
+  "style": "Primary",
+  "workflow_state_name": "Correction Planned"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-06-17 10:11:42.137742",
+  "name": "Corrected",
+  "style": "Success",
+  "workflow_state_name": "Corrected"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-06-17 10:11:52.168902",
+  "name": "Not Corrected",
+  "style": "Danger",
+  "workflow_state_name": "Not Corrected"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-06-17 10:13:41.508233",
+  "name": "CA Taken",
+  "style": "",
+  "workflow_state_name": "CA Taken"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-06-17 10:13:50.442970",
+  "name": "Resolved",
+  "style": "",
+  "workflow_state_name": "Resolved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-06-17 10:14:00.008820",
+  "name": "Closed",
+  "style": "",
+  "workflow_state_name": "Closed"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
   "modified": "2024-05-03 13:40:20.580831",
   "name": "Audited",
   "style": "",
   "workflow_state_name": "Audited"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-06-17 10:11:21.252392",
+  "name": "Open",
+  "style": "Warning",
+  "workflow_state_name": "Open"
  }
 ]

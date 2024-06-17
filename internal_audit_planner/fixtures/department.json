@@ -1,82 +1,82 @@
 [
- {
-  "department": "MKT",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-30 15:03:44.425431",
-  "name": "MKT-Bhuj",
-  "note": null,
-  "site": "Bhuj",
-  "team_leader": "EMP-0078"
- },
- {
-  "department": "PUR",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-30 15:12:51.955180",
-  "name": "PUR-Bhuj",
-  "note": null,
-  "site": "Bhuj",
-  "team_leader": "EMP-0079"
- },
- {
-  "department": "HRM",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-06-12 15:13:59.594319",
-  "name": "HRM-Bhuj",
-  "note": null,
-  "site": "Bhuj",
-  "team_leader": ""
- },
- {
-  "department": "ACC",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-30 14:54:04.898243",
-  "name": "ACC-Bhuj",
-  "note": null,
-  "site": "Bhuj",
-  "team_leader": null
- },
- {
-  "department": "WEB",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-30 14:46:06.568018",
-  "name": "WEB-Bhuj",
-  "note": null,
-  "site": "Bhuj",
-  "team_leader": "EMP-0075"
- },
- {
-  "department": "MNG",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-30 14:48:08.643863",
-  "name": "MNG-Bhuj",
-  "note": null,
-  "site": "Bhuj",
-  "team_leader": null
- },
- {
-  "department": "PRJ",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-30 14:45:57.592165",
-  "name": "PRJ-Bhuj",
-  "note": null,
-  "site": "Bhuj",
-  "team_leader": "EMP-0074"
- },
- {
-  "department": "ERP",
-  "docstatus": 0,
-  "doctype": "Department",
-  "modified": "2024-04-30 14:39:15.476513",
-  "name": "ERP-Bhuj",
-  "note": null,
-  "site": "Bhuj",
-  "team_leader": "EMP-0073"
- }
+    {
+        "department": "MKT",
+        "docstatus": 0,
+        "doctype": "Department",
+        "modified": "2024-04-30 15:03:44.425431",
+        "name": "MKT-Bhuj",
+        "note": null,
+        "site": "Bhuj",
+        "team_leader": null
+    },
+    {
+        "department": "PUR",
+        "docstatus": 0,
+        "doctype": "Department",
+        "modified": "2024-04-30 15:12:51.955180",
+        "name": "PUR-Bhuj",
+        "note": null,
+        "site": "Bhuj",
+        "team_leader": null
+    },
+    {
+        "department": "HRM",
+        "docstatus": 0,
+        "doctype": "Department",
+        "modified": "2024-06-12 15:13:59.594319",
+        "name": "HRM-Bhuj",
+        "note": null,
+        "site": "Bhuj",
+        "team_leader": ""
+    },
+    {
+        "department": "ACC",
+        "docstatus": 0,
+        "doctype": "Department",
+        "modified": "2024-04-30 14:54:04.898243",
+        "name": "ACC-Bhuj",
+        "note": null,
+        "site": "Bhuj",
+        "team_leader": null
+    },
+    {
+        "department": "MNG",
+        "docstatus": 0,
+        "doctype": "Department",
+        "modified": "2024-04-30 14:48:08.643863",
+        "name": "MNG-Bhuj",
+        "note": null,
+        "site": "Bhuj",
+        "team_leader": null
+    },
+    {
+        "department": "WEB",
+        "docstatus": 0,
+        "doctype": "Department",
+        "modified": "2024-04-30 14:46:06.568018",
+        "name": "WEB-Bhuj",
+        "note": null,
+        "site": "Bhuj",
+        "team_leader": null
+    },
+    {
+        "department": "PRJ",
+        "docstatus": 0,
+        "doctype": "Department",
+        "modified": "2024-04-30 14:45:57.592165",
+        "name": "PRJ-Bhuj",
+        "note": null,
+        "site": "Bhuj",
+        "team_leader": null
+    },
+    {
+        "department": "ERP",
+        "docstatus": 0,
+        "doctype": "Department",
+        "modified": "2024-04-30 14:39:15.476513",
+        "name": "ERP-Bhuj",
+        "note": null,
+        "site": "Bhuj",
+        "team_leader": null
+    }
 ]

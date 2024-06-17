@@ -53,5 +53,95 @@
     "role": "System Manager"
    }
   ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2024-06-17 12:32:54.276970",
+  "module": "Internal Audit Planner",
+  "name": "Observation Correction Report",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Internal Audit Conformity",
+  "reference_report": null,
+  "report_name": "Observation Correction Report",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Observation Correction Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2024-06-17 12:33:15.835679",
+  "module": "Internal Audit Planner",
+  "name": "NC Report",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Internal Audit Conformity",
+  "reference_report": null,
+  "report_name": "NC Report",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "NC Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2024-06-17 12:33:41.511888",
+  "module": "Internal Audit Planner",
+  "name": "IAC Report",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Internal Audit Conformity",
+  "reference_report": null,
+  "report_name": "IAC Report",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "IAC Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   }
+  ]
  }
 ]

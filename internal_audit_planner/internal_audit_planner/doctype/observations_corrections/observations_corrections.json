@@ -1,70 +1,74 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:OC-{audit_cycle}-{department}-{type}-{###}",
  "creation": "2024-06-12 15:52:32.628117",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "type",
   "department",
   "audit_cycle",
+  "column_break_vksz",
   "auditor",
-  "auditor_name",
-  "observation_details",
-  "type",
   "auditee_hod",
-  "auditee_hod_name",
+  "observation_details",
+  "section_break_fyjx",
   "correction_plan",
+  "column_break_wezh",
   "responsible_person",
-  "responsible_person_name",
   "planned_date_of_completion",
   "actual_date_of_completion",
+  "section_break_rkan",
   "reason_for_delay",
+  "column_break_zgrr",
   "remark"
  ],
  "fields": [
   {
    "fieldname": "department",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Department",
-   "options": "Department"
+   "options": "Department",
+   "reqd": 1
   },
   {
    "fieldname": "audit_cycle",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Audit Cycle",
-   "options": "Audit Cycle"
+   "options": "Audit Cycle",
+   "reqd": 1
   },
   {
    "fieldname": "auditor",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Auditor",
-   "options": "Company Employee"
-  },
-  {
-   "fieldname": "auditor_name",
-   "fieldtype": "Data",
-   "label": "Auditor Name"
+   "options": "Company Employee",
+   "reqd": 1
   },
   {
    "fieldname": "observation_details",
    "fieldtype": "Small Text",
-   "label": "Observation Details"
+   "label": "Observation Details",
+   "reqd": 1
   },
   {
    "fieldname": "type",
-   "fieldtype": "Data",
-   "label": "Type"
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "P\nAFI\nO\nNC\nM",
+   "reqd": 1
   },
   {
    "fieldname": "auditee_hod",
    "fieldtype": "Link",
    "label": "Auditee HOD",
-   "options": "Company Employee"
-  },
-  {
-   "fieldname": "auditee_hod_name",
-   "fieldtype": "Data",
-   "label": "Auditee HOD Name"
+   "options": "Company Employee",
+   "reqd": 1
   },
   {
    "fieldname": "correction_plan",
@@ -76,11 +80,6 @@
    "fieldtype": "Link",
    "label": "Responsible Person",
    "options": "Company Employee"
-  },
-  {
-   "fieldname": "responsible_person_name",
-   "fieldtype": "Data",
-   "label": "Responsible Person Name"
   },
   {
    "fieldname": "planned_date_of_completion",
@@ -101,14 +100,35 @@
    "fieldname": "remark",
    "fieldtype": "Small Text",
    "label": "Remark"
+  },
+  {
+   "fieldname": "column_break_vksz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_fyjx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_wezh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_rkan",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_zgrr",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-12 15:59:08.310301",
+ "modified": "2024-06-17 11:23:51.904716",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Observations Corrections",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

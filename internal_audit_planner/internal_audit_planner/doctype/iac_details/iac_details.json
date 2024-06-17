@@ -17,40 +17,53 @@
   {
    "fieldname": "reference_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Reference Type",
-   "options": "SOP\nFormat\nClause\nOther"
+   "options": "SOP\nFormat\nClause\nOther",
+   "reqd": 1
   },
   {
    "fieldname": "reference_title",
    "fieldtype": "Data",
-   "label": "Reference Title"
+   "in_list_view": 1,
+   "label": "Reference Title",
+   "reqd": 1
   },
   {
    "fieldname": "details",
    "fieldtype": "Small Text",
-   "label": "Details"
+   "in_list_view": 1,
+   "label": "Details",
+   "reqd": 1
   },
   {
    "fieldname": "type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Type",
-   "options": "P\nAFI\nO\nNC\nM"
+   "options": "P\nAFI\nO\nNC\nM",
+   "reqd": 1
   },
   {
    "fieldname": "reference_doc_name",
-   "fieldtype": "Data",
-   "label": "Reference Doc Name"
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Reference Doc Name",
+   "link_filters": "[[\"DocType\",\"name\",\"in\",[\"Observations Corrections\",\"Non-Conformity\"]]]",
+   "options": "DocType"
   },
   {
    "fieldname": "reference_doc_link",
-   "fieldtype": "Data",
-   "label": "Reference Doc Link"
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Reference Doc Link",
+   "options": "reference_doc_name"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-06-12 15:48:12.443734",
+ "modified": "2024-06-17 10:31:59.192304",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "IAC Details",

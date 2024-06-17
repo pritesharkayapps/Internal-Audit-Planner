@@ -1,14 +1,14 @@
 {
  "charts": [],
  "content": "[{\"id\":\"srHcT32W7D\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Internal Audit Planner</span>\",\"col\":12}},{\"id\":\"0wvGBPMxTV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Site\",\"col\":3}},{\"id\":\"n_s-EaxVLu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"N9TVyzfGgS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Audit Objective\",\"col\":3}},{\"id\":\"i-0Xsx5vXy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Internal Audit Details\",\"col\":3}},{\"id\":\"K6LjB9s3gM\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Details\",\"col\":4}}]",
- "creation": "2024-04-22 12:45:38.808083",
+ "creation": "2024-06-14 17:49:59.740673",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
  "icon": "",
- "idx": 1,
+ "idx": 0,
  "indicator_color": "cyan",
  "is_hidden": 0,
  "label": "Internal Audit Planner",
@@ -53,7 +53,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-04-29 09:08:26.655762",
+ "modified": "2024-06-17 12:39:34.752324",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Internal Audit Planner",
@@ -63,7 +63,7 @@
  "public": 1,
  "quick_lists": [],
  "roles": [],
- "sequence_id": 2.0,
+ "sequence_id": 1.0,
  "shortcuts": [
   {
    "color": "Grey",

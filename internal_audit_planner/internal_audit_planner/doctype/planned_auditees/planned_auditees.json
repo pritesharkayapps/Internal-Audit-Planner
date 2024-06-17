@@ -16,7 +16,6 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Employee",
-   "link_filters": "[[\"Company Employee\",\"is_auditor\",\"=\",0]]",
    "options": "Company Employee",
    "reqd": 1
   },
@@ -32,7 +31,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-05-04 15:28:38.124871",
+ "modified": "2024-06-17 12:59:48.549913",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Planned Auditees",

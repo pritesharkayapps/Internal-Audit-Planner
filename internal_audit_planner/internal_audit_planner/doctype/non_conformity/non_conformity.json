@@ -1,51 +1,65 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:NC-{audit_cycle}-{department}-{###}",
  "creation": "2024-06-13 12:18:59.169472",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "type",
-  "department",
   "audit_cycle",
-  "audit_date",
-  "observation_details",
+  "department",
+  "type",
   "iso_standard",
+  "column_break_mrhw",
+  "audit_date",
   "clause",
+  "auditor",
+  "auditee_hod",
   "section_break_bxqt",
-  "clause_reference",
+  "observation_details",
   "nc_statement",
-  "objective_evidence",
   "correction",
+  "column_break_mkzg",
+  "clause_reference",
+  "objective_evidence",
   "root_cause_of_nc",
-  "corrective_action_taken",
+  "section_break_mwzd",
   "ca_taken_date",
-  "verification_of_effectiveness_of_corrective_action",
-  "veca_date"
+  "corrective_action_taken",
+  "column_break_kuqa",
+  "veca_date",
+  "verification_of_effectiveness_of_corrective_action"
  ],
  "fields": [
   {
    "fieldname": "type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Type",
-   "options": "NC\nMajor"
+   "options": "NC\nMajor",
+   "reqd": 1
   },
   {
    "fieldname": "department",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Department",
-   "options": "Department"
+   "options": "Department",
+   "reqd": 1
   },
   {
    "fieldname": "audit_cycle",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Audit Cycle",
-   "options": "Audit Cycle"
+   "options": "Audit Cycle",
+   "reqd": 1
   },
   {
    "fieldname": "audit_date",
    "fieldtype": "Date",
-   "label": "Audit Date"
+   "label": "Audit Date",
+   "reqd": 1
   },
   {
    "fieldname": "observation_details",
@@ -55,13 +69,16 @@
   {
    "fieldname": "iso_standard",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "ISO Standard",
-   "options": "ISO Standard"
+   "options": "ISO Standard",
+   "reqd": 1
   },
   {
    "fieldname": "clause",
    "fieldtype": "Data",
-   "label": "Clause"
+   "label": "Clause",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_bxqt",
@@ -111,14 +128,45 @@
    "fieldname": "veca_date",
    "fieldtype": "Date",
    "label": "VECA Date"
+  },
+  {
+   "fieldname": "column_break_mrhw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_mkzg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_mwzd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_kuqa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "auditor",
+   "fieldtype": "Link",
+   "label": "Auditor",
+   "options": "Company Employee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "auditee_hod",
+   "fieldtype": "Link",
+   "label": "Auditee HOD",
+   "options": "Company Employee",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-13 12:23:19.723373",
+ "modified": "2024-06-17 12:26:30.595294",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Non-Conformity",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
