@@ -6,6 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "date",
   "type",
   "department",
   "audit_cycle",
@@ -120,11 +121,17 @@
   {
    "fieldname": "column_break_zgrr",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-17 11:23:51.904716",
+ "modified": "2024-06-17 15:15:46.108663",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Observations Corrections",

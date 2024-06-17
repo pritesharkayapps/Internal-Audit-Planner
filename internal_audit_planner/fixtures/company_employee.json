@@ -346,67 +346,6 @@
   "user": null
  },
  {
-  "department": "PRJ-Bhuj",
-  "docstatus": 0,
-  "doctype": "Company Employee",
-  "email": "pritesharkayapps@gmail.com",
-  "employee_courses": [
-   {
-    "certificate": null,
-    "course": "Quality Management System",
-    "parent": "EMP-0003",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 0,
-    "valid_from": null,
-    "valid_to": null
-   },
-   {
-    "certificate": null,
-    "course": "Occupational Health and Safety Management System",
-    "parent": "EMP-0003",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 0,
-    "valid_from": null,
-    "valid_to": null
-   },
-   {
-    "certificate": null,
-    "course": "Environmental Management System",
-    "parent": "EMP-0003",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 0,
-    "valid_from": null,
-    "valid_to": null
-   },
-   {
-    "certificate": null,
-    "course": "Information Security Management System",
-    "parent": "EMP-0003",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 0,
-    "valid_from": null,
-    "valid_to": null
-   }
-  ],
-  "enable": 1,
-  "first_name": "Pritesh",
-  "full_name": "Mr Pritesh Kerai",
-  "is_auditor": 0,
-  "is_auditor_team_leader": 0,
-  "last_name": "Kerai",
-  "modified": "2024-06-14 16:45:01.960302",
-  "name": "EMP-0003",
-  "salutation": "Mr",
-  "sign": "PPK",
-  "site": "Bhuj",
-  "team_leader": 0,
-  "user": null
- },
- {
   "department": "ERP-Bhuj",
   "docstatus": 0,
   "doctype": "Company Employee",
@@ -590,57 +529,6 @@
   "user": null
  },
  {
-  "department": "PRJ-Bhuj",
-  "docstatus": 0,
-  "doctype": "Company Employee",
-  "email": "hiten@arkayapps.com",
-  "employee_courses": [
-   {
-    "certificate": null,
-    "course": "Quality Management System",
-    "parent": "EMP-0074",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 1,
-    "valid_from": null,
-    "valid_to": null
-   },
-   {
-    "certificate": null,
-    "course": "Occupational Health and Safety Management System",
-    "parent": "EMP-0074",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 0,
-    "valid_from": null,
-    "valid_to": null
-   },
-   {
-    "certificate": null,
-    "course": "Environmental Management System",
-    "parent": "EMP-0074",
-    "parentfield": "employee_courses",
-    "parenttype": "Company Employee",
-    "qualified": 0,
-    "valid_from": null,
-    "valid_to": null
-   }
-  ],
-  "enable": 1,
-  "first_name": "Hiten",
-  "full_name": "Mr Hiten Ahir",
-  "is_auditor": 1,
-  "is_auditor_team_leader": 0,
-  "last_name": "Ahir",
-  "modified": "2024-06-14 17:49:21.789379",
-  "name": "EMP-0074",
-  "salutation": "Mr",
-  "sign": "HA",
-  "site": "Bhuj",
-  "team_leader": 1,
-  "user": null
- },
- {
   "department": "ERP-Bhuj",
   "docstatus": 0,
   "doctype": "Company Employee",
@@ -730,6 +618,118 @@
   "sign": "AGS",
   "site": "Bhuj",
   "team_leader": 0,
+  "user": null
+ },
+ {
+  "department": "PRJ-Bhuj",
+  "docstatus": 0,
+  "doctype": "Company Employee",
+  "email": "pritesharkayapps@gmail.com",
+  "employee_courses": [
+   {
+    "certificate": null,
+    "course": "Quality Management System",
+    "parent": "EMP-0003",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 0,
+    "valid_from": null,
+    "valid_to": null
+   },
+   {
+    "certificate": null,
+    "course": "Occupational Health and Safety Management System",
+    "parent": "EMP-0003",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 0,
+    "valid_from": null,
+    "valid_to": null
+   },
+   {
+    "certificate": null,
+    "course": "Environmental Management System",
+    "parent": "EMP-0003",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 0,
+    "valid_from": null,
+    "valid_to": null
+   },
+   {
+    "certificate": null,
+    "course": "Information Security Management System",
+    "parent": "EMP-0003",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 0,
+    "valid_from": null,
+    "valid_to": null
+   }
+  ],
+  "enable": 1,
+  "first_name": "Pritesh",
+  "full_name": "Mr Pritesh Kerai",
+  "is_auditor": 0,
+  "is_auditor_team_leader": 0,
+  "last_name": "Kerai",
+  "modified": "2024-06-14 16:45:01.960302",
+  "name": "EMP-0003",
+  "salutation": "Mr",
+  "sign": "PPK",
+  "site": "Bhuj",
+  "team_leader": 0,
+  "user": null
+ },
+ {
+  "department": "PRJ-Bhuj",
+  "docstatus": 0,
+  "doctype": "Company Employee",
+  "email": "hiten@arkayapps.com",
+  "employee_courses": [
+   {
+    "certificate": null,
+    "course": "Quality Management System",
+    "parent": "EMP-0074",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 1,
+    "valid_from": null,
+    "valid_to": null
+   },
+   {
+    "certificate": null,
+    "course": "Occupational Health and Safety Management System",
+    "parent": "EMP-0074",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 0,
+    "valid_from": null,
+    "valid_to": null
+   },
+   {
+    "certificate": null,
+    "course": "Environmental Management System",
+    "parent": "EMP-0074",
+    "parentfield": "employee_courses",
+    "parenttype": "Company Employee",
+    "qualified": 0,
+    "valid_from": null,
+    "valid_to": null
+   }
+  ],
+  "enable": 1,
+  "first_name": "Hiten",
+  "full_name": "Mr Hiten Ahir",
+  "is_auditor": 1,
+  "is_auditor_team_leader": 0,
+  "last_name": "Ahir",
+  "modified": "2024-06-14 17:49:21.789379",
+  "name": "EMP-0074",
+  "salutation": "Mr",
+  "sign": "HA",
+  "site": "Bhuj",
+  "team_leader": 1,
   "user": null
  }
 ]

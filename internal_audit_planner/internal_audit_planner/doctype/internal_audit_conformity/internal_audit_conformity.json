@@ -6,7 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "audit_planner",
+  "internal_audit_number",
   "department",
   "audit_cycle",
   "date",
@@ -23,14 +23,6 @@
   "iac_details"
  ],
  "fields": [
-  {
-   "fieldname": "audit_planner",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Audit Planner",
-   "options": "Internal Audit Details",
-   "reqd": 1
-  },
   {
    "fetch_from": "audit_planner.department",
    "fieldname": "department",
@@ -69,10 +61,10 @@
    "reqd": 1
   },
   {
-   "fetch_from": "auditee_hod.full_name",
    "fieldname": "auditor",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Auditor",
+   "options": "Company Employee",
    "reqd": 1
   },
   {
@@ -117,11 +109,19 @@
   {
    "fieldname": "section_break_qiak",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "internal_audit_number",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Internal Audit Number",
+   "options": "Internal Audit Details",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-17 10:20:20.041963",
+ "modified": "2024-06-17 17:58:20.522936",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Internal Audit Conformity",

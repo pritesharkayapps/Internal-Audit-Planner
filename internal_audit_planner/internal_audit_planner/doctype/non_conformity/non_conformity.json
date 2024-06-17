@@ -10,13 +10,14 @@
   "department",
   "type",
   "iso_standard",
+  "internal_audit_number",
   "column_break_mrhw",
   "audit_date",
   "clause",
   "auditor",
   "auditee_hod",
   "section_break_bxqt",
-  "observation_details",
+  "non_conformity_detail",
   "nc_statement",
   "correction",
   "column_break_mkzg",
@@ -60,11 +61,6 @@
    "fieldtype": "Date",
    "label": "Audit Date",
    "reqd": 1
-  },
-  {
-   "fieldname": "observation_details",
-   "fieldtype": "Small Text",
-   "label": "Observation Details"
   },
   {
    "fieldname": "iso_standard",
@@ -158,14 +154,25 @@
    "label": "Auditee HOD",
    "options": "Company Employee",
    "reqd": 1
+  },
+  {
+   "fieldname": "non_conformity_detail",
+   "fieldtype": "Small Text",
+   "label": "Non Conformity Detail"
+  },
+  {
+   "fieldname": "internal_audit_number",
+   "fieldtype": "Link",
+   "label": "Internal Audit Number",
+   "options": "Internal Audit Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-17 12:26:30.595294",
+ "modified": "2024-06-17 16:37:42.774694",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
- "name": "Non-Conformity",
+ "name": "Non Conformity",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

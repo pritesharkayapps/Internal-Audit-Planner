@@ -233,16 +233,17 @@ fixtures = [
     "Workflow",
 
     "Site",
-    "Department",
+    # "Department",
     "Audit Objective",
 
     "Company Employee",
-    "Leave Application",
-    "Employee Schedule Log",
     
     "Client Script",
     "Internal Audit Details",
-    {"dt": "Report", "filters": {"module": "Internal Audit Planner"}},
 
-    {"dt": "Workspace", "filters": [["name", "=", "Internal Audit Planner"]]},
+    "Internal Audit Conformity",
+    "Observations Corrections",
+    "Non Conformity",
+
+    {"dt": "Report", "filters": {"module": "Internal Audit Planner"}}
 ]

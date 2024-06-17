@@ -1,0 +1,42 @@
+[
+ {
+  "audit_cycle": "Jan-Mar 2024",
+  "auditee_hod": "EMP-0074",
+  "auditor": "EMP-0003",
+  "auditor_sign": "HA",
+  "date": "2024-06-17",
+  "department": "WEB-Bhuj",
+  "docstatus": 0,
+  "doctype": "Internal Audit Conformity",
+  "iac_details": [
+   {
+    "details": "sgu zdfuhz huzdfhcuz zudhfub",
+    "parent": "IAC-Jan-Mar 2024-WEB-Bhuj-AGS",
+    "parentfield": "iac_details",
+    "parenttype": "Internal Audit Conformity",
+    "reference_doc_link": "OC-Jan-Mar 2024-PRJ-Bhuj-O-007",
+    "reference_doc_name": "Observations Corrections",
+    "reference_title": "SOP-001",
+    "reference_type": "SOP",
+    "type": "O"
+   },
+   {
+    "details": "zdfsz sdfgsdh sdhfisudzhf uhzudfh",
+    "parent": "IAC-Jan-Mar 2024-WEB-Bhuj-AGS",
+    "parentfield": "iac_details",
+    "parenttype": "Internal Audit Conformity",
+    "reference_doc_link": "NC-Jan-Mar 2024-PRJ-Bhuj-008",
+    "reference_doc_name": "Non Conformity",
+    "reference_title": "SOP-002",
+    "reference_type": "SOP",
+    "type": "P"
+   }
+  ],
+  "internal_audit_number": "ACC-Bhuj-ADT-000084",
+  "modified": "2024-06-17 17:59:23.100963",
+  "name": "IAC-Jan-Mar 2024-WEB-Bhuj-AGS",
+  "planned_auditees": [],
+  "planned_auditors": [],
+  "time": "11:24:52"
+ }
+]
