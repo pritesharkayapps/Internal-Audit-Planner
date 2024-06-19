@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 
 
 def execute(filters=None):
@@ -10,26 +11,9 @@ def execute(filters=None):
     data = frappe.db.sql(
         """
     SELECT
-        noc.name,
-        noc.audit_date,
-        noc.department,
-        noc.internal_audit_number,
+        noc.*,
         auditor_emp.full_name AS auditor_name,
-        auditor_emp.sign AS auditor_designation,
-        auditee_emp.full_name AS auditee_name,
-        auditee_emp.sign AS auditee_designation,
-        noc.iso_standard,
-        noc.clause,
-        noc.non_conformity_detail,
-        noc.clause_reference,
-        noc.nc_statement,
-        noc.objective_evidence,
-        noc.correction,
-        noc.root_cause_of_nc,
-        noc.corrective_action_taken,
-        noc.verification_of_effectiveness_of_corrective_action,
-        noc.ca_taken_date,
-        noc.veca_date
+        auditee_emp.full_name AS auditee_hod_name
     FROM
         `tabNon Conformity` AS noc
     LEFT JOIN
@@ -46,100 +30,95 @@ def execute(filters=None):
 def get_columns():
     columns = [
         {
-            "label": "Non Conformity Number",
+            "label": _("<b>ID</b>"),
             "fieldname": "name",
             "fieldtype": "Link",
             "options": "Non Conformity"
         },
         {
-            "label": "Audit Date",
-            "fieldname": "audit_date",
-            "fieldtype": "Date"
+            "label": _("<b>Internal Audit Conformity</b>"),
+            "fieldname": "internal_audit_conformity",
+            "fieldtype": "Link",
+            "options": "Internal Audit Conformity"
+        },
+         {
+            "label": _("<b>Audit Cycle</b>"),
+            "fieldname": "audit_cycle",
+            "fieldtype": "Link",
+            "options": "Audit Cycle"
         },
         {
-            "label": "Department",
+            "label": _("<b>Department</b>"),
             "fieldname": "department",
             "fieldtype": "Link",
             "options": "Department"
         },
-        {
-            "label": "Internal Audit",
-            "fieldname": "internal_audit_number",
-            "fieldtype": "Link",
-            "options": "Internal Audit Details"
+         {
+            "label": _("<b>Type</b>"),
+            "fieldname": "type",
+            "fieldtype": "Data"
         },
+        {"label": _("<b>Date</b>"), "fieldname": "date", "fieldtype": "Date"},
         {
-            "label": "Auditor Name",
+            "label": _("<b>Auditor</b>"),
             "fieldname": "auditor_name",
             "fieldtype": "Data"
         },
         {
-            "label": "Auditor Designation",
-            "fieldname": "auditor_designation",
+            "label": _("<b>Auditee HOD</b>"),
+            "fieldname": "auditee_hod_name",
             "fieldtype": "Data"
         },
         {
-            "label": "Auditee Name",
-            "fieldname": "auditee_name",
-            "fieldtype": "Data",
-            "width": 130,
-        },
-        {
-            "label": "Auditee Designation",
-            "fieldname": "auditee_designation",
-            "fieldtype": "Data"
-        },
-        {
-            "label": "ISO Standard",
+            "label": _("<b>ISO Standard</b>"),
             "fieldname": "iso_standard",
             "fieldtype": "Link",
             "options": "ISO Standard"
         },
         {
-            "label": "Clause",
+            "label": _("<b>Clause</b>"),
             "fieldname": "clause",
             "fieldtype": "Data"
         },
         {
-            "label": "Non Conformity Detail",
+            "label": _("<b>Non Conformity Detail</b>"),
             "fieldname": "non_conformity_detail",
             "fieldtype": "Text",
         },
         {
-            "label": "Clause Reference",
+            "label": _("<b>Clause Reference</b>"),
             "fieldname": "clause_reference",
             "fieldtype": "Text",
         },
-        {"label": "NC Statement", "fieldname": "nc_statement", "fieldtype": "Text"},
+        {"label": _("<b>NC Statement</b>"), "fieldname": "nc_statement", "fieldtype": "Text"},
         {
-            "label": "Objective Evidence",
+            "label": _("<b>Objective Evidence</b>"),
             "fieldname": "objective_evidence",
             "fieldtype": "Text",
         },
-        {"label": "Correction", "fieldname": "correction", "fieldtype": "Text"},
+        {"label": _("<b>Correction</b>"), "fieldname": "correction", "fieldtype": "Text"},
         {
-            "label": "Root Cause of NC",
+            "label": _("<b>Root Cause of NC</b>"),
             "fieldname": "root_cause_of_nc",
             "fieldtype": "Text",
         },
         {
-            "label": "CA Taken Date",
+            "label": _("<b>CA Taken Date</b>"),
             "fieldname": "ca_taken_date",
             "fieldtype": "Date"
         },
         {
-            "label": "Corrective Action Taken",
+            "label": _("<b>Corrective Action Taken</b>"),
             "fieldname": "corrective_action_taken",
             "fieldtype": "Text",
         },
         {
-            "label": "VECA Date",
+            "label": _("<b>VECA Date</b>"),
             "fieldname": "veca_date",
-            "fieldtype": "Date",
-            "width": 150,
+            "fieldtype": "Date"
         },
         {
-            "label": "Verification of Effectiveness of Corrective Action",
+            "label": _("<b>Verification of Effectiveness of Corrective Action</b>"),
             "fieldname": "verification_of_effectiveness_of_corrective_action",
             "fieldtype": "Text",
         },

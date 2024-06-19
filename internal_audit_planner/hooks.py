@@ -133,23 +133,28 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"internal_audit_planner.tasks.all"
-# 	],
-# 	"daily": [
-# 		"internal_audit_planner.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"internal_audit_planner.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"internal_audit_planner.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"internal_audit_planner.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+    "cron": {
+        "0 0 * * *": [
+            "internal_audit_planner.internal_audit_planner.doctype.observations_corrections.observations_corrections.update_status_to_not_corrected"
+        ]
+    }
+    # 	"all": [
+    # 		"internal_audit_planner.tasks.all"
+    # 	],
+    # 	"daily": [
+    # 		"internal_audit_planner.tasks.daily"
+    # 	],
+    # 	"hourly": [
+    # 		"internal_audit_planner.tasks.hourly"
+    # 	],
+    # 	"weekly": [
+    # 		"internal_audit_planner.tasks.weekly"
+    # 	],
+    # 	"monthly": [
+    # 		"internal_audit_planner.tasks.monthly"
+    # 	],
+}
 
 # Testing
 # -------
@@ -233,17 +238,14 @@ fixtures = [
     "Workflow",
 
     "Site",
-    # "Department",
+    "Department",
     "Audit Objective",
 
     "Company Employee",
-    
+
     "Client Script",
     "Internal Audit Details",
 
-    "Internal Audit Conformity",
-    "Observations Corrections",
-    "Non Conformity",
-
-    {"dt": "Report", "filters": {"module": "Internal Audit Planner"}}
+    {"dt": "Report", "filters": {"module": "Internal Audit Planner"}},
+    {"dt": "Workspace", "filters": {"module": "Internal Audit Planner"}}
 ]

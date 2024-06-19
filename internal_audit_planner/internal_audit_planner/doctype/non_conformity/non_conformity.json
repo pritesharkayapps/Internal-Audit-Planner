@@ -1,38 +1,38 @@
 {
  "actions": [],
- "allow_rename": 1,
- "autoname": "format:NC-{audit_cycle}-{department}-{###}",
+ "autoname": "format:NC-{audit_cycle}-{department}-{type}-{###}",
  "creation": "2024-06-13 12:18:59.169472",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "internal_audit_conformity",
+  "internal_audit_plan",
   "audit_cycle",
   "department",
   "type",
-  "iso_standard",
-  "internal_audit_number",
   "column_break_mrhw",
-  "audit_date",
-  "clause",
+  "date",
   "auditor",
   "auditee_hod",
   "section_break_bxqt",
+  "iso_standard",
   "non_conformity_detail",
   "nc_statement",
   "correction",
+  "ca_taken_date",
+  "corrective_action_taken",
   "column_break_mkzg",
+  "clause",
   "clause_reference",
   "objective_evidence",
   "root_cause_of_nc",
-  "section_break_mwzd",
-  "ca_taken_date",
-  "corrective_action_taken",
-  "column_break_kuqa",
   "veca_date",
-  "verification_of_effectiveness_of_corrective_action"
+  "verification_of_effectiveness_of_corrective_action",
+  "amended_from"
  ],
  "fields": [
   {
+   "default": "NC",
    "fieldname": "type",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -41,25 +41,23 @@
    "reqd": 1
   },
   {
+   "fetch_from": "internal_audit_conformity.department",
    "fieldname": "department",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Department",
    "options": "Department",
+   "read_only": 1,
    "reqd": 1
   },
   {
+   "fetch_from": "internal_audit_conformity.audit_cycle",
    "fieldname": "audit_cycle",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Audit Cycle",
    "options": "Audit Cycle",
-   "reqd": 1
-  },
-  {
-   "fieldname": "audit_date",
-   "fieldtype": "Date",
-   "label": "Audit Date",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -67,14 +65,12 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "ISO Standard",
-   "options": "ISO Standard",
-   "reqd": 1
+   "options": "ISO Standard"
   },
   {
    "fieldname": "clause",
    "fieldtype": "Data",
-   "label": "Clause",
-   "reqd": 1
+   "label": "Clause"
   },
   {
    "fieldname": "section_break_bxqt",
@@ -134,21 +130,16 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "section_break_mwzd",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_kuqa",
-   "fieldtype": "Column Break"
-  },
-  {
+   "fetch_from": "internal_audit_conformity.auditor",
    "fieldname": "auditor",
    "fieldtype": "Link",
    "label": "Auditor",
+   "link_filters": "[[\"Company Employee\",\"is_auditor\",\"=\",1]]",
    "options": "Company Employee",
    "reqd": 1
   },
   {
+   "fetch_from": "internal_audit_plan.planned_auditee_hod",
    "fieldname": "auditee_hod",
    "fieldtype": "Link",
    "label": "Auditee HOD",
@@ -161,15 +152,43 @@
    "label": "Non Conformity Detail"
   },
   {
-   "fieldname": "internal_audit_number",
+   "fieldname": "internal_audit_conformity",
    "fieldtype": "Link",
-   "label": "Internal Audit Number",
-   "options": "Internal Audit Details"
+   "label": "Internal Audit Conformity",
+   "options": "Internal Audit Conformity",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "internal_audit_conformity.internal_audit_plan",
+   "fieldname": "internal_audit_plan",
+   "fieldtype": "Link",
+   "label": "Internal Audit Plan",
+   "options": "Internal Audit Details",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Non Conformity",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-06-17 16:37:42.774694",
+ "modified": "2024-06-19 15:54:19.563531",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Non Conformity",

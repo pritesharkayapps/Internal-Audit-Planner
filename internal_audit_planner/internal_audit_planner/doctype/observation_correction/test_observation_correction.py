@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestObservationsCorrections(FrappeTestCase):
+class TestObservationCorrection(FrappeTestCase):
 	pass

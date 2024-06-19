@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 
 
 def execute(filters=None):
@@ -10,21 +11,12 @@ def execute(filters=None):
     data = frappe.db.sql(
         """
     SELECT
-        obs.name,
-        obs.department,
-        obs.date,
+        obs.*,
         auditor_emp.full_name AS auditor_name,
-        obs.observation_details,
         auditee_hod_emp.full_name AS auditee_hod_name,
-        obs.correction_plan,
-        responsible_emp.full_name AS responsible_person_name,
-        obs.planned_date_of_completion,
-        obs.actual_date_of_completion,
-        obs.reason_for_delay,
-        obs.workflow_state,
-        obs.remark
+        responsible_emp.full_name AS responsible_person_name
     FROM
-        `tabObservations Corrections` AS obs
+        `tabObservation Correction` AS obs
     LEFT JOIN
         `tabCompany Employee` AS auditor_emp ON obs.auditor = auditor_emp.name
     LEFT JOIN
@@ -34,8 +26,6 @@ def execute(filters=None):
     """,
         as_dict=1,
     )
-    
-    print(data)
 
     return columns, data
 
@@ -43,75 +33,81 @@ def execute(filters=None):
 def get_columns():
     columns = [
         {
-            "label": "Observation",
+            "label": _("<b>ID</b>"),
             "fieldname": "name",
             "fieldtype": "Link",
-            "options": "Observations Corrections",
-            "width": 150,
+            "options": "Observation Correction"
+        },
+         {
+            "label": _("<b>Internal Audit Conformity</b>"),
+            "fieldname": "internal_audit_conformity",
+            "fieldtype": "Link",
+            "options": "Internal Audit Conformity"
+        },
+         {
+            "label": _("<b>Audit Cycle</b>"),
+            "fieldname": "audit_cycle",
+            "fieldtype": "Link",
+            "options": "Audit Cycle"
         },
         {
-            "label": "Department",
+            "label": _("<b>Department</b>"),
             "fieldname": "department",
             "fieldtype": "Link",
-            "options": "Department",
-            "width": 120,
+            "options": "Department"
         },
-        {"label": "Date", "fieldname": "date", "fieldtype": "Date", "width": 120},
+         {
+            "label": _("<b>Type</b>"),
+            "fieldname": "type",
+            "fieldtype": "Data"
+        },
+        {"label": _("<b>Date</b>"), "fieldname": "date", "fieldtype": "Date"},
         {
-            "label": "Auditor Name",
+            "label": _("<b>Auditor</b>"),
             "fieldname": "auditor_name",
-            "fieldtype": "Data",
-            "width": 150,
+            "fieldtype": "Data"
         },
         {
-            "label": "Observation Detail",
-            "fieldname": "observation_details",
-            "fieldtype": "Text",
-            "width": 200,
-        },
-        {
-            "label": "Auditee HOD Name",
+            "label": _("<b>Auditee HOD</b>"),
             "fieldname": "auditee_hod_name",
-            "fieldtype": "Data",
-            "width": 150,
+            "fieldtype": "Data"
         },
         {
-            "label": "Correction Plan",
+            "label": _("<b>Observation Detail</b>"),
+            "fieldname": "observation_detail",
+            "fieldtype": "Text"
+        },
+        {
+            "label": _("<b>Correction Plan</b>"),
             "fieldname": "correction_plan",
-            "fieldtype": "Text",
-            "width": 200,
+            "fieldtype": "Text"
         },
         {
-            "label": "Responsible Person",
+            "label": _("<b>Responsible Person</b>"),
             "fieldname": "responsible_person_name",
-            "fieldtype": "Data",
-            "width": 150,
+            "fieldtype": "Data"
         },
         {
-            "label": "Planned Date of Completion",
+            "label": _("<b>Planned Date of Completion</b>"),
             "fieldname": "planned_date_of_completion",
-            "fieldtype": "Date",
-            "width": 150,
+            "fieldtype": "Date"
         },
         {
-            "label": "Actual Date of Completion",
+            "label": _("<b>Actual Date of Completion</b>"),
             "fieldname": "actual_date_of_completion",
-            "fieldtype": "Date",
-            "width": 150,
+            "fieldtype": "Date"
         },
         {
-            "label": "Reason for Delay",
+            "label": _("<b>Reason for Delay</b>"),
             "fieldname": "reason_for_delay",
-            "fieldtype": "Text",
-            "width": 200,
+            "fieldtype": "Text"
         },
         {
-            "label": "Observation Correction Status",
+            "label": _("<b>Observation Correction Status</b>"),
             "fieldname": "workflow_state",
-            "fieldtype": "Data",
-            "width": 150,
+            "fieldtype": "Data"
         },
-        {"label": "Remarks", "fieldname": "remark", "fieldtype": "Text", "width": 200},
+        {"label": _("<b>Remarks</b>"), "fieldname": "remark", "fieldtype": "Text", "width": 200},
     ]
 
     return columns

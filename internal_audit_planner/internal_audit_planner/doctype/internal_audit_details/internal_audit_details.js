@@ -169,7 +169,7 @@ function copyPlannedData(frm) {
         frm.doc.planned_auditors.forEach(function (row) {
             var newRow = frm.add_child('actual_auditors');
             newRow.employee = row.employee;
-            newRow.is_auditor_team_lead = row.is_auditor_team_lead;
+            newRow.auditor_team_leader = row.auditor_team_leader;
         });
 
         frm.refresh_fields(['actual_auditees', 'actual_auditors']);

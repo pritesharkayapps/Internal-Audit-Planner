@@ -47,5 +47,47 @@
   "modified": "2024-05-03 13:46:39.044536",
   "name": "Finish",
   "workflow_action_name": "Finish"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2024-06-19 12:46:56.740175",
+  "name": "Correction Planned",
+  "workflow_action_name": "Correction Planned"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2024-06-19 12:47:21.445330",
+  "name": "Not Corrected",
+  "workflow_action_name": "Not Corrected"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2024-06-19 12:47:37.349269",
+  "name": "Corrected",
+  "workflow_action_name": "Corrected"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2024-06-19 12:51:08.114958",
+  "name": "CA Taken",
+  "workflow_action_name": "CA Taken"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2024-06-19 12:51:15.268003",
+  "name": "Resolved",
+  "workflow_action_name": "Resolved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2024-06-19 12:51:24.012877",
+  "name": "Closed",
+  "workflow_action_name": "Closed"
  }
 ]

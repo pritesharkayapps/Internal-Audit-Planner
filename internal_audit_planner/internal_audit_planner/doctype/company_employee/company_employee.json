@@ -133,12 +133,13 @@
   {
    "fieldname": "email",
    "fieldtype": "Data",
-   "label": "Email"
+   "label": "Email",
+   "options": "Email"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-17 12:53:20.219264",
+ "modified": "2024-06-18 10:12:19.268579",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Company Employee",

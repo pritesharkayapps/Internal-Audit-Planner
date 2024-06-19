@@ -11,8 +11,8 @@
   "type",
   "amended_from",
   "column_break_fftf",
-  "link_doctype",
-  "link_name",
+  "reference_name",
+  "reference_link",
   "child_doctype"
  ],
  "fields": [
@@ -36,18 +36,6 @@
    "fieldtype": "Datetime",
    "in_list_view": 1,
    "label": "End Date",
-   "reqd": 1
-  },
-  {
-   "fieldname": "link_doctype",
-   "fieldtype": "Data",
-   "label": "Link DocType",
-   "reqd": 1
-  },
-  {
-   "fieldname": "link_name",
-   "fieldtype": "Data",
-   "label": "Link Name",
    "reqd": 1
   },
   {
@@ -75,12 +63,26 @@
   {
    "fieldname": "column_break_fftf",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Link",
+   "label": "Reference Name",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reference_link",
+   "fieldtype": "Dynamic Link",
+   "label": "Reference Link",
+   "options": "reference_name",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-05-01 10:32:47.984602",
+ "modified": "2024-06-19 10:22:13.555749",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Employee Schedule Log",

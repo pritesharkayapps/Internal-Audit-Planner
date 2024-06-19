@@ -3,508 +3,413 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe import _
 
 
 class InternalAuditDetails(Document):
     def validate(doc):
         if doc.status == "Planned":
-            validate_planned_auditees(doc)
-            validate_planned_auditors(doc)
-            validate_planned_data(doc)
+            validate_hod(doc)
+            validate_unique_employee(doc)
+            check_for_conflicts(doc)
 
     def before_save(doc):
         if doc.status == "Planned":
-            planned_auditees_log_change(doc)
-            planned_auditors_log_change(doc)
+            for row in doc.planned_auditees:
+                if row.auditee_team_leader:
+                    doc.planned_auditee_hod = row.employee
+                    break
 
-    def before_submit(doc):
-        if doc.status == "Planned":
-            send_mail(doc)
-        
-        pass
+            for row in doc.planned_auditors:
+                if row.auditor_team_leader:
+                    doc.planned_auditor_team_leader = row.employee
+                    break
+
+            if not doc.planned_auditee_hod:
+                frappe.throw("Auditee HOD is Required")
+
+            if not doc.planned_auditor_team_leader:
+                frappe.throw("Auditor Team Leader is Required")
+
+    def on_update(doc):
+        if doc.status == "Planned" and doc.docstatus == 0:
+            update_or_create_planned_log_entry(doc)
 
     def before_update_after_submit(doc):
-        if doc.status == "Completed" and doc.workflow_state == "Audit":
-            validate_actual_auditees(doc)
-            validate_actual_auditors(doc)
-            validate_actual_data(doc)
+        if doc.status == "Completed" and doc.workflow_state == "Audited":
+            for row in doc.actual_auditees:
+                if row.auditee_team_leader:
+                    doc.actual_auditee_hod = row.employee
+                    break
 
-            actual_auditees_log_change(doc)
-            actual_auditors_log_change(doc)
+            for row in doc.actual_auditors:
+                if row.auditor_team_leader:
+                    doc.actual_auditor_team_leader = row.employee
+                    break
+
+            validate_actual_hod(doc)
+            validate_actual_data(doc)
+            validate_actual_employee_conflicts(doc)
+
+            update_or_create_actual_log_entry(doc)
 
     def before_cancel(doc):
         sql_query = """
             DELETE FROM `tabEmployee Schedule Log`
-            WHERE link_doctype = %s AND link_name = %s
+            WHERE reference_name = %s AND reference_link = %s
         """
 
         frappe.db.sql(sql_query, (doc.doctype, doc.name))
 
 
-def validate_planned_auditees(doc):
-    hod_count = 0
+def validate_hod(doc):
+    auditee_hods = [d for d in doc.planned_auditees if d.auditee_team_leader]
+    auditor_hods = [d for d in doc.planned_auditors if d.auditor_team_leader]
 
-    flag = False
-    for row in doc.planned_auditees:
-        if row.auditee_team_leader:
-            flag = True
-            hod_count += 1
+    if len(auditee_hods) != 1:
+        frappe.throw(_("There must be exactly one HOD in Planned Auditees."))
 
-    if hod_count > 1:
-        frappe.throw("Only one HOD is allowed.")
-        return
-
-    if flag == False:
-        frappe.throw("Add atleast one HOD")
-        return
-
-    for i, row in enumerate(doc.planned_auditees, 1):
-        schedule_log = frappe.get_list(
-            "Employee Schedule Log",
-            filters={
-                "employee": row.employee,
-                "start_date": ("<=", doc.audit_plan_start_date),
-                "end_date": (">=", doc.audit_plan_end_date),
-            },
-            or_filters={
-                "link_doctype": ("!=", doc.doctype),
-                "link_name": ("!=", doc.name),
-            },
-            fields=["*"],
-        )
-
-        if schedule_log:
-            if schedule_log[0].link_doctype == "Leave Application":
-                frappe.throw(
-                    f"Auditee {row.employee} at Row {i} will be on leave on this date"
-                )
-                return
-            else:
-                frappe.throw(
-                    f"Auditee {row.employee} at Row {i} will have another Audit Plan Schedule at that time"
-                )
-                return
+    if len(auditor_hods) != 1:
+        frappe.throw(_("There must be exactly one HOD in Planned Auditors."))
 
 
-def validate_planned_auditors(doc):
-    team_leader_count = 0
+def validate_unique_employee(doc):
+    auditee_employees = {d.employee for d in doc.planned_auditees}
+    auditor_employees = {d.employee for d in doc.planned_auditors}
 
-    flag = False
-    for row in doc.planned_auditors:
-        if row.is_auditor_team_lead:
-            flag = True
-            team_leader_count += 1
+    common_employees = auditee_employees.intersection(auditor_employees)
 
-    if team_leader_count > 1:
-        frappe.throw("Only one team leader is allowed.")
-        return
-
-    if flag == False:
-        frappe.throw("Add atleast one Auditor Team Leader")
-        return
-
-    for i, row in enumerate(doc.planned_auditors, 1):
-        schedule_log = frappe.get_list(
-            "Employee Schedule Log",
-            filters={
-                "employee": row.employee,
-                "start_date": ("<=", doc.audit_plan_start_date),
-                "end_date": (">=", doc.audit_plan_end_date),
-            },
-            or_filters={
-                "link_doctype": ("!=", doc.doctype),
-                "link_name": ("!=", doc.name),
-            },
-            fields=["*"],
-        )
-
-        if schedule_log:
-            if schedule_log[0].link_doctype == "Leave Application":
-                frappe.throw(
-                    f"Auditee {row.employee} at Row {i} will be on leave on this date"
-                )
-                return
-            else:
-                frappe.throw(
-                    f"Auditee {row.employee} at Row {i} will have another Audit Plan Schedule at that time"
-                )
-                return
-
-
-def validate_planned_data(doc):
-    planned_auditees = doc.planned_auditees
-    planned_auditors = doc.planned_auditors
-
-    employees_in_table1 = [row.employee for row in planned_auditees]
-    employees_in_table2 = [row.employee for row in planned_auditors]
-
-    common_employees = set(employees_in_table1) & set(employees_in_table2)
     if common_employees:
-        frappe.throw(
-            (
-                "Employee(s) {} exists in both Planned Auditee and Planned Auditors"
-            ).format(", ".join(common_employees))
-        )
+        frappe.throw(_("Employees cannot be in both Planned Auditees and Planned Auditors: {0}").format(
+            ", ".join(common_employees)))
 
 
-def validate_actual_auditees(doc):
-    hod_count = 0
+def check_for_conflicts(self):
+    start_datetime = frappe.utils.get_datetime(self.audit_plan_start_date)
+    end_datetime = frappe.utils.get_datetime(self.audit_plan_end_date)
 
-    flag = False
-    for row in doc.actual_auditees:
-        if row.auditee_team_leader:
-            flag = True
-            hod_count += 1
+    planned_employees = set()
 
-    if hod_count > 1:
-        frappe.throw("Only one HOD is allowed.")
-        return
+    for auditee in self.get('planned_auditees'):
+        planned_employees.add(auditee.employee)
 
-    if flag == False:
-        frappe.throw("Add atleast one HOD")
-        return
+    for auditor in self.get('planned_auditors'):
+        planned_employees.add(auditor.employee)
 
-    for i, row in enumerate(doc.actual_auditees, 1):
-        schedule_log = frappe.get_list(
-            "Employee Schedule Log",
+    conflict_details = []
+    for employee in planned_employees:
+        conflicting_logs = frappe.get_all(
+            'Employee Schedule Log',
             filters={
-                "employee": row.employee,
-                "start_date": ("<=", doc.audit_plan_start_date),
-                "end_date": (">=", doc.audit_plan_end_date),
+                'start_date': ['<', end_datetime],
+                'end_date': ['>', start_datetime],
+                'employee': employee,
+                'reference_name': ['!=', self.doctype],
+                'reference_link': ['!=', self.name]
             },
-            or_filters={
-                "link_doctype": ("!=", doc.doctype),
-                "link_name": ("!=", doc.name),
-            },
-            fields=["*"],
+            fields=['name', 'employee', 'start_date', 'end_date']
         )
 
-        if schedule_log:
-            if schedule_log[0].link_doctype == "Leave Application":
+        if conflicting_logs:
+            for log in conflicting_logs:
+                conflict_details.append(
+                    f"Employee {log['employee']} has a conflict from {log['start_date']} to {log['end_date']} (Record: {log['name']})"
+                )
+
+    if conflict_details:
+        frappe.throw(_("Conflicting schedules found:\n{0}").format(
+            "\n".join(conflict_details)))
+
+
+def update_or_create_planned_log_entry(doc):
+    start_datetime = frappe.utils.get_datetime(doc.audit_plan_start_date)
+    end_datetime = frappe.utils.get_datetime(doc.audit_plan_end_date)
+
+    existing_auditees_employees = frappe.get_all(
+        "Employee Schedule Log",
+        filters={
+            "reference_name": doc.doctype,
+            "reference_link": doc.name,
+            "child_doctype": doc.meta.get_field("planned_auditees").options,
+        },
+        pluck='employee'
+    )
+
+    current_auditees_employees = set(
+        (item.employee for item in doc.planned_auditees))
+    
+    for row in doc.planned_auditees:
+        if row.employee in existing_auditees_employees:
+            existing_log_name = frappe.db.get_value('Employee Schedule Log', {
+                'employee': row.employee,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name
+            }, 'name')
+
+            schedule_log = frappe.get_doc(
+                'Employee Schedule Log', existing_log_name)
+            schedule_log.start_date = start_datetime
+            schedule_log.end_date = end_datetime
+            schedule_log.save()
+        else:
+            frappe.get_doc({
+                'doctype': 'Employee Schedule Log',
+                'employee': row.employee,
+                'start_date': start_datetime,
+                'end_date': end_datetime,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name,
+                'type': 'Planned',
+                'child_doctype': doc.meta.get_field("planned_auditees").options
+            }).insert()
+
+    for employee in existing_auditees_employees:
+        if employee not in current_auditees_employees:
+            existing_log_name = frappe.db.get_value('Employee Schedule Log', {
+                'employee': employee,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name
+            }, 'name')
+
+            frappe.delete_doc('Employee Schedule Log', existing_log_name)
+
+    existing_auditors_employees = frappe.get_all(
+        "Employee Schedule Log",
+        filters={
+            "reference_name": doc.doctype,
+            "reference_link": doc.name,
+            "child_doctype": doc.meta.get_field("planned_auditors").options,
+        },
+        pluck='employee'
+    )
+
+    current_auditors_employees = set(
+        (item.employee for item in doc.planned_auditors))
+    
+    for row in doc.planned_auditors:
+        if row.employee in existing_auditors_employees:
+            existing_log_name = frappe.db.get_value('Employee Schedule Log', {
+                'employee': row.employee,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name
+            }, 'name')
+
+            schedule_log = frappe.get_doc(
+                'Employee Schedule Log', existing_log_name)
+            schedule_log.start_date = start_datetime
+            schedule_log.end_date = end_datetime
+            schedule_log.save()
+        else:
+            frappe.get_doc({
+                'doctype': 'Employee Schedule Log',
+                'employee': row.employee,
+                'start_date': start_datetime,
+                'end_date': end_datetime,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name,
+                'type': 'Planned',
+                'child_doctype': doc.meta.get_field("planned_auditors").options
+            }).insert()
+
+    for employee in existing_auditors_employees:
+        if employee not in current_auditors_employees:
+            existing_log_name = frappe.db.get_value('Employee Schedule Log', {
+                'employee': employee,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name
+            }, 'name')
+
+            frappe.delete_doc('Employee Schedule Log', existing_log_name)
+
+
+def validate_actual_hod(doc):
+    auditee_hods = [d for d in doc.actual_auditees if d.auditee_team_leader]
+    auditor_hods = [d for d in doc.actual_auditors if d.auditor_team_leader]
+
+    if len(auditee_hods) != 1:
+        frappe.throw(_("There must be exactly one HOD in Actual Auditees."))
+
+    if len(auditor_hods) != 1:
+        frappe.throw(_("There must be exactly one HOD in Actual Auditors."))
+
+
+def validate_actual_employee_conflicts(doc):
+    start_datetime = frappe.utils.get_datetime(doc.audit_start_date)
+    end_datetime = frappe.utils.get_datetime(doc.audit_end_date)
+
+    for i, auditee in enumerate(doc.actual_auditees, 1):
+        conflicting_logs = frappe.get_all(
+            'Employee Schedule Log',
+            filters={
+                'start_date': ['<', end_datetime],
+                'end_date': ['>', start_datetime],
+                'employee': auditee.employee,
+                'reference_name': ['!=', doc.doctype],
+                'reference_link': ['!=', doc.name]
+            },
+            fields=['*']
+        )
+
+        if conflicting_logs:
+            if conflicting_logs[0].reference_name == "Leave Application":
                 frappe.throw(
-                    f"Auditee {row.employee} at Row {i} will be on leave on this date"
+                    f"Auditee {auditee.employee} at Row {i} will be on leave on this date"
                 )
                 return
             else:
                 frappe.throw(
-                    f"Auditee {row.employee} at Row {i} will have another Audit Plan Schedule at that time"
+                    f"Auditee {auditee.employee} at Row {i} will have another Audit Plan Schedule at that time"
                 )
                 return
 
-
-def validate_actual_auditors(doc):
-    team_leader_count = 0
-
-    flag = False
-    for row in doc.actual_auditors:
-        if row.is_auditor_team_lead:
-            flag = True
-            team_leader_count += 1
-
-    if team_leader_count > 1:
-        frappe.throw("Only one team leader is allowed.")
-        return
-
-    if flag == False:
-        frappe.throw("Add atleast one Auditor Team Leader")
-        return
-
-    for i, row in enumerate(doc.actual_auditors, 1):
-        schedule_log = frappe.get_list(
-            "Employee Schedule Log",
+    for i, auditee in enumerate(doc.actual_auditors, 1):
+        conflicting_logs = frappe.get_all(
+            'Employee Schedule Log',
             filters={
-                "employee": row.employee,
-                "start_date": ("<=", doc.audit_plan_start_date),
-                "end_date": (">=", doc.audit_plan_end_date),
+                'start_date': ['<', end_datetime],
+                'end_date': ['>', start_datetime],
+                'employee': auditee.employee,
+                'reference_name': ['!=', doc.doctype],
+                'reference_link': ['!=', doc.name]
             },
-            or_filters={
-                "link_doctype": ("!=", doc.doctype),
-                "link_name": ("!=", doc.name),
-            },
-            fields=["*"],
+            fields=['*']
         )
 
-        if schedule_log:
-            if schedule_log[0].link_doctype == "Leave Application":
+        if conflicting_logs:
+            if conflicting_logs[0].reference_name == "Leave Application":
                 frappe.throw(
-                    f"Auditee {row.employee} at Row {i} will be on leave on this date"
+                    f"Auditee {auditee.employee} at Row {i} will be on leave on this date"
                 )
                 return
             else:
                 frappe.throw(
-                    f"Auditee {row.employee} at Row {i} will have another Audit Plan Schedule at that time"
+                    f"Auditee {auditee.employee} at Row {i} will have another Audit Plan Schedule at that time"
                 )
                 return
+
 
 
 def validate_actual_data(doc):
-    actual_auditees = doc.actual_auditees
-    actual_auditors = doc.actual_auditors
+    auditee_employees = {d.employee for d in doc.actual_auditees}
+    auditor_employees = {d.employee for d in doc.actual_auditors}
 
-    employees_in_table1 = [row.employee for row in actual_auditees]
-    employees_in_table2 = [row.employee for row in actual_auditors]
+    common_employees = auditee_employees.intersection(auditor_employees)
 
-    common_employees = set(employees_in_table1) & set(employees_in_table2)
     if common_employees:
-        frappe.throw(
-            (
-                "Employee(s) {} exists in both Planned Auditee and Planned Auditors"
-            ).format(", ".join(common_employees))
-        )
+        frappe.throw(_("Employees cannot be in both Planned Auditees and Planned Auditors: {0}").format(
+            ", ".join(common_employees)))
 
 
-def planned_auditees_log_change(doc):
-    previous_auditees = frappe.get_all(
+def update_or_create_actual_log_entry(doc):
+    start_datetime = frappe.utils.get_datetime(doc.audit_plan_start_date)
+    end_datetime = frappe.utils.get_datetime(doc.audit_plan_end_date)
+
+    existing_auditees_employees = frappe.get_all(
         "Employee Schedule Log",
         filters={
-            "link_doctype": doc.doctype,
-            "link_name": doc.name,
-            "child_doctype": doc.meta.get_field("planned_auditees").options,
-        },
-        fields=["employee"],
-    )
-
-    previous_auditees = set((item.employee for item in previous_auditees))
-    current_auditees = set((item.employee for item in doc.planned_auditees))
-
-    match_auditees = previous_auditees.intersection(current_auditees)
-    auditees_to_remove = previous_auditees.difference(current_auditees)
-    auditees_to_add = current_auditees.difference(previous_auditees)
-
-    for auditee in match_auditees:
-        list = frappe.get_list(
-            "Employee Schedule Log",
-            filters={
-                "employee": auditee,
-                "link_doctype": doc.doctype,
-                "link_name": doc.name,
-                "child_doctype": doc.meta.get_field("planned_auditees").options,
-            },
-            fields=["name"],
-            limit=1,
-        )
-
-        log = frappe.get_doc("Employee Schedule Log", list[0].name)
-        log.start_date = doc.audit_plan_start_date
-        log.end_date = doc.audit_plan_end_date
-        log.save()
-
-    for auditee in auditees_to_add:
-        log = frappe.new_doc("Employee Schedule Log")
-        log.employee = auditee
-        log.start_date = doc.audit_plan_start_date
-        log.end_date = doc.audit_plan_end_date
-        log.link_doctype = doc.doctype
-        log.link_name = doc.name
-        log.child_doctype = doc.meta.get_field("planned_auditees").options
-        log.type = "Planned"
-        log.save()
-
-    delete_log_list = frappe.get_list(
-        "Employee Schedule Log",
-        filters={
-            "employee": ["in", auditees_to_remove],
-            "link_doctype": doc.doctype,
-            "link_name": doc.name,
-            "child_doctype": doc.meta.get_field("planned_auditees").options,
-        },
-    )
-
-    for log in delete_log_list:
-        frappe.delete_doc("Employee Schedule Log", log.name)
-
-
-def planned_auditors_log_change(doc):
-    previous_auditors = frappe.get_all(
-        "Employee Schedule Log",
-        filters={
-            "link_doctype": doc.doctype,
-            "link_name": doc.name,
-            "child_doctype": doc.meta.get_field("planned_auditors").options,
-        },
-        fields=["employee"],
-    )
-
-    previous_auditors = set((item.employee for item in previous_auditors))
-    current_auditors = set((item.employee for item in doc.planned_auditors))
-
-    match_auditors = previous_auditors.intersection(current_auditors)
-    auditors_to_remove = previous_auditors.difference(current_auditors)
-    auditors_to_add = current_auditors.difference(previous_auditors)
-
-    for auditor in match_auditors:
-        list = frappe.get_list(
-            "Employee Schedule Log",
-            filters={
-                "employee": auditor,
-                "link_doctype": doc.doctype,
-                "link_name": doc.name,
-                "child_doctype": doc.meta.get_field("planned_auditors").options,
-            },
-            fields=["name"],
-            limit=1,
-        )
-
-        log = frappe.get_doc("Employee Schedule Log", list[0].name)
-        log.start_date = doc.audit_plan_start_date
-        log.end_date = doc.audit_plan_end_date
-        log.save()
-
-    for auditor in auditors_to_add:
-        log = frappe.new_doc("Employee Schedule Log")
-        log.employee = auditor
-        log.start_date = doc.audit_plan_start_date
-        log.end_date = doc.audit_plan_end_date
-        log.link_doctype = doc.doctype
-        log.link_name = doc.name
-        log.child_doctype = doc.meta.get_field("planned_auditors").options
-        log.type = "Planned"
-        log.save()
-
-    delete_log_list = frappe.get_list(
-        "Employee Schedule Log",
-        filters={
-            "employee": ["in", auditors_to_remove],
-            "link_doctype": doc.doctype,
-            "link_name": doc.name,
-            "child_doctype": doc.meta.get_field("planned_auditors").options,
-        },
-    )
-
-    for log in delete_log_list:
-        frappe.delete_doc("Employee Schedule Log", log.name)
-
-
-def actual_auditees_log_change(doc):
-    previous_auditees = frappe.get_all(
-        "Employee Schedule Log",
-        filters={
-            "link_doctype": doc.doctype,
-            "link_name": doc.name,
+            "reference_name": doc.doctype,
+            "reference_link": doc.name,
             "child_doctype": doc.meta.get_field("actual_auditees").options,
         },
-        fields=["employee"],
+        pluck='employee'
     )
 
-    previous_auditees = set((item.employee for item in previous_auditees))
-    current_auditees = set((item.employee for item in doc.actual_auditees))
+    current_auditees_employees = set(
+        (item.employee for item in doc.actual_auditees))
 
-    match_auditees = previous_auditees.intersection(current_auditees)
-    auditees_to_remove = previous_auditees.difference(current_auditees)
-    auditees_to_add = current_auditees.difference(previous_auditees)
+    for row in doc.planned_auditees:
+        if row.employee in existing_auditees_employees:
+            existing_log_name = frappe.db.get_value('Employee Schedule Log', {
+                'employee': row.employee,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name
+            }, 'name')
 
-    for auditee in match_auditees:
-        list = frappe.get_list(
-            "Employee Schedule Log",
-            filters={
-                "employee": auditee,
-                "link_doctype": doc.doctype,
-                "link_name": doc.name,
-                "child_doctype": doc.meta.get_field("actual_auditees").options,
-            },
-            fields=["name"],
-            limit=1,
-        )
+            schedule_log = frappe.get_doc(
+                'Employee Schedule Log', existing_log_name)
+            schedule_log.start_date = start_datetime
+            schedule_log.end_date = end_datetime
+            schedule_log.save()
+        else:
+            frappe.get_doc({
+                'doctype': 'Employee Schedule Log',
+                'employee': row.employee,
+                'start_date': start_datetime,
+                'end_date': end_datetime,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name,
+                'type': 'Actual',
+                'child_doctype': doc.meta.get_field("actual_auditees").options
+            }).insert()
 
-        log = frappe.get_doc("Employee Schedule Log", list[0].name)
-        log.start_date = doc.audit_start_date
-        log.end_date = doc.audit_end_date
-        log.save()
+    for employee in existing_auditees_employees:
+        if employee not in current_auditees_employees:
+            existing_log_name = frappe.db.get_value('Employee Schedule Log', {
+                'employee': employee,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name
+            }, 'name')
 
-    for auditee in auditees_to_add:
-        log = frappe.new_doc("Employee Schedule Log")
-        log.employee = auditee
-        log.start_date = doc.audit_start_date
-        log.end_date = doc.audit_end_date
-        log.link_doctype = doc.doctype
-        log.link_name = doc.name
-        log.child_doctype = doc.meta.get_field("actual_auditees").options
-        log.type = "Actual"
-        log.save()
+            frappe.delete_doc('Employee Schedule Log', existing_log_name)
 
-    delete_log_list = frappe.get_list(
+    existing_auditors_employees = frappe.get_all(
         "Employee Schedule Log",
         filters={
-            "employee": ["in", auditees_to_remove],
-            "link_doctype": doc.doctype,
-            "link_name": doc.name,
-            "child_doctype": doc.meta.get_field("actual_auditees").options,
-        },
-    )
-
-    for log in delete_log_list:
-        frappe.delete_doc("Employee Schedule Log", log.name)
-
-
-def actual_auditors_log_change(doc):
-    previous_auditors = frappe.get_all(
-        "Employee Schedule Log",
-        filters={
-            "link_doctype": doc.doctype,
-            "link_name": doc.name,
+            "reference_name": doc.doctype,
+            "reference_link": doc.name,
             "child_doctype": doc.meta.get_field("actual_auditors").options,
         },
-        fields=["employee"],
+        pluck='employee'
     )
 
-    previous_auditors = set((item.employee for item in previous_auditors))
-    current_auditors = set((item.employee for item in doc.actual_auditors))
+    current_auditors_employees = set(
+        (item.employee for item in doc.actual_auditors))
 
-    match_auditors = previous_auditors.intersection(current_auditors)
-    auditors_to_remove = previous_auditors.difference(current_auditors)
-    auditors_to_add = current_auditors.difference(previous_auditors)
+    for row in doc.planned_auditors:
+        if row.employee in existing_auditors_employees:
+            existing_log_name = frappe.db.get_value('Employee Schedule Log', {
+                'employee': row.employee,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name
+            }, 'name')
 
-    for auditor in match_auditors:
-        list = frappe.get_list(
-            "Employee Schedule Log",
-            filters={
-                "employee": auditor,
-                "link_doctype": doc.doctype,
-                "link_name": doc.name,
-                "child_doctype": doc.meta.get_field("actual_auditors").options,
-            },
-            fields=["name"],
-            limit=1,
-        )
+            schedule_log = frappe.get_doc(
+                'Employee Schedule Log', existing_log_name)
+            schedule_log.start_date = start_datetime
+            schedule_log.end_date = end_datetime
+            schedule_log.save()
+        else:
+            frappe.get_doc({
+                'doctype': 'Employee Schedule Log',
+                'employee': row.employee,
+                'start_date': start_datetime,
+                'end_date': end_datetime,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name,
+                'type': 'Actual',
+                'child_doctype': doc.meta.get_field("actual_auditors").options
+            }).insert()
 
-        log = frappe.get_doc("Employee Schedule Log", list[0].name)
-        log.start_date = doc.audit_start_date
-        log.end_date = doc.audit_end_date
-        log.save()
+    for employee in existing_auditors_employees:
+        if employee not in current_auditors_employees:
+            existing_log_name = frappe.db.get_value('Employee Schedule Log', {
+                'employee': employee,
+                'reference_name': doc.doctype,
+                'reference_link': doc.name
+            }, 'name')
 
-    for auditor in auditors_to_add:
-        log = frappe.new_doc("Employee Schedule Log")
-        log.employee = auditor
-        log.start_date = doc.audit_start_date
-        log.end_date = doc.audit_end_date
-        log.link_doctype = doc.doctype
-        log.link_name = doc.name
-        log.child_doctype = doc.meta.get_field("actual_auditors").options
-        log.type = "Actual"
-        log.save()
-
-    delete_log_list = frappe.get_list(
-        "Employee Schedule Log",
-        filters={
-            "employee": ["in", auditors_to_remove],
-            "link_doctype": doc.doctype,
-            "link_name": doc.name,
-            "child_doctype": doc.meta.get_field("actual_auditors").options,
-        },
-    )
-
-    for log in delete_log_list:
-        frappe.delete_doc("Employee Schedule Log", log.name)
+            frappe.delete_doc('Employee Schedule Log', existing_log_name)
 
 
 def send_mail(doc):
-    doc_department = frappe.get_doc("Department",doc.department)
+    doc_department = frappe.get_doc("Department", doc.department)
     auditees = [auditee.employee for auditee in doc.planned_auditees]
     auditors = [auditor.employee for auditor in doc.planned_auditors]
 
     employees = auditees+auditors
 
-    emails = frappe.get_all("Company Employee", filters={"email": ["!=", ""],"name":["In",employees]}, pluck="email")
+    emails = frappe.get_all("Company Employee", filters={
+                            "email": ["!=", ""], "name": ["In", employees]}, pluck="email")
 
     recipients = emails
     sender = "pritesharkayapps@gmail.com"
@@ -533,9 +438,10 @@ def send_mail(doc):
     </p>
     """
 
-    audit_date = frappe.utils.formatdate(doc.audit_plan_start_date, "dd-MM-YYYY")
-    start_time = frappe.utils.format_time(doc.audit_plan_start_date,"HH:mm")
-    end_time = frappe.utils.format_time(doc.audit_plan_end_date,"HH:mm")
+    audit_date = frappe.utils.formatdate(
+        doc.audit_plan_start_date, "dd-MM-YYYY")
+    start_time = frappe.utils.format_time(doc.audit_plan_start_date, "HH:mm")
+    end_time = frappe.utils.format_time(doc.audit_plan_end_date, "HH:mm")
     planned_time = f"{start_time} to {end_time}"
 
     formatted_html = message.format(

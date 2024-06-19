@@ -6,9 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "internal_audit_number",
-  "department",
+  "internal_audit_plan",
   "audit_cycle",
+  "department",
   "date",
   "time",
   "column_break_gvit",
@@ -20,29 +20,34 @@
   "column_break_wtym",
   "planned_auditees",
   "section_break_qiak",
-  "iac_details"
+  "iac_details",
+  "amended_from"
  ],
  "fields": [
   {
-   "fetch_from": "audit_planner.department",
+   "fetch_from": "internal_audit_plan.department",
    "fieldname": "department",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Department",
    "options": "Department",
+   "read_only": 1,
    "reqd": 1
   },
   {
+   "fetch_from": "internal_audit_plan.audit_cycle",
    "fieldname": "audit_cycle",
    "fieldtype": "Link",
    "label": "Audit Cycle",
    "options": "Audit Cycle",
+   "read_only": 1,
    "reqd": 1
   },
   {
    "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Date",
    "reqd": 1
   },
@@ -54,6 +59,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "internal_audit_plan.planned_auditee_hod",
    "fieldname": "auditee_hod",
    "fieldtype": "Link",
    "label": "Auditee HOD",
@@ -64,6 +70,7 @@
    "fieldname": "auditor",
    "fieldtype": "Link",
    "label": "Auditor",
+   "link_filters": "[[\"Company Employee\",\"is_auditor\",\"=\",1]]",
    "options": "Company Employee",
    "reqd": 1
   },
@@ -88,7 +95,7 @@
    "options": "IAC Details"
   },
   {
-   "fetch_from": "auditee_hod.sign",
+   "fetch_from": "auditor.sign",
    "fieldname": "auditor_sign",
    "fieldtype": "Data",
    "label": "Auditor Sign",
@@ -111,17 +118,28 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "internal_audit_number",
+   "fieldname": "internal_audit_plan",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Internal Audit Number",
+   "label": "Internal Audit Plan",
    "options": "Internal Audit Details",
    "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Internal Audit Conformity",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-06-17 17:58:20.522936",
+ "modified": "2024-06-19 14:59:29.477152",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Internal Audit Conformity",

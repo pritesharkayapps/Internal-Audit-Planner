@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 
 
 def execute(filters=None):
@@ -14,34 +15,45 @@ def execute(filters=None):
 def get_columns():
     columns = [
         {
-            "label": "Internal Audit Number",
-            "fieldname": "internal_audit_number",
+            "label": _("<b>Internal Audit Plan</b>"),
+            "fieldname": "internal_audit_plan",
             "fieldtype": "Link",
             "options": "Internal Audit Details",
         },
         {
-            "label": "Department",
+            "label": _("<b>Department</b>"),
             "fieldname": "department",
             "fieldtype": "Link",
             "options": "Department",
         },
         {
-            "label": "Reference Title",
+            "label": _("<b>Reference Type</b>"),
+            "fieldname": "reference_type",
+            "fieldtype": "Data",
+        },
+        {
+            "label": _("<b>Reference Title</b>"),
             "fieldname": "reference_title",
             "fieldtype": "Data",
         },
-        {"label": "Details", "fieldname": "details", "fieldtype": "Text"},
-        {"label": "Type", "fieldname": "type", "fieldtype": "Data", "width": 100},
+        {"label": _("<b>Details</b>"), "fieldname": "details", "fieldtype": "Text"},
+        {"label": _("<b>Type</b>"), "fieldname": "type", "fieldtype": "Data", "width": 100},
         {
-            "label": "Reference Doc Name",
+            "label": _("<b>Reference Doc Name</b>"),
             "fieldname": "reference_doc_name",
             "fieldtype": "Data",
         },
         {
-            "label": "Reference Doc Link",
+            "label": _("<b>Reference Doc Link</b>"),
             "fieldname": "reference_doc_link",
             "fieldtype": "Dynamic Link",
             "options": "reference_doc_name",
+        },
+        {
+            "label": _("<b>ID</b>"),
+            "fieldname": "id",
+            "fieldtype": "Link",
+            "options": "Internal Audit Conformity",
         },
     ]
     return columns
@@ -55,12 +67,10 @@ def get_data(filters=None):
     )
 
     for parent in conformity_records:
-        internal_audit_number = parent.get("internal_audit_number")
-        department = parent.get("department")
-
         iac_details = frappe.get_all(
             "IAC Details",
             fields=[
+                "reference_type",
                 "reference_title",
                 "details",
                 "type",
@@ -74,20 +84,21 @@ def get_data(filters=None):
             if idx == 0:
                 data.append(
                     {
-                        "internal_audit_number": internal_audit_number,
-                        "department": department,
+                        "internal_audit_plan": parent.internal_audit_plan,
+                        "department": parent.department,
+                        "reference_type": child.reference_type,
                         "reference_title": child.reference_title,
                         "details": child.details,
                         "type": child.type,
                         "reference_doc_name": child.reference_doc_name,
                         "reference_doc_link": child.reference_doc_link,
+                        "id": parent.name,
                     }
                 )
             else:
                 data.append(
                     {
-                        "internal_audit_number": "",
-                        "department": "",
+                        "reference_type": child.reference_type,
                         "reference_title": child.reference_title,
                         "details": child.details,
                         "type": child.type,

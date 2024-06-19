@@ -1,0 +1,209 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"1aIlLQAY3B\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"kDDKfvJSaD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Site\",\"col\":3}},{\"id\":\"YIQ_8xIJqn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"9Lhw2ma1Q0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Audit Objective\",\"col\":3}},{\"id\":\"E3itsJvpw2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Audit Cycle\",\"col\":3}},{\"id\":\"HpjpNYsMTK\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"4LS3cJp7X9\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Details\",\"col\":4}},{\"id\":\"nsR5M0p_5f\",\"type\":\"card\",\"data\":{\"card_name\":\"Internal Audit Details\",\"col\":4}},{\"id\":\"BcGWRNYQYY\",\"type\":\"card\",\"data\":{\"card_name\":\"Internal Audit Reports\",\"col\":4}}]",
+ "creation": "2024-06-19 14:44:47.535559",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Internal Audit Detail",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Details",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Company Employee",
+   "link_count": 0,
+   "link_to": "Company Employee",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leave Application",
+   "link_count": 0,
+   "link_to": "Leave Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Schedule Log",
+   "link_count": 0,
+   "link_to": "Employee Schedule Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internal Audit Reports",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Internal Audit Report",
+   "link_count": 0,
+   "link_to": "Internal Audit Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "IAC Report",
+   "link_count": 0,
+   "link_to": "IAC Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Observation Correction Report",
+   "link_count": 0,
+   "link_to": "Observation Correction Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "NC Report",
+   "link_count": 0,
+   "link_to": "NC Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internal Audit Details",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internal Audit Details",
+   "link_count": 0,
+   "link_to": "Internal Audit Details",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ISO Standard",
+   "link_count": 0,
+   "link_to": "ISO Standard",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internal Audit Conformity",
+   "link_count": 0,
+   "link_to": "Internal Audit Conformity",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Observation Correction",
+   "link_count": 0,
+   "link_to": "Observation Correction",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Non Conformity",
+   "link_count": 0,
+   "link_to": "Non Conformity",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-06-19 17:56:03.262276",
+ "modified_by": "Administrator",
+ "module": "Internal Audit Planner",
+ "name": "Internal Audit Detail",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Site",
+   "link_to": "Site",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Audit Cycle",
+   "link_to": "Audit Cycle",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Department",
+   "link_to": "Department",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Audit Objective",
+   "link_to": "Audit Objective",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Internal Audit Detail"
+}

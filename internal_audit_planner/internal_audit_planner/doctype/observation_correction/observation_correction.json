@@ -6,14 +6,16 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "date",
-  "type",
-  "department",
+  "internal_audit_conformity",
+  "internal_audit_plan",
   "audit_cycle",
+  "department",
+  "type",
   "column_break_vksz",
+  "date",
   "auditor",
   "auditee_hod",
-  "observation_details",
+  "observation_detail",
   "section_break_fyjx",
   "correction_plan",
   "column_break_wezh",
@@ -23,37 +25,38 @@
   "section_break_rkan",
   "reason_for_delay",
   "column_break_zgrr",
-  "remark"
+  "remark",
+  "amended_from"
  ],
  "fields": [
   {
+   "fetch_from": "internal_audit_conformity.department",
    "fieldname": "department",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Department",
    "options": "Department",
+   "read_only": 1,
    "reqd": 1
   },
   {
+   "fetch_from": "internal_audit_conformity.audit_cycle",
    "fieldname": "audit_cycle",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Audit Cycle",
    "options": "Audit Cycle",
+   "read_only": 1,
    "reqd": 1
   },
   {
+   "fetch_from": "internal_audit_conformity.auditor",
    "fieldname": "auditor",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Auditor",
+   "link_filters": "[[\"Company Employee\",\"is_auditor\",\"=\",1]]",
    "options": "Company Employee",
-   "reqd": 1
-  },
-  {
-   "fieldname": "observation_details",
-   "fieldtype": "Small Text",
-   "label": "Observation Details",
    "reqd": 1
   },
   {
@@ -61,14 +64,16 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Type",
-   "options": "P\nAFI\nO\nNC\nM",
+   "options": "P\nAFI\nO",
    "reqd": 1
   },
   {
+   "fetch_from": "internal_audit_plan.planned_auditee_hod",
    "fieldname": "auditee_hod",
    "fieldtype": "Link",
    "label": "Auditee HOD",
    "options": "Company Employee",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -88,16 +93,20 @@
    "label": "Planned Date of Completion"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "actual_date_of_completion",
    "fieldtype": "Date",
    "label": "Actual Date of Completion"
   },
   {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.planned_date_of_completion < doc.actual_date_of_completion",
    "fieldname": "reason_for_delay",
    "fieldtype": "Small Text",
    "label": "Reason for Delay"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "remark",
    "fieldtype": "Small Text",
    "label": "Remark"
@@ -123,18 +132,51 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
    "label": "Date",
    "reqd": 1
+  },
+  {
+   "fieldname": "internal_audit_conformity",
+   "fieldtype": "Link",
+   "label": "Internal Audit Conformity",
+   "options": "Internal Audit Conformity",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "internal_audit_conformity.internal_audit_plan",
+   "fieldname": "internal_audit_plan",
+   "fieldtype": "Link",
+   "label": "Internal Audit Plan",
+   "options": "Internal Audit Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Observation Correction",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "observation_detail",
+   "fieldtype": "Small Text",
+   "label": "Observation Detail",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-06-17 15:15:46.108663",
+ "modified": "2024-06-19 17:59:24.697195",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
- "name": "Observations Corrections",
+ "name": "Observation Correction",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
