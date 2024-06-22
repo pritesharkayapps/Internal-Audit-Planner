@@ -37,6 +37,10 @@ class InternalAuditDetails(Document):
 
     def before_update_after_submit(doc):
         if doc.status == "Completed" and doc.workflow_state == "Audited":
+            validate_actual_hod(doc)
+            validate_actual_data(doc)
+            validate_actual_employee_conflicts(doc)
+
             for row in doc.actual_auditees:
                 if row.auditee_team_leader:
                     doc.actual_auditee_hod = row.employee
@@ -47,10 +51,7 @@ class InternalAuditDetails(Document):
                     doc.actual_auditor_team_leader = row.employee
                     break
 
-            validate_actual_hod(doc)
-            validate_actual_data(doc)
-            validate_actual_employee_conflicts(doc)
-
+            delete_planned_log_entry(doc)
             update_or_create_actual_log_entry(doc)
 
     def before_cancel(doc):
@@ -137,7 +138,7 @@ def update_or_create_planned_log_entry(doc):
 
     current_auditees_employees = set(
         (item.employee for item in doc.planned_auditees))
-    
+
     for row in doc.planned_auditees:
         if row.employee in existing_auditees_employees:
             existing_log_name = frappe.db.get_value('Employee Schedule Log', {
@@ -185,7 +186,7 @@ def update_or_create_planned_log_entry(doc):
 
     current_auditors_employees = set(
         (item.employee for item in doc.planned_auditors))
-    
+
     for row in doc.planned_auditors:
         if row.employee in existing_auditors_employees:
             existing_log_name = frappe.db.get_value('Employee Schedule Log', {
@@ -288,7 +289,6 @@ def validate_actual_employee_conflicts(doc):
                 return
 
 
-
 def validate_actual_data(doc):
     auditee_employees = {d.employee for d in doc.actual_auditees}
     auditor_employees = {d.employee for d in doc.actual_auditors}
@@ -298,6 +298,20 @@ def validate_actual_data(doc):
     if common_employees:
         frappe.throw(_("Employees cannot be in both Planned Auditees and Planned Auditors: {0}").format(
             ", ".join(common_employees)))
+
+
+def delete_planned_log_entry(doc):
+    schedule_log_list = frappe.get_all(
+        "Employee Schedule Log",
+        filters={
+            "reference_name": doc.doctype,
+            "reference_link": doc.name,
+            "type": "Planned",
+        }
+    )
+
+    for schedule_log in schedule_log_list:
+        frappe.delete_doc('Employee Schedule Log', schedule_log['name'])
 
 
 def update_or_create_actual_log_entry(doc):

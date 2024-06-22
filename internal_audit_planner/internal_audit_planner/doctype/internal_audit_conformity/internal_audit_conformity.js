@@ -3,7 +3,7 @@
 
 frappe.ui.form.on("Internal Audit Conformity", {
     refresh: function (frm) {
-        if (frm.doc.docstatus === 0) {
+        if (!frm.is_new() && frm.doc.docstatus === 0) {
             frm.add_custom_button('Create Reports', function () {
                 frappe.call({
                     method: 'internal_audit_planner.internal_audit_planner.doctype.internal_audit_conformity.internal_audit_conformity.generate_reports',
@@ -28,6 +28,39 @@ frappe.ui.form.on("Internal Audit Conformity", {
             };
         };
     },
+    internal_audit_plan: function (frm) {
+        if (frm.doc.internal_audit_plan) {
+            frappe.call({
+                method: 'frappe.client.get',
+                args: {
+                    doctype: 'Internal Audit Details',
+                    name: frm.doc.internal_audit_plan
+                },
+                callback: function (r) {
+                    if (r.message) {
+                        frm.clear_table('actual_auditees');
+
+                        $.each(r.message.actual_auditees, function (index, row) {
+                            var new_row = frm.add_child('actual_auditees');
+                            new_row.employee = row.employee
+                            new_row.auditee_team_leader = row.auditee_team_leader
+                        });
+
+                        frm.refresh_field('actual_auditees');
+                        frm.clear_table('actual_auditors');
+
+                        $.each(r.message.actual_auditors, function (index, row) {
+                            var new_row = frm.add_child('actual_auditors');
+                            new_row.employee = row.employee
+                            new_row.auditor_team_leader = row.auditor_team_leader
+                        });
+
+                        frm.refresh_field('actual_auditors');
+                    }
+                }
+            });
+        }
+    }
 });
 
 frappe.ui.form.on('IAC Details', {

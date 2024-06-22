@@ -68,10 +68,11 @@
    "reqd": 1
   },
   {
-   "fetch_from": "internal_audit_plan.planned_auditee_hod",
+   "fetch_from": "internal_audit_plan.actual_auditee_hod",
    "fieldname": "auditee_hod",
    "fieldtype": "Link",
    "label": "Auditee HOD",
+   "link_filters": "[[\"Company Employee\",\"team_leader\",\"=\",1]]",
    "options": "Company Employee",
    "read_only": 1,
    "reqd": 1
@@ -173,7 +174,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-19 17:59:24.697195",
+ "modified": "2024-06-22 10:38:44.341354",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Observation Correction",

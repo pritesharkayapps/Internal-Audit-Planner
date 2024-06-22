@@ -106,6 +106,7 @@
    "fieldname": "user",
    "fieldtype": "Link",
    "label": "User",
+   "link_filters": "[[\"User\",\"role_profile_name\",\"=\",\"Auditor User\"]]",
    "options": "User"
   },
   {
@@ -139,7 +140,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-18 10:12:19.268579",
+ "modified": "2024-06-22 11:29:41.388022",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Company Employee",

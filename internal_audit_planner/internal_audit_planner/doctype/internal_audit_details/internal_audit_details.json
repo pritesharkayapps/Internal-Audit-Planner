@@ -179,6 +179,7 @@
    "fieldname": "planned_auditee_hod",
    "fieldtype": "Link",
    "label": "Planned Auditee HOD",
+   "link_filters": "[[\"Company Employee\",\"team_leader\",\"=\",1]]",
    "options": "Company Employee",
    "read_only": 1
   },
@@ -186,6 +187,7 @@
    "fieldname": "planned_auditor_team_leader",
    "fieldtype": "Link",
    "label": "Planned Auditor Team Leader",
+   "link_filters": "[[\"Company Employee\",\"is_auditor\",\"=\",1]]",
    "options": "Company Employee",
    "read_only": 1
   },
@@ -194,6 +196,7 @@
    "fieldname": "actual_auditee_hod",
    "fieldtype": "Link",
    "label": "Actual Auditee HOD",
+   "link_filters": "[[\"Company Employee\",\"team_leader\",\"=\",1]]",
    "options": "Company Employee",
    "read_only": 1
   },
@@ -202,6 +205,7 @@
    "fieldname": "actual_auditor_team_leader",
    "fieldtype": "Link",
    "label": "Actual Auditor Team Leader",
+   "link_filters": "[[\"Company Employee\",\"is_auditor\",\"=\",1]]",
    "options": "Company Employee",
    "read_only": 1
   },
@@ -213,7 +217,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-19 11:51:05.653228",
+ "modified": "2024-06-20 10:50:55.696133",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Internal Audit Details",

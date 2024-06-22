@@ -39,37 +39,10 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2024-06-17 10:11:32.041200",
-  "name": "Correction Planned",
-  "style": "Primary",
-  "workflow_state_name": "Correction Planned"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
-  "modified": "2024-06-17 10:11:42.137742",
-  "name": "Corrected",
-  "style": "Success",
-  "workflow_state_name": "Corrected"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
   "modified": "2024-06-17 10:11:52.168902",
   "name": "Not Corrected",
   "style": "Danger",
   "workflow_state_name": "Not Corrected"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
-  "modified": "2024-06-17 10:13:41.508233",
-  "name": "CA Taken",
-  "style": "",
-  "workflow_state_name": "CA Taken"
  },
  {
   "docstatus": 0,
@@ -93,10 +66,28 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2024-05-04 15:15:57.112887",
-  "name": "Finished",
+  "modified": "2024-06-17 10:13:41.508233",
+  "name": "CA Taken",
+  "style": "",
+  "workflow_state_name": "CA Taken"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-06-17 10:11:32.041200",
+  "name": "Correction Planned",
+  "style": "Primary",
+  "workflow_state_name": "Correction Planned"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-06-17 10:11:42.137742",
+  "name": "Corrected",
   "style": "Success",
-  "workflow_state_name": "Finished"
+  "workflow_state_name": "Corrected"
  },
  {
   "docstatus": 0,
@@ -106,6 +97,15 @@
   "name": "Submitted",
   "style": "Primary",
   "workflow_state_name": "Submitted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-05-04 15:15:57.112887",
+  "name": "Finished",
+  "style": "Success",
+  "workflow_state_name": "Finished"
  },
  {
   "docstatus": 0,

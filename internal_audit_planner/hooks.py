@@ -233,6 +233,9 @@ scheduler_events = {
 # }
 
 fixtures = [
+    "Role",
+    "Role Profile",
+
     "Workflow State",
     "Workflow Action Master",
     "Workflow",
@@ -247,5 +250,7 @@ fixtures = [
     "Internal Audit Details",
 
     {"dt": "Report", "filters": {"module": "Internal Audit Planner"}},
-    {"dt": "Workspace", "filters": {"module": "Internal Audit Planner"}}
+    {"dt": "Workspace", "filters": {"module": "Internal Audit Detail"}}
 ]
+
+

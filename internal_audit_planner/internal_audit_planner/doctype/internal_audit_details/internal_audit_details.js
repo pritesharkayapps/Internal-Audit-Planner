@@ -11,12 +11,21 @@ frappe.ui.form.on("Internal Audit Details", {
             });
         }
 
-        if (frm.doc.workflow_state == "Audited" && frm.doc.status=="Planned") {
+        if (frm.doc.workflow_state == "Audited" && frm.doc.status == "Planned") {
             frm.set_value("status", "Completed")
             copyPlannedData(frm)
             if (frm.is_dirty()) {
                 frm.save('Update');
             }
+        }
+
+        if (frm.doc.workflow_state == "Audited" && frm.doc.status == "Completed") {
+            frm.add_custom_button('Generate Conformity', function () {
+                frappe.route_options = {
+					"internal_audit_plan": frm.doc.name
+				};
+				frappe.new_doc('Internal Audit Conformity');
+            });
         }
     },
     before_workflow_action: function (frm) {
@@ -30,19 +39,6 @@ frappe.ui.form.on("Internal Audit Details", {
                     frm.selected_workflow_action = null;
                     return false;
                 });
-        }
-    },
-    site: function (frm) {
-        site = frm.doc.site
-
-        if (site) {
-            frm.set_query('department', function () {
-                return {
-                    filters: [
-                        ['site', '=', site]
-                    ]
-                };
-            });
         }
     },
     department: function (frm) {
@@ -97,8 +93,8 @@ frappe.ui.form.on("Planned Auditees", {
                         'end_date': [">=", frm.doc.audit_plan_end_date]
                     },
                     'or_filters': {
-                        'link_doctype': ["!=", frm.doc.doctype],
-                        'link_name': ["!=", frm.doc.name],
+                        'reference_name': ["!=", frm.doc.doctype],
+                        'reference_link': ["!=", frm.doc.name],
                         "child_doctype": ["!=", frm.fields_dict["planned_auditees"].grid.doctype],
                     },
                 }
@@ -127,8 +123,8 @@ frappe.ui.form.on("Planned Auditors", {
                         'end_date': [">=", frm.doc.audit_plan_end_date]
                     },
                     'or_filters': {
-                        'link_doctype': ["!=", frm.doc.doctype],
-                        'link_name': ["!=", frm.doc.name],
+                        'reference_name': ["!=", frm.doc.doctype],
+                        'reference_link': ["!=", frm.doc.name],
                         "child_doctype": ["!=", frm.fields_dict["planned_auditors"].grid.doctype],
                     },
                     'employee': row.employee,

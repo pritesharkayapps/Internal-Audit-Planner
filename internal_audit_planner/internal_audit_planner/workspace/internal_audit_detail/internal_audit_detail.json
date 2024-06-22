@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"1aIlLQAY3B\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"kDDKfvJSaD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Site\",\"col\":3}},{\"id\":\"YIQ_8xIJqn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"9Lhw2ma1Q0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Audit Objective\",\"col\":3}},{\"id\":\"E3itsJvpw2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Audit Cycle\",\"col\":3}},{\"id\":\"HpjpNYsMTK\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"4LS3cJp7X9\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Details\",\"col\":4}},{\"id\":\"nsR5M0p_5f\",\"type\":\"card\",\"data\":{\"card_name\":\"Internal Audit Details\",\"col\":4}},{\"id\":\"BcGWRNYQYY\",\"type\":\"card\",\"data\":{\"card_name\":\"Internal Audit Reports\",\"col\":4}}]",
+ "content": "[{\"id\":\"1aIlLQAY3B\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"dd6v2hLPgZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Auditor User\",\"col\":3}},{\"id\":\"kDDKfvJSaD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Site\",\"col\":3}},{\"id\":\"YIQ_8xIJqn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"9Lhw2ma1Q0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Audit Objective\",\"col\":3}},{\"id\":\"E3itsJvpw2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Audit Cycle\",\"col\":3}},{\"id\":\"5fJrTvdgrr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ISO Standard\",\"col\":3}},{\"id\":\"HpjpNYsMTK\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"4LS3cJp7X9\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Details\",\"col\":4}},{\"id\":\"nsR5M0p_5f\",\"type\":\"card\",\"data\":{\"card_name\":\"Internal Audit Details\",\"col\":4}},{\"id\":\"BcGWRNYQYY\",\"type\":\"card\",\"data\":{\"card_name\":\"Internal Audit Reports\",\"col\":4}}]",
  "creation": "2024-06-19 14:44:47.535559",
  "custom_blocks": [],
  "docstatus": 0,
@@ -104,7 +104,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Internal Audit Details",
-   "link_count": 5,
+   "link_count": 4,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -115,16 +115,6 @@
    "label": "Internal Audit Details",
    "link_count": 0,
    "link_to": "Internal Audit Details",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "ISO Standard",
-   "link_count": 0,
-   "link_to": "ISO Standard",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -160,7 +150,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-06-19 17:56:03.262276",
+ "modified": "2024-06-20 09:09:02.870748",
  "modified_by": "Administrator",
  "module": "Internal Audit Planner",
  "name": "Internal Audit Detail",
@@ -172,6 +162,22 @@
  "roles": [],
  "sequence_id": 1.0,
  "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "ISO Standard",
+   "link_to": "ISO Standard",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Auditor User",
+   "link_to": "User",
+   "stats_filter": "[[\"User\",\"role_profile_name\",\"=\",\"Auditor User\",false]]",
+   "type": "DocType"
+  },
   {
    "color": "Grey",
    "doc_view": "List",

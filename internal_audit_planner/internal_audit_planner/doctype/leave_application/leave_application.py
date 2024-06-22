@@ -11,7 +11,7 @@ class LeaveApplication(Document):
 
         schedule_logs = frappe.get_list(
             "Employee Schedule Log",
-            filters={"link_doctype": doc.doctype, "link_name": doc.name},
+            filters={"reference_name": doc.doctype, "reference_link": doc.name},
         )
 
         for log in schedule_logs:
@@ -30,7 +30,7 @@ class LeaveApplication(Document):
         )
 
         if schedule_log:
-            if schedule_log[0].link_doctype == "Leave Application":
+            if schedule_log[0].reference_name == "Leave Application":
                 frappe.throw("This Employee will be on leave on this date")
             else:
                 frappe.throw(
@@ -41,15 +41,15 @@ class LeaveApplication(Document):
         schedule_log.employee = doc.employee
         schedule_log.start_date = doc.start_date + " 00:00:00"
         schedule_log.end_date = doc.end_date + " 23:59:59"
-        schedule_log.link_doctype = doc.doctype
-        schedule_log.link_name = doc.name
+        schedule_log.reference_name = doc.doctype
+        schedule_log.reference_link = doc.name
         schedule_log.type = "Leave"
         schedule_log.save()
 
     def before_cancel(doc):
         schedule_logs = frappe.get_list(
             "Employee Schedule Log",
-            filters={"link_doctype": doc.doctype, "link_name": doc.name},
+            filters={"reference_name": doc.doctype, "reference_link": doc.name},
         )
 
         for log in schedule_logs:

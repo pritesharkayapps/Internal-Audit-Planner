@@ -4,6 +4,18 @@
 frappe.query_reports["Observation Correction Report"] = {
 	"filters": [
 		{
+			fieldname: 'internal_audit_conformity',
+			label: __('Internal Audit Conformity'),
+			fieldtype: 'Link',
+			options: "Internal Audit Conformity"
+		},
+		{
+			fieldname: 'internal_audit_plan',
+			label: __('Internal Audit Plan'),
+			fieldtype: 'Link',
+			options: "Internal Audit Details"
+		},
+		{
 			fieldname: 'from_date',
 			label: __('From Date'),
 			fieldtype: 'Date'
@@ -24,12 +36,6 @@ frappe.query_reports["Observation Correction Report"] = {
 			label: __('Department'),
 			fieldtype: 'Link',
 			options: "Department"
-		},
-		{
-			fieldname: 'iso_standard',
-			label: __('ISO Standard'),
-			fieldtype: 'Link',
-			options: "ISO Standard"
 		},
 	]
 };

@@ -21,10 +21,14 @@ class ObservationCorrection(Document):
                     f"The following fields are mandatory before submitting the document: {field_names}")
 
     def before_update_after_submit(doc):
-        if doc.workflow_state == "Correction Planned":
-            if doc.planned_date_of_completion < doc.actual_date_of_completion and not doc.remark:
+        if doc.workflow_state == "Corrected":
+            if not doc.actual_date_of_completion:
+                frappe.throw("Actual Date of Completion field is mandatory on Corrected Status")
+
+            if doc.planned_date_of_completion < doc.actual_date_of_completion and not doc.reason_for_delay:
                 frappe.throw(
                     "Reason for delay is mandatory if the planned date of completion is less than the actual date of completion.")
+                
 
 
 def update_status_to_not_corrected():

@@ -11,8 +11,8 @@ class InternalAuditConformity(Document):
 
 @frappe.whitelist()
 def generate_reports(docname):
-    doc = frappe.get_doc('Internal Audit Conformity',docname)
-    
+    doc = frappe.get_doc('Internal Audit Conformity', docname)
+
     iac_details = frappe.get_all('IAC Details', filters={
         'parenttype': doc.doctype, 'parent': doc.name}, fields="*")
 
@@ -22,15 +22,15 @@ def generate_reports(docname):
                 observation = frappe.new_doc('Observation Correction')
                 observation.internal_audit_conformity = doc.name
                 observation.type = 'O'
-                observation.observation_details = iac_detail.details
+                observation.observation_detail = iac_detail.details
                 observation.save()
 
-                frappe.db.set_value('IAC Details', iac_detail.name,
-                                    'reference_doc_name', observation.doctype)
+                frappe.db.set_value(
+                    'IAC Details', iac_detail.name, 'reference_doc_name', observation.doctype)
                 frappe.db.set_value(
                     'IAC Details', iac_detail.name, 'reference_doc_link', observation.name)
 
-            elif iac_detail.type in ["NC","M"]:
+            elif iac_detail.type in ["NC", "M"]:
                 nc_type = None
                 if iac_detail.type == "NC":
                     nc_type = "NC"
@@ -47,5 +47,5 @@ def generate_reports(docname):
                     'IAC Details', iac_detail.name, 'reference_doc_name', nc.doctype)
                 frappe.db.set_value(
                     'IAC Details', iac_detail.name, 'reference_doc_link', nc.name)
-                
+
     return "IAC Details Reports generated Successfully."

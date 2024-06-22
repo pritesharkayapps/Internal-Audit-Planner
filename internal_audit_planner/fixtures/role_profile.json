@@ -1,0 +1,17 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2024-06-22 09:25:26.300368",
+  "name": "Auditor User",
+  "role_profile": "Auditor User",
+  "roles": [
+   {
+    "parent": "Auditor User",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Auditor"
+   }
+  ]
+ }
+]
